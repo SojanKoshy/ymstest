@@ -1,0 +1,45 @@
+  module network {
+     yang-version 1;
+     namespace "urn:TBD:params:xml:ns:yang:nodes";
+     prefix nd;
+
+     organization "TBD";
+     contact
+       "WILL-BE-DEFINED-LATER";
+     description
+       "This module defines a common base model for a collection
+        of nodes in a network. Node definitions s are further used
+        in network topologies and inventories.";
+
+     revision 2014-03-09 {
+       description
+         "Initial revision.";
+       reference "draft-clemm-i2rs-yang-network-topo-04";
+     }
+
+     leaf name {
+        type string;
+     }
+
+    leaf surname {
+        type string;
+     }
+
+     leaf isHappy {
+        type boolean;
+        mandatory true;
+     }
+
+     list networklist {
+       key "network-id";
+
+       leaf network-id {
+         type string;
+       }
+
+       leaf server-provided {
+         type string;
+       }
+     }
+
+}
