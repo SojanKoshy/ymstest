@@ -18,89 +18,64 @@ package org.onosproject.ymstest.cli;
 import org.apache.karaf.shell.commands.Argument;
 import org.apache.karaf.shell.commands.Command;
 import org.onosproject.cli.AbstractShellCommand;
-import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
-import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
-import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
-import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
-import org.onosproject.yms.ych.YangCodecHandler;
-import org.onosproject.yms.ych.YangProtocolEncodingFormat;
-import org.onosproject.yms.ydt.YmsOperationType;
-import org.onosproject.yms.ymsm.YmsService;
+import org.onosproject.ymstest.YmsTestcases;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
- * CLI command to get the current leader for the Election test application.
+ * CLI command to test YMS application.
  */
 
 @Command(scope = "onos", name = "yms-test",
         description = "YMS test application")
 public class YmsTestCommand extends AbstractShellCommand {
 
-    @Argument(index = 0, name = "testcaseName", description = "Test case name.", required = true, multiValued = false)
+    @Argument(index = 0, name = "testcaseName", description = "Test case function name.", required = true, multiValued = false)
     String testcaseName = null;
 
     @Override
     protected void execute() {
-        if (testcaseName.equalsIgnoreCase("sbi")) {
-            YmsService ymsService = get(YmsService.class);
+        YmsTestcases ymsTestcases = new YmsTestcases();
 
-            if (ymsService == null) {
-                print("ymsService is Null");
+        Method[] methods = YmsTestcases.class.getMethods();
+        boolean testFound = false;
+
+        Integer total = 0;
+        Integer passed = 0;
+        Integer failed = 0;
+
+        for (Method method : methods) {
+            String methodName = method.getName();
+
+            if ((testcaseName.equals("all") && methodName.startsWith("test")) ||
+                    methodName.equals(testcaseName)) {
+                testFound = true;
+                total++;
+                try {
+                    boolean result = (boolean) method.invoke(ymsTestcases);
+                    if (result) {
+                        passed++;
+                        print("[REPORT] " + methodName + " Passed\n");
+                    } else {
+                        failed++;
+                        print("[REPORT] " + methodName + " Failed!\n");
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
             }
-
-            YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
-            if (yangCodecHandler == null) {
-                print("YangCodecHandler is Null");
-            }
-
-            yangCodecHandler.addDeviceSchema(Network.class);
-            print("SBI App added device Schema in YMS Codec ");
-
-            // Get the xml string and compare
-            Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
-            tagAttributeLinkedMap.put("type", "subtree");
-
-            // Creating the object
-            List<Object> yangModuleList = new ArrayList<>();
-            Networklist networklist = DefaultNetworklist.builder().networkId("1000").serverProvided("1000").build();
-
-            Object object = NetworkOpParam.builder().name("My network").isHappy(true).build();
-
-            yangModuleList.add(object);
-
-
-            // Encode JO to XML
-            String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
-                    tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML_ENCODING, YmsOperationType.RPC_REQUEST);
-
-            if (xmlOutput == null) {
-                print("xmlOutput is Null");
-            }
-
-            // Decode XML to JO
-            boolean result = xmlOutput.equals("<network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\"><name>My network</name><surname>My surname</surname><networklist><network-id>1000</network-id><server-provided>1000</server-provided></networklist></network>");
-
-            print(xmlOutput);
-            print("Test passed = " + result);
         }
-        else if (testcaseName.equalsIgnoreCase("nbi")) {
 
-            YmsService ymsService = get(YmsService.class);
-
-            if (ymsService == null) {
-                print("ymsService is Null");
-            }
-
-            ymsService.registerService(this, Network.class, null);
-            print("Registered Service");
-
-
-            ymsService.unRegisterService(this, Network.class); /// ISSUE IS THERE
-
+        if (testFound) {
+            Integer passPercent = (passed * 100) / total;
+            print("[SUMMARY REPORT] Total: %d, Passed:%d, Failed:%d, Pass percent: %d%%",
+                    total, passed, failed, passPercent);
+        }
+        else {
+            print("Error: Unknown testcase '" + testcaseName + "'");
         }
     }
 }

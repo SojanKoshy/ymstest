@@ -18,7 +18,11 @@
     <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
         <command>
             <action class="org.onosproject.ymstest.cli.YmsTestCommand"/>
+            <completers>
+                <ref component-id="ymsCompleter"/>
+            </completers>
         </command>
     </command-bundle>
+    <bean id="ymsCompleter" class="org.onosproject.ymstest.cli.YmsTestCompleter"/>
 
 </blueprint>
