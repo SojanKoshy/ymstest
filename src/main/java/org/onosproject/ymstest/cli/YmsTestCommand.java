@@ -52,6 +52,8 @@ public class YmsTestCommand extends AbstractShellCommand {
                     methodName.equals(testcaseName)) {
                 testFound = true;
                 total++;
+                print("[REPORT] Running test " + total + " " + methodName);
+
                 try {
                     boolean result = (boolean) method.invoke(ymsTestcases);
                     if (result) {
@@ -71,8 +73,9 @@ public class YmsTestCommand extends AbstractShellCommand {
 
         if (testFound) {
             Integer passPercent = (passed * 100) / total;
-            print("[SUMMARY REPORT] Total: %d, Passed:%d, Failed:%d, Pass percent: %d%%",
-                    total, passed, failed, passPercent);
+            Integer error = total - passed - failed;
+            print("[SUMMARY REPORT] Total: %d, Passed:%d, Failed:%d, Error:%d, Pass percent: %d%%",
+                    total, passed, failed, error, passPercent);
         }
         else {
             print("Error: Unknown testcase '" + testcaseName + "'");

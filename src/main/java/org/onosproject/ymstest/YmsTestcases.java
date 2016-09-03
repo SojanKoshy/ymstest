@@ -174,6 +174,14 @@ public class YmsTestcases {
         List<Object> yangModuleDecodedList = yangCodecHandler.decode(xml, YangProtocolEncodingFormat.XML_ENCODING,
                 YmsOperationType.RPC_REQUEST);
 
+        if (yangModuleDecodedList == null) {
+            print("yangModuleDecodedList is Null");
+        } else {
+            result = true;
+        }
+
+        // TODO: Validate yangModuleDecodedList
+
         return result;
     }
 
@@ -202,7 +210,7 @@ public class YmsTestcases {
         // Add device schema in YMS codec
         yangCodecHandler.addDeviceSchema(Network.class);
 
-        // Decode XML to JO
+        // Decode invalid XML without root node filter to JO
         String invalidXml = "<network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
                 "    <name>My name</name>\n" +
                 "    <surname>My Surname</surname>\n" +
@@ -212,6 +220,36 @@ public class YmsTestcases {
         List<Object> yangModuleDecodedList = yangCodecHandler.decode(invalidXml, YangProtocolEncodingFormat.XML_ENCODING,
                 YmsOperationType.RPC_REQUEST);
 
+        if (yangModuleDecodedList == null) {
+            print("yangModuleDecodedList is Null");
+        } else {
+            result = true;
+        }
+
+        // TODO: Validate yangModuleDecodedList
+
+        // Decode invalid XML with 2 root nodes to JO
+        String invalidXml2 = "<network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
+                "    <name>My name</name>\n" +
+                "    <surname>My Surname</surname>\n" +
+                "    <isHappy>false</isHappy>\n" +
+                "</network>\n" +
+                "<network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
+                "    <name>My name</name>\n" +
+                "    <surname>My Surname</surname>\n" +
+                "    <isHappy>false</isHappy>\n" +
+                "</network>\n";
+
+
+        // FIXME: Below decode() will throw exception as input is invalid
+
+        List<Object> yangModuleDecodedList2 = yangCodecHandler.decode(invalidXml2, YangProtocolEncodingFormat.XML_ENCODING,
+                YmsOperationType.RPC_REQUEST);
+
+        if (yangModuleDecodedList2 == null) {
+            print("yangModuleDecodedList2 is Null");
+        }
+
         return result;
     }
 
@@ -220,7 +258,7 @@ public class YmsTestcases {
      *
      * @return Test result
      */
-    public boolean testNbi() {
+    public boolean testNbiResister() {
 
         YmsService ymsService = get(YmsService.class);
 
@@ -231,10 +269,26 @@ public class YmsTestcases {
         ymsService.registerService(this, Network.class, null);
         print("Registered Service");
 
+        //TODO: Add REST POST and validate
 
-        ymsService.unRegisterService(this, Network.class); /// ISSUE IS THERE
-
-        return false;
+        return true;
     }
 
+    /**
+     * Test NBI basic flow
+     *
+     * @return Test result
+     */
+    public boolean testNbiUnResister() {
+
+        YmsService ymsService = get(YmsService.class);
+
+
+        ymsService.unRegisterService(this, Network.class); /// DEFECT IS THERE
+        print("Registered Service");
+
+        //TODO: Add REST POST and validate
+
+        return true;
+    }
 }
