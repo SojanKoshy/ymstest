@@ -32,7 +32,7 @@ import java.util.Map;
 import static org.onosproject.cli.AbstractShellCommand.get;
 
 /**
- * Test cases for YMS application testing
+ * Test cases for YMS application testing.
  */
 public class YmsTestcases {
 
@@ -82,7 +82,7 @@ public class YmsTestcases {
     }
 
     /**
-     * Test SBI basic encode flow
+     * Test SBI basic encode flow.
      *
      * @return Test result
      */
@@ -143,7 +143,7 @@ public class YmsTestcases {
     }
 
     /**
-     * Test SBI basic decode valid flow
+     * Test SBI basic decode valid flow.
      *
      * @return Test result
      */
@@ -191,7 +191,7 @@ public class YmsTestcases {
     }
 
     /**
-     * Test SBI basic decode invalid flow
+     * Test SBI basic decode invalid flow.
      *
      * @return Test result
      */
@@ -222,8 +222,8 @@ public class YmsTestcases {
                 "    <isHappy>false</isHappy>\n" +
                 "</network>\n";
 
-        List<Object> yangModuleDecodedList = yangCodecHandler.decode(invalidXml, YangProtocolEncodingFormat.XML_ENCODING,
-                YmsOperationType.RPC_REQUEST);
+        List<Object> yangModuleDecodedList = yangCodecHandler.decode(invalidXml,
+                YangProtocolEncodingFormat.XML_ENCODING, YmsOperationType.RPC_REQUEST);
 
         if (yangModuleDecodedList == null) {
             print("yangModuleDecodedList is Null");
@@ -248,8 +248,8 @@ public class YmsTestcases {
 
         // FIXME: Below decode() will throw exception as input is invalid
 
-        List<Object> yangModuleDecodedList2 = yangCodecHandler.decode(invalidXml2, YangProtocolEncodingFormat.XML_ENCODING,
-                YmsOperationType.RPC_REQUEST);
+        List<Object> yangModuleDecodedList2 = yangCodecHandler.decode(invalidXml2,
+                YangProtocolEncodingFormat.XML_ENCODING, YmsOperationType.RPC_REQUEST);
 
         if (yangModuleDecodedList2 == null) {
             print("yangModuleDecodedList2 is Null");
@@ -259,7 +259,7 @@ public class YmsTestcases {
     }
 
     /**
-     * Test NBI basic register flow
+     * Test NBI basic register flow.
      *
      * @return Test result
      */
@@ -278,7 +278,7 @@ public class YmsTestcases {
 
 
     /**
-     * Test NBI register and send restconf request
+     * Test NBI register and send restconf request.
      *
      * @return Test result
      */
@@ -333,7 +333,7 @@ public class YmsTestcases {
     }
 
     /**
-     * Test NBI basic unRegister flow
+     * Test NBI basic unRegister flow.
      *
      * @return Test result
      */

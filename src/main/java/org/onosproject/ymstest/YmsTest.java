@@ -22,8 +22,6 @@ import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.ReferenceCardinality;
 import org.onosproject.core.ApplicationId;
 import org.onosproject.core.CoreService;
-import org.onosproject.yms.ych.YangCodecHandler;
-import org.onosproject.yms.ymsm.YmsService;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;

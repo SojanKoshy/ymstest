@@ -31,7 +31,8 @@ import java.lang.reflect.Method;
         description = "YMS test application")
 public class YmsTestCommand extends AbstractShellCommand {
 
-    @Argument(index = 0, name = "testcaseName", description = "Test case function name.", required = true, multiValued = false)
+    @Argument(index = 0, name = "testcaseName", description = "Test case function name.", required = true,
+            multiValued = false)
     String testcaseName = null;
 
     @Override
@@ -76,8 +77,7 @@ public class YmsTestCommand extends AbstractShellCommand {
             Integer error = total - passed - failed;
             print("[SUMMARY REPORT] Total: %d, Passed:%d, Failed:%d, Error:%d, Pass percent: %d%%",
                     total, passed, failed, error, passPercent);
-        }
-        else {
+        } else {
             print("Error: Unknown testcase '" + testcaseName + "'");
         }
     }
