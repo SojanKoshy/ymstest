@@ -1,5 +1,10 @@
 package org.onosproject.ymstest;
 
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
@@ -254,11 +259,11 @@ public class YmsTestcases {
     }
 
     /**
-     * Test NBI basic flow
+     * Test NBI basic register flow
      *
      * @return Test result
      */
-    public boolean testNbiResister() {
+    public boolean testNbiRegister() {
 
         YmsService ymsService = get(YmsService.class);
 
@@ -266,26 +271,80 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        ymsService.registerService(this, Network.class, null);
+        ymsService.registerService(new NetworkManager(), Network.class, null);
+        print("Registered Service");
+        return true;
+    }
+
+
+    /**
+     * Test NBI register and send restconf request
+     *
+     * @return Test result
+     */
+    public boolean testNbiRegisterSendRest() {
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        ymsService.registerService(new NetworkManager(), Network.class, null);
         print("Registered Service");
 
-        //TODO: Add REST POST and validate
+        try {
+
+            Client client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("karaf", "karaf"));
+
+            WebResource webResource = client
+                    .resource("http://127.0.01:8181/onos/restconf/data/network");
+
+            String input = "{\n" +
+                    "    \"name\": \"Huawei\",\n" +
+                    "    \"surname\": \"Bangalore\",\n" +
+                    "    \n" +
+                    "    \"networklist\": [{\n" +
+                    "        \"network-id\": \"123\",\n" +
+                    "        \"server-provided\": \"false\"\n" +
+                    "    }]\n" +
+                    "}";
+
+            ClientResponse response = webResource.accept("application/json").type("application/json")
+                    .post(ClientResponse.class, input);
+
+            if (response.getStatus() != 201) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatus());
+            }
+
+            System.out.println("Output from Server .... \n");
+            String output = response.getEntity(String.class);
+            System.out.println(output);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
 
         return true;
     }
 
     /**
-     * Test NBI basic flow
+     * Test NBI basic unRegister flow
      *
      * @return Test result
      */
-    public boolean testNbiUnResister() {
+    public boolean testNbiUnRegister() {
 
         YmsService ymsService = get(YmsService.class);
 
 
         ymsService.unRegisterService(this, Network.class); /// DEFECT IS THERE
         print("Registered Service");
+
 
         //TODO: Add REST POST and validate
 
