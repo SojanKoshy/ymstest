@@ -45,7 +45,7 @@ public class NetworkManager
                 if (listElement.getValueLeafFlags().get(Networklist.LeafIdentifier.SERVERPROVIDED.getLeafIndex())) {
                     networkListBuilder.serverProvided(listElement.serverProvided());
                 }
-                appDataStore.addToNetworklist(networkListBuilder.build()); // FIXME: Recursive call
+                appDataStore.addToNetworklist(networkListBuilder.build());
             }
         }
     }
