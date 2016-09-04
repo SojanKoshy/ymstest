@@ -1,18 +1,17 @@
 package org.onosproject.ymstest;
 
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
+import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotification;
 import org.onosproject.yms.ych.YangCodecHandler;
 import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
+import org.onosproject.ymstest.module.MultiNotificationManger;
+import org.onosproject.ymstest.module.NetworkManager;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
@@ -22,8 +21,14 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,12 +41,42 @@ import static org.onosproject.cli.AbstractShellCommand.get;
  */
 public class YmsTestcases {
 
+    private boolean printEnabled = true;
+
+    /**
+     * Emable testcase printing.
+     *
+     */
+    public void enablePrinting() {
+        this.printEnabled = true;
+    }
+
+    /**
+     * Disable testcase printing.
+     *
+     */
+    public void disablePrinting() {
+        this.printEnabled = false;
+    }
+
+    /**
+     * Prints the arguments using the specified format.
+     *
+     * @param format format string; see {@link String#format}
+     * @param args   arguments
+     */
+    private void print(String format, Object... args) {
+        if (printEnabled) {
+            System.out.println(String.format(format, args));
+        }
+    }
+
     /**
      * Converts xml string to pretty format.
      *
      * @param input xml string to be converted to pretty format
      */
-    public static String prettyFormat(String input) {
+    private String prettyFormat(String input) {
         // Prepare input and output stream
         Source xmlInput = new StreamSource(new StringReader(input));
         StringWriter stringWriter = new StringWriter();
@@ -72,13 +107,47 @@ public class YmsTestcases {
     }
 
     /**
-     * Prints the arguments using the specified format.
+     * Send RESTconf post request.
      *
-     * @param format format string; see {@link String#format}
-     * @param args   arguments
+     * @param uri REST request uri
+     * @param body REST request body
      */
-    public void print(String format, Object... args) {
-        System.out.println(String.format(format, args));
+    private void post(String uri, String body) {
+
+        try {
+
+            URL url = new URL(uri);
+            HttpURLConnection conn =  (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            String userPassword = "karaf:karaf";
+            String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
+            conn.setRequestProperty("Authorization", "Basic " + encoding);
+
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+
+            OutputStream os = conn.getOutputStream();
+            os.write(body.getBytes());
+            os.flush();
+
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+
+            conn.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -86,8 +155,8 @@ public class YmsTestcases {
      *
      * @return Test result
      */
-        public boolean testSbiEncode() {
-        boolean result = false;
+    public boolean testSbiEncode() {
+        boolean result = true;
 
         // Get YMS service
         YmsService ymsService = get(YmsService.class);
@@ -139,6 +208,10 @@ public class YmsTestcases {
                 "    </network>\n" +
                 "</filter>\n");
 
+        if (!result) {
+            print("Encoded xml output not matching with expected");
+        }
+
         return result;
     }
 
@@ -148,7 +221,7 @@ public class YmsTestcases {
      * @return Test result
      */
     public boolean testSbiDecodeValid() {
-        boolean result = false;
+        boolean result = true;
 
         // Get YMS service
         YmsService ymsService = get(YmsService.class);
@@ -182,10 +255,16 @@ public class YmsTestcases {
         if (yangModuleDecodedList == null) {
             print("yangModuleDecodedList is Null");
         } else {
-            result = true;
+            NetworkOpParam networkOpParam = (NetworkOpParam) yangModuleDecodedList.get(0);
+            result = (networkOpParam.name().equals("My name") &&
+                    networkOpParam.surname().equals("My Surname") &&
+                    networkOpParam.isHappy() &&
+                    networkOpParam.networklist().size() == 0);
         }
 
-        // TODO: Validate yangModuleDecodedList
+        if (!result) {
+            print("Decoded JO output not matching with expected");
+        }
 
         return result;
     }
@@ -196,7 +275,7 @@ public class YmsTestcases {
      * @return Test result
      */
     public boolean testSbiDecodeInvalid() {
-        boolean result = false;
+        boolean result = true;
 
         // Get YMS service
         YmsService ymsService = get(YmsService.class);
@@ -225,10 +304,9 @@ public class YmsTestcases {
         List<Object> yangModuleDecodedList = yangCodecHandler.decode(invalidXml,
                 YangProtocolEncodingFormat.XML_ENCODING, YmsOperationType.RPC_REQUEST);
 
-        if (yangModuleDecodedList == null) {
-            print("yangModuleDecodedList is Null");
-        } else {
+        if (yangModuleDecodedList != null) {
             result = true;
+            print("yangModuleDecodedList is not null");
         }
 
         // TODO: Validate yangModuleDecodedList
@@ -251,8 +329,9 @@ public class YmsTestcases {
         List<Object> yangModuleDecodedList2 = yangCodecHandler.decode(invalidXml2,
                 YangProtocolEncodingFormat.XML_ENCODING, YmsOperationType.RPC_REQUEST);
 
-        if (yangModuleDecodedList2 == null) {
-            print("yangModuleDecodedList2 is Null");
+        if (yangModuleDecodedList2 != null) {
+            result = false;
+            print("yangModuleDecodedList is not null");
         }
 
         return result;
@@ -272,10 +351,9 @@ public class YmsTestcases {
         }
 
         ymsService.registerService(new NetworkManager(), Network.class, null);
-        print("Registered Service");
+        print("Registered network service in YMS");
         return true;
     }
-
 
     /**
      * Test NBI register and send restconf request.
@@ -284,6 +362,8 @@ public class YmsTestcases {
      */
     public boolean testNbiRegisterSendRest() {
 
+        boolean result = false;
+
         YmsService ymsService = get(YmsService.class);
 
         if (ymsService == null) {
@@ -291,45 +371,20 @@ public class YmsTestcases {
         }
 
         ymsService.registerService(new NetworkManager(), Network.class, null);
-        print("Registered Service");
 
-        try {
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/network";
+        String body = "{\n" +
+                "  \"name\": \"Huawei\",\n" +
+                "  \"surname\": \"Bangalore\",\n" +
+                "\n" +
+                "  \"networklist\": [{\n" +
+                "    \"network-id\": \"123\",\n" +
+                "    \"server-provided\": \"false\"\n" +
+                "  }]\n" +
+                "}";
 
-            Client client = Client.create();
-            client.addFilter(new HTTPBasicAuthFilter("karaf", "karaf"));
-
-            WebResource webResource = client
-                    .resource("http://127.0.01:8181/onos/restconf/data/network");
-
-            String input = "{\n" +
-                    "    \"name\": \"Huawei\",\n" +
-                    "    \"surname\": \"Bangalore\",\n" +
-                    "    \n" +
-                    "    \"networklist\": [{\n" +
-                    "        \"network-id\": \"123\",\n" +
-                    "        \"server-provided\": \"false\"\n" +
-                    "    }]\n" +
-                    "}";
-
-            ClientResponse response = webResource.accept("application/json").type("application/json")
-                    .post(ClientResponse.class, input);
-
-            if (response.getStatus() != 201) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + response.getStatus());
-            }
-
-            System.out.println("Output from Server .... \n");
-            String output = response.getEntity(String.class);
-            System.out.println(output);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-        return true;
+        post(uri, body);
+        return result;
     }
 
     /**
@@ -343,11 +398,33 @@ public class YmsTestcases {
 
 
         ymsService.unRegisterService(this, Network.class); /// DEFECT IS THERE
-        print("Registered Service");
+        print("Unregistered network service from YMS");
 
 
         //TODO: Add REST POST and validate
 
+        return true;
+    }
+
+    /**
+     * Test NBI basic register flow.
+     *
+     * @return Test result
+     */
+    public boolean testNbiNotification() {
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        MultiNotificationManger multiNotificationManger = new MultiNotificationManger();
+        ymsService.registerService(multiNotificationManger, MultiNotification.class, null);
+        print("Registered Service");
+
+        multiNotificationManger.sendNotification();
+        print("Notification Send");
         return true;
     }
 }

@@ -39,13 +39,19 @@ public class YmsTestCommand extends AbstractShellCommand {
     protected void execute() {
         YmsTestcases ymsTestcases = new YmsTestcases();
 
-        Method[] methods = YmsTestcases.class.getMethods();
-        boolean testFound = false;
+        // When running all testcases turn of print in testcases
+        if (testcaseName.equals("all")) {
+            ymsTestcases.disablePrinting();
+        }
 
         Integer total = 0;
         Integer passed = 0;
         Integer failed = 0;
+        boolean testFound = false;
 
+        Method[] methods = YmsTestcases.class.getMethods();
+
+        // Find the testcases by matching function name
         for (Method method : methods) {
             String methodName = method.getName();
 

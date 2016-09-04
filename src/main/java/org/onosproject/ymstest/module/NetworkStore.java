@@ -1,4 +1,4 @@
-package org.onosproject.ymstest;
+package org.onosproject.ymstest.module;
 
 
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by v70786 on 26/8/16.
  */
-public class MyNetworkStore
+public class NetworkStore
         implements Network {
 
     private BitSet valueLeafFlags = new BitSet();

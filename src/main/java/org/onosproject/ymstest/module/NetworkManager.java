@@ -1,4 +1,4 @@
-package org.onosproject.ymstest;
+package org.onosproject.ymstest.module;
 
 
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
@@ -13,7 +13,7 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 public class NetworkManager
         implements NetworkService {
 
-    MyNetworkStore appDataStore = new MyNetworkStore();
+    NetworkStore appDataStore = new NetworkStore();
 
     @Override
     public Network getNetwork(NetworkOpParam network) {
@@ -45,7 +45,7 @@ public class NetworkManager
                 if (listElement.getValueLeafFlags().get(Networklist.LeafIdentifier.SERVERPROVIDED.getLeafIndex())) {
                     networkListBuilder.serverProvided(listElement.serverProvided());
                 }
-                appDataStore.addToNetworklist(networkListBuilder.build());
+                appDataStore.addToNetworklist(networkListBuilder.build()); // FIXME: Recursive call
             }
         }
     }
