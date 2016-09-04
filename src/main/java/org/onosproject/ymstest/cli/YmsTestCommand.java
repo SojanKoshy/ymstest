@@ -81,7 +81,7 @@ public class YmsTestCommand extends AbstractShellCommand {
         if (testFound) {
             Integer passPercent = (passed * 100) / total;
             Integer error = total - passed - failed;
-            print("[SUMMARY REPORT] Total: %d, Passed:%d, Failed:%d, Error:%d, Pass percent: %d%%",
+            print("[SUMMARY REPORT] Total:%d, Passed:%d, Failed:%d, Error:%d, Pass percent:%d%%",
                     total, passed, failed, error, passPercent);
         } else {
             print("Error: Unknown testcase '" + testcaseName + "'");
