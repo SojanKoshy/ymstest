@@ -1,6 +1,10 @@
 package org.onosproject.ymstest;
 
 
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.DefaultCont;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
@@ -27,6 +31,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,7 +49,7 @@ public class YmsTestcases {
     private boolean printEnabled = true;
 
     /**
-     * Emable testcase printing.
+     * Enable testcase printing.
      *
      */
     public void enablePrinting() {
@@ -95,7 +100,7 @@ public class YmsTestcases {
         // We need to omit the xml header and set indent to 4
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
         // Covert input string to xml pretty format and return
         try {
@@ -201,11 +206,97 @@ public class YmsTestcases {
         print(xmlPrettyOutput);
 
         result = xmlPrettyOutput.equals("<filter xmlns=\"ydt.filter-type\" type=\"subtree\">\n" +
-                "    <network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
-                "        <name>My network</name>\n" +
-                "        <surname>Surname</surname>\n" +
-                "        <isHappy>true</isHappy>\n" +
-                "    </network>\n" +
+                "  <network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
+                "    <name>My network</name>\n" +
+                "    <surname>Surname</surname>\n" +
+                "    <isHappy>true</isHappy>\n" +
+                "  </network>\n" +
+                "</filter>\n");
+
+        if (!result) {
+            print("Encoded xml output not matching with expected");
+        }
+
+        return result;
+    }
+
+    /**
+     * Test SBI all data types encode and decode.
+     *
+     * @return Test result
+     */
+    public boolean testSbiSimpleDataTypes() {
+        boolean result = true;
+
+        // Get YMS service
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        // Get YANG codec handler
+        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
+
+        // Add device schema in YMS codec
+        yangCodecHandler.addDeviceSchema(SimpleDataTypes.class);
+
+        // Build YANG module object
+        List<Object> yangModuleList = new ArrayList<>();
+
+        Cont cont = new DefaultCont.ContBuilder()
+                .lfint8Min((byte) -128)
+                .lfint8Max((byte) 127)
+                .lfint16Min((short) -32768)
+                .lfint16Max((short) 32767)
+                .lfint32Min(-2147483648)
+                .lfint32Max(2147483647)
+                .lfint64Min(-9223372036854775808L)
+                .lfint64Max(9223372036854775807L)
+                .lfuint8Max((short) 255)
+                .lfuint16Max(65535)
+                .lfuint32Max(4294967295L)
+                .lfuint64Max(new BigInteger("18446744073709551615"))
+                .lfbinary(new byte[] {0x00, 0x01}).build();
+        Object object = SimpleDataTypesOpParam.builder().cont(cont).build();
+
+        yangModuleList.add(object);
+
+        // Encode JO to XML
+        String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
+                null, yangModuleList, YangProtocolEncodingFormat.XML_ENCODING,
+                YmsOperationType.EDIT_CONFIG_REQUEST);
+
+        if (xmlOutput == null) {
+            print("xmlOutput is Null");
+        }
+
+        // Verify xml output
+        String xmlPrettyOutput = prettyFormat(xmlOutput);
+        print(xmlPrettyOutput);
+
+        result = xmlPrettyOutput.equals("<filter xmlns=\"ydt.filter-type\">\n" +
+                "  <simple-data-types xmlns=\"urn:simple:data:types\">\n" +
+                "    <cont>\n" +
+                "      <lfint8Min>-128</lfint8Min>\n" +
+                "      <lfint8Max>127</lfint8Max>\n" +
+                "      <lfint16Min>-32768</lfint16Min>\n" +
+                "      <lfint16Max>32767</lfint16Max>\n" +
+                "      <lfint32Min>-2147483648</lfint32Min>\n" +
+                "      <lfint32Max>2147483647</lfint32Max>\n" +
+                "      <lfint64Min>-9223372036854775808</lfint64Min>\n" +
+                "      <lfint64Max>9223372036854775807</lfint64Max>\n" +
+                "      <lfuint8Max>255</lfuint8Max>\n" +
+                "      <lfuint16Max>65535</lfuint16Max>\n" +
+                "      <lfuint32Max>4294967295</lfuint32Max>\n" +
+                "      <lfuint64Max>18446744073709551615</lfuint64Max>\n" +
+                "      <lfbinary>[B@792c5006</lfbinary>\n" +
+                "    </cont>\n" +
+                "  </simple-data-types>\n" +
                 "</filter>\n");
 
         if (!result) {
