@@ -2,6 +2,7 @@ package org.onosproject.ymstest.module;
 
 
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
+import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class NetworkStore
     protected String name;
     protected String surname;
     protected List<Networklist> networklist = new ArrayList<>();
+    protected NetworkPathStore networkPathStore = new NetworkPathStore();
 
 
     @Override
@@ -64,6 +66,11 @@ public class NetworkStore
     @Override
     public List<Networklist> networklist() {
         return networklist;
+    }
+
+    @Override
+    public NetworkPath networkPath() {
+        return networkPathStore;
     }
 
     public void addToNetworklist(Networklist value) {

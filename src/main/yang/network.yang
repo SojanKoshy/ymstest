@@ -36,4 +36,13 @@ module network {
       type string;
     }
   }
+  container network-path {
+    leaf source {
+      type string;
+    }
+
+    leaf destination {
+      type string;
+    }
+  }
 }
