@@ -1,6 +1,7 @@
 # ymstest
 Download ONOS and build
 =======================
+```
 cd ~/
 wget https://github.com/opennetworkinglab/onos/archive/master.zip
 unzip master.zip
@@ -15,28 +16,37 @@ cd ~/onos/tools/dev/bin/
 
 cd ~/onos
 mcis
-
+```
 Start ONOS and check any exceptions
 ===================================
+```
 ok clean debug
-exception-display
+onos> exception-display
+```
 
 Add latest restconf code
 ========================
-[download latest restconf code from gerrit]
+```
 cd ~/onos/apps
+```
+[download latest restconf code from gerrit]
 [untar restconf code here and add module restconf in ~/onos/apps/pom.xml]
+```
 mics
+```
 
 Add latest yms-test code
 ========================
+```
 cd ~/onos/apps/test
 git clone https://github.com/SojanKoshy/ymstest.git
 [add module ymstest in ~/onos/apps/test/pom.xml]
 mics
+```
 
 Start ONOS and test YMS
 =======================
+```
 cd ~/onos
 . tools/dev/bash_profile
 mcis
@@ -53,10 +63,11 @@ Registered Service
 
 [SUMMARY REPORT] Total: 1, Passed:1, Failed:0, Pass percent: 100%
 onos> 
+```
 
 From postman tool POST 
 ======================
-
+```
 http://127.0.0.1:8181/onos/restconf/data/network
 
 {
@@ -68,3 +79,4 @@ http://127.0.0.1:8181/onos/restconf/data/network
         "source": "10.1.1.1"
     }
 }
+```
