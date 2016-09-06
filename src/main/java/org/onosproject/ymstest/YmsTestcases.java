@@ -5,6 +5,7 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataT
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.DefaultCont;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.LfenumEnum;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworkPath;
@@ -37,10 +38,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,16 +106,18 @@ public class YmsTestcases {
             e.printStackTrace();
         }
 
-        // We need to omit the xml header and set indent to 4
-        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+        // We need to omit the xml header and set indent to 2
+        if (transformer != null) {
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
-        // Covert input string to xml pretty format and return
-        try {
-            transformer.transform(xmlInput, xmlOutput);
-        } catch (TransformerException e) {
-            e.printStackTrace();
+            // Covert input string to xml pretty format and return
+            try {
+                transformer.transform(xmlInput, xmlOutput);
+            } catch (TransformerException e) {
+                e.printStackTrace();
+            }
         }
         return xmlOutput.getWriter().toString();
     }
@@ -278,6 +283,16 @@ public class YmsTestcases {
                 .lfuint16Max(65535)
                 .lfuint32Max(4294967295L)
                 .lfuint64Max(new BigInteger("18446744073709551615"))
+                .lfstr("aaaaa")
+                //.lfstr1("aaa") //TODO verify "length" once it is supported
+                .lfbool1(true)
+                .lfdecimal1(new BigDecimal("-92233720368547758.08"))
+                .lfdecimal2(new BigDecimal("92233720368547758.07"))
+                .lfenum(LfenumEnum.ENUM1)
+                .lfbits(BitSet.valueOf(new byte[]{0x02}))
+                .lfref1("ref-string")
+                .lfref2((byte) 3)
+                .lfempty(false)
                 //.lfbinary(new byte[] {0x00, 0x01}) TODO Uncomment this after binary is supported
                 .build();
         Object object = SimpleDataTypesOpParam.builder().cont(cont).build();
@@ -475,7 +490,7 @@ public class YmsTestcases {
      *
      * @return Test result
      */
-    public boolean testNbiRegisterSendRest() {
+    public boolean testNbiRestPost() {
 
         boolean result = true;
 

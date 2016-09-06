@@ -87,7 +87,9 @@ module simple-data-types {
       type string;
     }
     leaf lfstr1 {
-      type string;
+      type string {
+        length "1..2";
+      }
     }
     leaf lfbool1 {
       type boolean;

@@ -52,6 +52,6 @@ public class YmsTest {
     @Deactivate
     protected void deactivate() {
 
-        log.info("Yms-test app Stopped");
+        log.info("Yms-test app stopped");
     }
 }

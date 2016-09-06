@@ -22,6 +22,8 @@ import org.onosproject.ymstest.YmsTestcases;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * CLI command to test YMS application.
@@ -37,54 +39,64 @@ public class YmsTestCommand extends AbstractShellCommand {
 
     @Override
     protected void execute() {
-        YmsTestcases ymsTestcases = new YmsTestcases();
-
-        // When running all testcases turn of print in testcases
-        if (testcaseName.equals("all")) {
-            ymsTestcases.disablePrinting();
-        }
-
         Integer total = 0;
         Integer passed = 0;
         Integer failed = 0;
-        boolean testFound = false;
 
+        YmsTestcases ymsTestcases = new YmsTestcases();
         Method[] methods = YmsTestcases.class.getMethods();
+
+        Map<String, Method> testcases = new TreeMap<>();
 
         // Find the testcases by matching function name
         for (Method method : methods) {
             String methodName = method.getName();
-
-            if ((testcaseName.equals("all") && methodName.startsWith("test")) ||
-                    methodName.equals(testcaseName)) {
-                testFound = true;
-                total++;
-                print("[REPORT] Running test " + total + " " + methodName);
-
-                try {
-                    boolean result = (boolean) method.invoke(ymsTestcases);
-                    if (result) {
-                        passed++;
-                        print("[REPORT] " + methodName + " Passed\n");
-                    } else {
-                        failed++;
-                        print("[REPORT] " + methodName + " Failed!\n");
-                    }
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
+            if ((testcaseName.startsWith("all") && methodName.startsWith("test")) ||
+                    testcaseName.equals(methodName)) {
+                testcases.put(methodName, method);
             }
         }
 
-        if (testFound) {
+        // When running all testcases turn on/off print in testcases
+        if (testcaseName.startsWith("all") && !testcaseName.equals("all-with-print")) {
+            ymsTestcases.disablePrinting();
+        }
+
+        // Invoke the selected testcases sorted by name
+        for (Map.Entry<String, Method> testcase : testcases.entrySet()) {
+            String methodName = testcase.getKey();
+            Method method = testcase.getValue();
+            total++;
+            print("[REPORT] Running test %d %s", total, methodName);
+
+            try {
+                boolean result = (boolean) method.invoke(ymsTestcases);
+
+                if (result) {
+                    passed++;
+                    print("[REPORT] %s Passed\n", methodName);
+                } else {
+                    failed++;
+                    print("[REPORT] %s Failed!\n", methodName);
+                }
+
+                // Wait 1 second between testcases
+                if (testcaseName.equals("all-with-wait")) {
+                    Thread.sleep(1000);
+                }
+            } catch (IllegalAccessException | InvocationTargetException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Display test run summary report
+        if (!testcases.isEmpty()) {
             Integer passPercent = (passed * 100) / total;
             Integer error = total - passed - failed;
-            print("[SUMMARY REPORT] Total:%d, Passed:%d, Failed:%d, Error:%d, Pass percent:%d%%",
+            print("[SUMMARY REPORT] Total:%d, Passed:%d, Failed:%d, Error:%d, Pass Percent:%d%%",
                     total, passed, failed, error, passPercent);
         } else {
-            print("Error: Unknown testcase '" + testcaseName + "'");
+            print("Error: Unknown testcase or option '%s'", testcaseName);
         }
     }
 }

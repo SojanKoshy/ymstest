@@ -26,8 +26,10 @@ public class YmsTestCompleter implements Completer {
             }
         }
 
-        // Add 'all' testcase execution option
+        // Add 'all' testcase execution options
         strings.add("all");
+        strings.add("all-with-print");
+        strings.add("all-with-wait");
 
         // Now let the completer do the work for figuring out what to offer
         return delegate.complete(buffer, cursor, candidates);
