@@ -5,7 +5,8 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataT
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.DefaultCont;
-import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.LfenumEnum;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.*;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.lfunion14union.Lfunion14UnionEnum1;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworkPath;
@@ -280,21 +281,27 @@ public class YmsTestcases {
                 .lfint64Min(-9223372036854775808L)
                 .lfint64Max(9223372036854775807L)
                 .lfuint8Max((short) 255)
+                .lfuint16Max(-1) //TODO Defect cannot be -ve for unsigned
                 .lfuint16Max(65535)
                 .lfuint32Max(4294967295L)
                 .lfuint64Max(new BigInteger("18446744073709551615"))
                 .lfstr("aaaaa")
-                //.lfstr1("aaa") //TODO verify "length" once it is supported
+                .lfstr1("aaa") //TODO Defect verify "length" once it is supported
                 .lfbool1(true)
                 .lfdecimal1(new BigDecimal("-92233720368547758.08"))
                 .lfdecimal2(new BigDecimal("92233720368547758.07"))
                 .lfenum(LfenumEnum.ENUM1)
-                .lfbits(BitSet.valueOf(new byte[]{0x02}))
+                .lfbits(BitSet.valueOf(new byte[]{0x02})) //TODO Defect not taking value and also printing {}
                 .lfref1("ref-string")
                 .lfref2((byte) 3)
-                .lfempty(false)
+                .lfempty(false)  //TODO Defect should be null
+                .lfunion1(new Lfunion1Union("adarsh"))
+                .lfunion2(new Lfunion2Union(new BigDecimal("100000000")))
+                .lfunion10(new Lfunion10Union(BitSet.valueOf(new byte[]{0x11}))) // TODO why false is printing
+                .lfunion14(new Lfunion14Union(Lfunion14UnionEnum1.ONE))
                 //.lfbinary(new byte[] {0x00, 0x01}) TODO Uncomment this after binary is supported
                 .build();
+
         Object object = SimpleDataTypesOpParam.builder().cont(cont).build();
 
         yangModuleList.add(object);
