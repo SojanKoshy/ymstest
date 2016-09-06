@@ -35,9 +35,11 @@ mics
 ```
 ## Add latest restconf code
 ```
-cd ~/onos/apps
 [download latest restconf code from gerrit]
-[untar restconf code here and add module restconf in ~/onos/apps/pom.xml]
+[or download from private git given below]
+cd ~/onos/apps
+git clone https://github.com/SojanKoshy/restconf.git
+[add module restconf in ~/onos/apps/pom.xml]
 mics
 ```
 ## Add latest yms-test code
