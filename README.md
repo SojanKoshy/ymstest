@@ -16,11 +16,23 @@ cd ~/onos/tools/dev/bin/
 cd ~/onos
 mcis
 ```
+## Compile latest yang tools
+```
+xxxx
+mics
+```
 ## Start ONOS and check any exceptions
 ```
 ok clean debug
 onos> exception-display
 ```
+## Add latest yms code
+cd ~/onos/apps
+git clone https://github.com/GauravAgrawal-Huawei/ymsm
+mv ymsm yms
+mics
+```
+
 ## Add latest restconf code
 ```
 cd ~/onos/apps
