@@ -23,7 +23,9 @@ onos> exception-display
 ```
 ## Compile latest yang tools
 ```
-xxxx
+cd ~/onos/utils
+git clone https://github.com/opennetworkinglab/onos-yang-tools.git
+[add module onos-yang-tools in ~/onos/utils/pom.xml]
 mics
 ```
 ## Add latest yms code
@@ -35,8 +37,7 @@ mics
 ```
 ## Add latest restconf code
 ```
-[download latest restconf code from gerrit]
-[or download from private git given below]
+[download latest restconf code from gerrit or download from private git given below]
 cd ~/onos/apps
 git clone https://github.com/SojanKoshy/restconf.git
 [add module restconf in ~/onos/apps/pom.xml]
