@@ -21,7 +21,7 @@ mcis
 ok clean debug
 onos> exception-display
 ```
-## Compile latest yang tools
+## Add latest onos yang tools
 ```
 cd ~/onos/utils
 git clone https://github.com/opennetworkinglab/onos-yang-tools.git
