@@ -26,14 +26,14 @@ onos> exception-display
 cd ~/onos/utils
 git clone https://github.com/opennetworkinglab/onos-yang-tools.git
 [add module onos-yang-tools in ~/onos/utils/pom.xml]
-mics
+mcis
 ```
 ## Add latest yms code
 ```
 cd ~/onos/apps
 git clone https://github.com/GauravAgrawal-Huawei/ymsm
 mv ymsm yms
-mics
+mcis
 ```
 ## Add latest restconf code
 ```
@@ -41,14 +41,14 @@ mics
 cd ~/onos/apps
 git clone https://github.com/SojanKoshy/restconf.git
 [add module restconf in ~/onos/apps/pom.xml]
-mics
+mcis
 ```
 ## Add latest yms-test code
 ```
 cd ~/onos/apps/test
 git clone https://github.com/SojanKoshy/ymstest.git
 [add module ymstest in ~/onos/apps/test/pom.xml]
-mics
+mcis
 ```
 ## Start ONOS and test YMS
 ```
