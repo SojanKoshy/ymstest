@@ -13,6 +13,7 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatat
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.lfunion14union.Lfunion14UnionEnum1;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
+import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkService;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworkPath;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
@@ -487,7 +488,7 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        ymsService.registerService(new NetworkManager(), Network.class, null);
+        ymsService.registerService(new NetworkManager(), NetworkService.class, null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation
@@ -510,7 +511,7 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        ymsService.registerService(new NetworkManager(), Network.class, null);
+        ymsService.registerService(new NetworkManager(), NetworkService.class, null);
 
         String uri = "http://127.0.0.1:8181/onos/restconf/data/network";
         String body = "{\n" +
@@ -542,8 +543,11 @@ public class YmsTestcases {
 
         YmsService ymsService = get(YmsService.class);
 
+        NetworkManager networkManager = new NetworkManager();
 
-        ymsService.unRegisterService(this, Network.class); /// DEFECT IS THERE
+        ymsService.registerService(networkManager, NetworkService.class, null);
+
+        ymsService.unRegisterService(networkManager, NetworkService.class);
         print("Unregistered network service from YMS");
 
         // TODO Need to add validation

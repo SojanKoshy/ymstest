@@ -8,6 +8,11 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatat
  */
 public class SimpleDataTypesStore implements SimpleDataTypes {
     @Override
+    public OnosYangNodeOperationType onosYangNodeOperationType() {
+        return null;
+    }
+
+    @Override
     public Cont cont() {
         return null;
     }

@@ -16,8 +16,8 @@
     <orderEntry type="module" module-name="onos-api" />
     <orderEntry type="module" module-name="onlab-osgi" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.onosproject:onos-yang-maven-plugin:1.8-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.onosproject:onos-yang-datamodel:1.8-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="onos-yang-maven-plugin" />
+    <orderEntry type="module" module-name="onos-yang-datamodel" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-core:3.3.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-model:3.3.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-settings:3.3.9" level="project" />
