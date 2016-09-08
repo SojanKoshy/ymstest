@@ -488,7 +488,10 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        ymsService.registerService(new NetworkManager(), NetworkService.class, null);
+        ymsService.registerService(new NetworkManager(), NetworkService.class,
+                                   null);
+        ymsService.registerService(new TopologyManager(), TopologyService.class,
+                                   null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation
