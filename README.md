@@ -25,6 +25,7 @@ onos> exception-display
 ```
 cd ~/onos/utils
 git clone https://github.com/opennetworkinglab/onos-yang-tools.git
+[or latest from https://gerrit.onosproject.org/#/c/11185/2]
 [add module onos-yang-tools in ~/onos/utils/pom.xml]
 mcis
 ```
@@ -40,6 +41,7 @@ mcis
 [download latest restconf code from gerrit or download from private git given below]
 cd ~/onos/apps
 git clone https://github.com/SojanKoshy/restconf.git
+[or latest from https://github.com/chengfannature/restconf]
 [add module restconf in ~/onos/apps/pom.xml]
 mcis
 ```
