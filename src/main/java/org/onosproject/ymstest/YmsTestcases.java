@@ -18,6 +18,7 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.TopologyService;
 import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
 import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotification;
 import org.onosproject.yms.ych.YangCodecHandler;
@@ -25,6 +26,7 @@ import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
+import org.onosproject.ymstest.manager.TopologyManager;
 import org.onosproject.ymstest.module.MultiNotificationListener;
 import org.onosproject.ymstest.module.MultiNotificationManger;
 import org.onosproject.ymstest.module.NetworkManager;
@@ -488,10 +490,8 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        ymsService.registerService(new NetworkManager(), NetworkService.class,
-                                   null);
-        ymsService.registerService(new TopologyManager(), TopologyService.class,
-                                   null);
+        ymsService.registerService(new NetworkManager(), NetworkService.class, null);
+        ymsService.registerService(new TopologyManager(), TopologyService.class, null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation
