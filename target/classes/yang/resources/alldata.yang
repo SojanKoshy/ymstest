@@ -1,0 +1,56 @@
+module alldata {
+yang-version 1;
+  namespace "urn:TBD:params:xml:ns:yang:nodes";
+  prefix nd;
+
+  organization "TBD";
+  contact
+    "WILL-BE-DEFINED-LATER";
+  description
+    "This module defines a common base model for a collection
+     of nodes in a network. Node definitions s are further used
+     in network topologies and inventories.";
+
+  revision 2014-03-09 {
+    description
+      "Initial revision.";
+    reference "draft-clemm-i2rs-yang-network-topo-04";
+  }
+
+    leaf name {
+        type string;
+        }
+
+    leaf lfint8 {
+    type int8;
+        }
+
+    leaf lfint16 {
+    type int16;
+        }
+
+    leaf lfint32 {
+    type int32;
+        }
+
+    leaf lfint64 {
+    type int64;
+        }
+
+    leaf lfuint8 {
+    type uint8;
+        }
+
+    leaf lfuint16 {
+    type uint16;
+        }
+
+    leaf lfuint32 {
+    type uint32;
+        }
+
+    leaf lfuint64 {
+    type uint64;
+        }
+
+}

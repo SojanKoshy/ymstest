@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/YmsTestcases.java">
+<error line="100" severity="warning" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="138" severity="warning" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/AugmentedTopoNodeStore.java">
+<error line="25" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/NodeStore.java">
+<error line="28" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="42" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="51" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="56" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="86" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="193" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="206" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="272" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/AugmentedTopoTerminationPointStore.java">
+<error line="15" column="22" severity="warning" message="Variable &apos;ipAddress&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="27" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/TerminationPointsStore.java">
+<error line="41" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="46" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="78" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="131" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="153" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/AugmentedOperationProcessor.java">
+<error line="7" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="9" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/TerminationPointStore.java">
+<error line="29" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="33" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="63" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/package-info.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/ProcessAugmentedEditOutput.java">
+<error line="7" column="27" severity="warning" message="Variable &apos;mapOperate&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="8" column="33" severity="warning" message="Variable &apos;newStoreNode&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/AugmentEditMapOperate.java">
+<error line="7" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck"/>
+<error line="8" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck"/>
+<error line="9" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck"/>
+<error line="10" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/store/TopologyStore.java">
+<error line="17" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="33" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="43" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="55" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="63" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/SimpleRpcStore.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/SimpleDataTypesManager.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/NetworkStore.java">
+<error line="21" column="22" severity="warning" message="Variable &apos;name&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="22" column="22" severity="warning" message="Variable &apos;surname&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="23" column="33" severity="warning" message="Variable &apos;networklist&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="24" column="32" severity="warning" message="Variable &apos;networkPathStore&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="36" severity="warning" message="Unused Javadoc tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="63" severity="warning" message="Unused Javadoc tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="81" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/MultiNotificationListener.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/SimpleDataTypesStore.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/SimpleRpcManager.java">
+<error line="13" column="20" severity="warning" message="Variable &apos;appStore&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/NetworkManagerExt.java">
+<error line="12" column="18" severity="warning" message="Variable &apos;appDataStore&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="37" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/package-info.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/NetworkPathStore.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/NetworkManager.java">
+<error line="16" column="18" severity="warning" message="Variable &apos;appDataStore&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/module/MultiNotificationManger.java">
+<error line="30" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/YmsTest.java">
+<error line="42" column="27" severity="warning" message="Variable &apos;coreService&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="44" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="52" column="5" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/package-info.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/cli/package-info.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/cli/YmsTestCompleter.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/cli/YmsTestCommand.java">
+<error line="38" column="12" severity="warning" message="Variable &apos;testcaseName&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/manager/package-info.java">
+</file>
+<file name="/home/v70786/yang/it/ymstest/src/main/java/org/onosproject/ymstest/manager/TopologyManager.java">
+<error line="20" column="23" severity="warning" message="Variable &apos;topologyStore&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+</file>
+</checkstyle>

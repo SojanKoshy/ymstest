@@ -84,7 +84,7 @@ public class TopologyStore
             switch (opNode.onosYangNodeOperationType()) {
                 case CREATE: {
                     if (storedNode != null) {
-                            throw new RuntimeException(
+                        throw new RuntimeException(
                                 "Node: " + nodePara.nodeId() + " is already " +
                                         "created");
                     }
@@ -135,6 +135,11 @@ public class TopologyStore
                 }
                 case NONE: {
                     if (storedNode == null) {
+                        if (nodePara != null) {
+                            storedNode = new NodeStore();
+                            nodeStoreList.add(storedNode);
+                            storedNode.processEdit(nodePara);
+                        }
                         continue; //continue to process the next input node
                     }
                     storedNode.processEdit(nodePara);

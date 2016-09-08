@@ -225,6 +225,13 @@ public class TerminationPointsStore
                 }
                 case NONE: {
                     if (storedTerminationPoint == null) {
+                        if (terminationPointPara != null) {
+                            storedTerminationPoint =
+                                    new TerminationPointStore();
+                            addToTerminationPoint(storedTerminationPoint);
+                            storedTerminationPoint
+                                    .processEdit(terminationPointPara);
+                        }
                         continue; //continue to next termination point
                     }
                     storedTerminationPoint.processEdit(terminationPointPara);

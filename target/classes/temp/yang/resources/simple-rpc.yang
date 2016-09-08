@@ -1,0 +1,20 @@
+module simple-rpc {
+  yang-version 1;
+  namespace "urn:yms:test:rpc:simple";
+  prefix pc;
+
+  revision 2016-08-26;
+
+  rpc activate-software-image {
+    input {
+      leaf image-name {
+        type string;
+      }
+    }
+    output {
+      leaf status {
+        type string;
+      }
+    }
+  }
+}

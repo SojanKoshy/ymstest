@@ -1,0 +1,22 @@
+module multiNotification {
+  yang-version 1;
+  namespace "urn:yms:test:ytb:multi:notification:with:container";
+  prefix sch;
+
+  revision 2016-08-26;
+
+  notification link-down {
+    container router {
+      leaf name {
+        type string;
+      }
+    }
+  }
+  notification link-up {
+    container router {
+      leaf name {
+        type int32;
+      }
+    }
+  }
+}

@@ -339,6 +339,12 @@ public class NodeStore
             }
             case NONE: {
                 if (storedTerminationPoints == null) {
+                    if (terminationPointsPara != null) {
+                        storedTerminationPoints = new TerminationPointsStore();
+                        terminationPoints(storedTerminationPoints);
+                        storedTerminationPoints
+                                .processEdit(terminationPointsPara);
+                    }
                     return;
                 }
                 storedTerminationPoints.processEdit(terminationPointsPara);
