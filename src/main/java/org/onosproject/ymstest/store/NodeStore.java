@@ -276,7 +276,8 @@ public class NodeStore
             return;
         }
 
-        if (!(terminationPoints() instanceof TerminationPointsStore)) {
+        if (terminationPoints() != null && !(terminationPoints() instanceof
+                TerminationPointsStore)) {
             //stored node is not correct
             throw new RuntimeException("store termination points expected");
         }

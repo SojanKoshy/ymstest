@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.store;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class TerminationPointsStore
     private short numberOfTp;
     private boolean isNoOfTpSet;
 
-    private List<TerminationPoint> terminationPoint;
+    private List<TerminationPoint> terminationPoint = new ArrayList<>();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
     @Override
@@ -157,7 +158,7 @@ public class TerminationPointsStore
             return;
         }
 
-        if (!(terminationPoint() instanceof TerminationPointStore)) {
+        if (!(terminationPoint() instanceof List<?>)) {
             //stored node is not correct
             throw new RuntimeException("store termination point expected");
         }
