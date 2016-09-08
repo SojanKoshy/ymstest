@@ -5,7 +5,11 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataT
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.DefaultCont;
-import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.*;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.LfenumEnum;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion10Union;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion14Union;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion1Union;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion2Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.lfunion14union.Lfunion14UnionEnum1;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
@@ -23,6 +27,7 @@ import org.onosproject.yms.ynh.YangNotificationService;
 import org.onosproject.ymstest.module.MultiNotificationListener;
 import org.onosproject.ymstest.module.MultiNotificationManger;
 import org.onosproject.ymstest.module.NetworkManager;
+import org.onosproject.ymstest.module.NetworkManagerExt;
 import org.onosproject.ymstest.module.SimpleRpcManager;
 
 import javax.xml.transform.OutputKeys;
@@ -60,7 +65,6 @@ public class YmsTestcases {
 
     /**
      * Enable testcase printing.
-     *
      */
     public void enablePrinting() {
         this.printEnabled = true;
@@ -68,7 +72,6 @@ public class YmsTestcases {
 
     /**
      * Disable testcase printing.
-     *
      */
     public void disablePrinting() {
         this.printEnabled = false;
@@ -126,7 +129,7 @@ public class YmsTestcases {
     /**
      * Send RESTconf post request.
      *
-     * @param uri REST request uri
+     * @param uri  REST request uri
      * @param body REST request body
      */
     private String post(String uri, String body) {
@@ -135,7 +138,7 @@ public class YmsTestcases {
         try {
 
             URL url = new URL(uri);
-            HttpURLConnection conn =  (HttpURLConnection) url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             String userPassword = "karaf:karaf";
             String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
@@ -299,7 +302,7 @@ public class YmsTestcases {
                 .lfunion2(new Lfunion2Union(new BigDecimal("100000000")))
                 .lfunion10(new Lfunion10Union(BitSet.valueOf(new byte[]{0x11}))) // TODO why false is printing
                 .lfunion14(new Lfunion14Union(Lfunion14UnionEnum1.ONE))
-                //.lfbinary(new byte[] {0x00, 0x01}) TODO Uncomment this after binary is supported
+                        //.lfbinary(new byte[] {0x00, 0x01}) TODO Uncomment this after binary is supported
                 .build();
 
         Object object = SimpleDataTypesOpParam.builder().cont(cont).build();
@@ -572,6 +575,7 @@ public class YmsTestcases {
         print("Added notification listener");
 
         multiNotificationManger.sendNotification();
+
         print("Notification Send");
 
         // TODO Need to add validation
@@ -598,6 +602,73 @@ public class YmsTestcases {
         print("Registered Service");
 
         // TODO Need to add validation
+
+        return result;
+    }
+
+    /**
+     * Test NBI basic E2Erequest.
+     *
+     * @return Test result
+     */
+    public boolean testE2EBasic() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+        if (ymsService == null) {
+            print("ymsService is Null");
+            return false;
+        }
+        NetworkManagerExt managerExt = new NetworkManagerExt();
+        ymsService.registerService(managerExt, Network.class, null);
+        print("YmsService Registered");
+        // TODO Need to add validation
+        // Get YANG codec handler*/
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/network";
+        String body = "{\n" +
+                "  \"name\": \"Huawei\",\n" +
+                "  \"surname\": \"Bangalore\"\n" +
+                "}";
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        post(uri, body);
+
+        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
+
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
+
+        // Add device schema in YMS codec
+        yangCodecHandler.addDeviceSchema(Network.class);
+
+        // Build YANG module object
+        List<Object> yangModuleList = new ArrayList<>();
+
+
+        yangModuleList.add(managerExt.getObject());
+
+        // Get the XML string and compare
+        Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
+        tagAttributeLinkedMap.put("type", "subtree");
+
+        // Encode JO to XML
+        String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML_ENCODING,
+                YmsOperationType.RPC_REQUEST);
+
+        if (xmlOutput == null) {
+            print("xmlOutput is Null");
+        }
+
+        // Verify xml output
+        String xmlPrettyOutput = prettyFormat(xmlOutput);
+        print(xmlPrettyOutput);
+
 
         return result;
     }
