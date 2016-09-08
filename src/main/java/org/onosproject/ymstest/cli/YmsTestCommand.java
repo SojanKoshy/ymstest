@@ -18,6 +18,7 @@ package org.onosproject.ymstest.cli;
 import org.apache.karaf.shell.commands.Argument;
 import org.apache.karaf.shell.commands.Command;
 import org.onosproject.cli.AbstractShellCommand;
+import org.onosproject.ymstest.YmsTestService;
 import org.onosproject.ymstest.YmsTestcases;
 
 import java.lang.reflect.InvocationTargetException;
@@ -43,7 +44,8 @@ public class YmsTestCommand extends AbstractShellCommand {
         Integer passed = 0;
         Integer failed = 0;
 
-        YmsTestcases ymsTestcases = new YmsTestcases();
+        YmsTestService ymsTestService = get(YmsTestService.class);
+        YmsTestcases ymsTestcases = ymsTestService.getYmsTestcases();
         Method[] methods = YmsTestcases.class.getMethods();
 
         Map<String, Method> testcases = new TreeMap<>();

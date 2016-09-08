@@ -20,6 +20,7 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Deactivate;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.ReferenceCardinality;
+import org.apache.felix.scr.annotations.Service;
 import org.onosproject.core.ApplicationId;
 import org.onosproject.core.CoreService;
 import org.slf4j.Logger;
@@ -30,13 +31,16 @@ import static org.slf4j.LoggerFactory.getLogger;
 /**
  * Simple application to test leadership election.
  */
+@Service
 @Component(immediate = true)
-public class YmsTest {
+public class YmsTest implements YmsTestService {
 
     private final Logger log = getLogger(getClass());
 
     private static final String YMS_TEST_APP = "org.onosproject.ymstest";
     private ApplicationId appId;
+
+    private YmsTestcases ymsTestcases = new YmsTestcases();
 
     @Reference(cardinality = ReferenceCardinality.MANDATORY_UNARY)
     protected CoreService coreService;
@@ -53,5 +57,9 @@ public class YmsTest {
     protected void deactivate() {
 
         log.info("Yms-test app stopped");
+    }
+
+    public YmsTestcases getYmsTestcases() {
+        return ymsTestcases;
     }
 }

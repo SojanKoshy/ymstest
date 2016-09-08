@@ -1,6 +1,7 @@
 package org.onosproject.ymstest;
 
 
+import org.apache.commons.codec.binary.Base64;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
@@ -10,7 +11,8 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatat
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion14Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion1Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion2Union;
-import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.lfunion14union.Lfunion14UnionEnum1;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.
+        lfunion14union.Lfunion14UnionEnum1;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkService;
@@ -20,13 +22,15 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.TopologyService;
 import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
-import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotification;
+import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.
+        MultiNotificationService;
 import org.onosproject.yms.ych.YangCodecHandler;
 import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
 import org.onosproject.ymstest.manager.TopologyManager;
+import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.MultiNotificationListener;
 import org.onosproject.ymstest.module.MultiNotificationManger;
 import org.onosproject.ymstest.module.NetworkManager;
@@ -65,6 +69,10 @@ import static org.onosproject.cli.AbstractShellCommand.get;
 public class YmsTestcases {
 
     private boolean printEnabled = true;
+
+    private MultiNotificationManger multiNotificationManger = new MultiNotificationManger();
+    private MultiNotificationListener multiNotificationListener = new MultiNotificationListener();
+    private LinkListener linkListener = new LinkListener();
 
     /**
      * Enable testcase printing.
@@ -144,7 +152,7 @@ public class YmsTestcases {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             String userPassword = "karaf:karaf";
-            String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
+            String encoding = new String(new Base64().encode(userPassword.getBytes()));
             conn.setRequestProperty("Authorization", "Basic " + encoding);
 
             conn.setRequestMethod("POST");
@@ -557,9 +565,8 @@ public class YmsTestcases {
 
         return result;
     }
-
     /**
-     * Test NBI basic register flow.
+     * Test NBI basic notification register and send flow.
      *
      * @return Test result
      */
@@ -572,18 +579,24 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        MultiNotificationManger multiNotificationManger = new MultiNotificationManger();
-        ymsService.registerService(multiNotificationManger, MultiNotification.class, null);
+        ymsService.registerService(multiNotificationManger, MultiNotificationService.class, null);
         print("Registered Service");
 
-        MultiNotificationListener multiNotificationListener = new MultiNotificationListener();
         YangNotificationService yangNotificationService = ymsService.getYangNotificationService();
         yangNotificationService.addListener(multiNotificationListener);
+        yangNotificationService.addListener(linkListener);
         print("Added notification listener");
 
-        multiNotificationManger.sendNotification();
+        try {
+            Thread.sleep(500);
 
-        print("Notification Send");
+            multiNotificationManger.sendNotification();
+            print("Notification Send");
+
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // TODO Need to add validation
 

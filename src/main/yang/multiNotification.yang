@@ -5,14 +5,14 @@ module multiNotification {
 
   revision 2016-08-26;
 
-  notification link-down {
+  notification linkDown {
     container router {
       leaf name {
         type string;
       }
     }
   }
-  notification link-up {
+  notification linkUp {
     container router {
       leaf name {
         type int32;
