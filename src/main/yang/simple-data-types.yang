@@ -47,6 +47,21 @@ module simple-data-types {
   }
 
   container cont {
+    container cont2 {
+        leaf lfint8Next {
+          type int8;
+        }
+    }
+    list list2 {
+        key "network-id";
+        leaf network-id {
+          type string;
+        }
+        leaf server-provided {
+          type string;
+        }
+    }
+
     leaf lfint8Min {
       type int8;
     }

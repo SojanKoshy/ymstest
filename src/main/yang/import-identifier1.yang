@@ -1,0 +1,24 @@
+module import-identifier1 {
+    namespace "test:import-identifier1";
+    prefix test;
+
+    revision 2016-09-14;
+
+    identity my-identity {
+        status current;
+        description "identity-description-string2";
+        reference "identity-reference-string2";
+    }
+
+    feature my-feature {
+        status current;
+        description "feature-description-string2";
+        reference "feature-reference-string2";
+    }
+
+    rpc my-rpc {
+    }
+
+    grouping my-grouping {
+    }
+}

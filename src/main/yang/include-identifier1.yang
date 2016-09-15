@@ -1,0 +1,7 @@
+submodule include-identifier1 {
+    belongs-to "module-identifier0" {
+        prefix test;
+    }
+
+    revision 2016-09-14;
+}

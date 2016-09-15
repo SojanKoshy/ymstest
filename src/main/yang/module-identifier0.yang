@@ -1,0 +1,788 @@
+module module-identifier0 {
+  yang-version 1;
+  namespace "module:namespace:uri1";
+  prefix prefix-identifier1;
+  import import-identifier1 {
+    prefix prefix-identifier2;
+    revision-date "2016-09-14";
+  }
+  include include-identifier1 {
+    revision-date "2016-09-14";
+  }
+  organization "module-organization-string1";
+  contact "module-contact-string1";
+  description "module-description-string1";
+  reference "module-reference-string1";
+  revision "2016-09-14" {
+    description "revision-description-string2";
+    reference "revision-reference-string2";
+  }
+  extension extension-identifier1 {
+    argument argument-identifier2 {
+      yin-element true;
+    }
+    description "extension-description-string2";
+    reference "extension-reference-string2";
+  }
+  feature feature-identifier1 {
+    description "feature-description-string2";
+    reference "feature-reference-string2";
+  }
+  identity identity-identifier1 {
+    base prefix-identifier2:my-identity;
+    description "identity-description-string2";
+    reference "identity-reference-string2";
+  }
+  rpc rpc-identifier1 {
+    description "rpc-description-string2";
+    reference "rpc-reference-string2";
+    input  {
+      
+      container container-identifier3 {
+        presence "container-presence-string4";
+        description "container-description-string4";
+        reference "container-reference-string4";
+        leaf leaf-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-units-string5";
+          description "leaf-description-string5";
+          reference "leaf-reference-string5";
+        }
+        leaf-list leaf-list-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-list-units-string5";
+          min-elements 1;
+          max-elements 2;
+          description "leaf-list-description-string5";
+          reference "leaf-list-reference-string5";
+        }
+        list list-identifier4 {
+          key leaf-identifier5;
+          min-elements 1;
+          max-elements 2;
+          description "list-description-string5";
+          reference "list-reference-string5";
+          leaf leaf-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-units-string6";
+            description "leaf-description-string6";
+            reference "leaf-reference-string6";
+          }
+          leaf-list leaf-list-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-list-units-string6";
+            min-elements 1;
+            max-elements 2;
+            description "leaf-list-description-string6";
+            reference "leaf-list-reference-string6";
+          }
+        }
+      }
+      leaf leaf-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-units-string4";
+        description "leaf-description-string4";
+        reference "leaf-reference-string4";
+      }
+      leaf-list leaf-list-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-list-units-string4";
+        min-elements 1;
+        max-elements 2;
+        description "leaf-list-description-string4";
+        reference "leaf-list-reference-string4";
+      }
+      list list-identifier3 {
+        key leaf-identifier4;
+        min-elements 1;
+        max-elements 2;
+        description "list-description-string4";
+        reference "list-reference-string4";
+        container container-identifier4 {
+          presence "container-presence-string5";
+          description "container-description-string5";
+          reference "container-reference-string5";
+          leaf leaf-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-units-string6";
+            description "leaf-description-string6";
+            reference "leaf-reference-string6";
+          }
+          leaf-list leaf-list-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-list-units-string6";
+            min-elements 1;
+            max-elements 2;
+            description "leaf-list-description-string6";
+            reference "leaf-list-reference-string6";
+          }
+        }
+        leaf leaf-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-units-string5";
+          description "leaf-description-string5";
+          reference "leaf-reference-string5";
+        }
+        leaf-list leaf-list-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-list-units-string5";
+          min-elements 1;
+          max-elements 2;
+          description "leaf-list-description-string5";
+          reference "leaf-list-reference-string5";
+        }
+      }
+    }
+    output  {
+      
+      container container-identifier3 {
+        presence "container-presence-string4";
+        description "container-description-string4";
+        reference "container-reference-string4";
+        leaf leaf-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-units-string5";
+          description "leaf-description-string5";
+          reference "leaf-reference-string5";
+        }
+        leaf-list leaf-list-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-list-units-string5";
+          min-elements 1;
+          max-elements 2;
+          description "leaf-list-description-string5";
+          reference "leaf-list-reference-string5";
+        }
+        list list-identifier4 {
+          key leaf-identifier5;
+          min-elements 1;
+          max-elements 2;
+          description "list-description-string5";
+          reference "list-reference-string5";
+          leaf leaf-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-units-string6";
+            description "leaf-description-string6";
+            reference "leaf-reference-string6";
+          }
+          leaf-list leaf-list-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-list-units-string6";
+            min-elements 1;
+            max-elements 2;
+            description "leaf-list-description-string6";
+            reference "leaf-list-reference-string6";
+          }
+        }
+      }
+      leaf leaf-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-units-string4";
+        description "leaf-description-string4";
+        reference "leaf-reference-string4";
+      }
+      leaf-list leaf-list-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-list-units-string4";
+        min-elements 1;
+        max-elements 2;
+        description "leaf-list-description-string4";
+        reference "leaf-list-reference-string4";
+      }
+      list list-identifier3 {
+        key leaf-identifier4;
+        min-elements 1;
+        max-elements 2;
+        description "list-description-string4";
+        reference "list-reference-string4";
+        container container-identifier4 {
+          presence "container-presence-string5";
+          description "container-description-string5";
+          reference "container-reference-string5";
+          leaf leaf-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-units-string6";
+            description "leaf-description-string6";
+            reference "leaf-reference-string6";
+          }
+          leaf-list leaf-list-identifier5 {
+            type string {
+              length "1..255" {
+                description "length-description-string8";
+                reference "length-reference-string8";
+              }
+              pattern "type-pattern-string7" {
+                description "pattern-description-string8";
+                reference "pattern-reference-string8";
+              }
+            }
+            units "leaf-list-units-string6";
+            min-elements 1;
+            max-elements 2;
+            description "leaf-list-description-string6";
+            reference "leaf-list-reference-string6";
+          }
+        }
+        leaf leaf-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-units-string5";
+          description "leaf-description-string5";
+          reference "leaf-reference-string5";
+        }
+        leaf-list leaf-list-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-list-units-string5";
+          min-elements 1;
+          max-elements 2;
+          description "leaf-list-description-string5";
+          reference "leaf-list-reference-string5";
+        }
+      }
+    }
+  }
+  notification notification-identifier1 {
+    description "notification-description-string2";
+    reference "notification-reference-string2";
+    container container-identifier2 {
+      presence "container-presence-string3";
+      description "container-description-string3";
+      reference "container-reference-string3";
+      leaf leaf-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-units-string4";
+        description "leaf-description-string4";
+        reference "leaf-reference-string4";
+      }
+      leaf-list leaf-list-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-list-units-string4";
+        min-elements 1;
+        max-elements 2;
+        description "leaf-list-description-string4";
+        reference "leaf-list-reference-string4";
+      }
+      list list-identifier3 {
+        key leaf-identifier4;
+        min-elements 1;
+        max-elements 2;
+        description "list-description-string4";
+        reference "list-reference-string4";
+        leaf leaf-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-units-string5";
+          description "leaf-description-string5";
+          reference "leaf-reference-string5";
+        }
+        leaf-list leaf-list-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-list-units-string5";
+          min-elements 1;
+          max-elements 2;
+          description "leaf-list-description-string5";
+          reference "leaf-list-reference-string5";
+        }
+      }
+    }
+    leaf leaf-identifier2 {
+      type string {
+        length "1..255" {
+          description "length-description-string5";
+          reference "length-reference-string5";
+        }
+        pattern "type-pattern-string4" {
+          description "pattern-description-string5";
+          reference "pattern-reference-string5";
+        }
+      }
+      units "leaf-units-string3";
+      description "leaf-description-string3";
+      reference "leaf-reference-string3";
+    }
+    leaf-list leaf-list-identifier2 {
+      type string {
+        length "1..255" {
+          description "length-description-string5";
+          reference "length-reference-string5";
+        }
+        pattern "type-pattern-string4" {
+          description "pattern-description-string5";
+          reference "pattern-reference-string5";
+        }
+      }
+      units "leaf-list-units-string3";
+      min-elements 1;
+      max-elements 2;
+      description "leaf-list-description-string3";
+      reference "leaf-list-reference-string3";
+    }
+    list list-identifier2 {
+      key leaf-identifier3;
+      min-elements 1;
+      max-elements 2;
+      description "list-description-string3";
+      reference "list-reference-string3";
+      container container-identifier3 {
+        presence "container-presence-string4";
+        description "container-description-string4";
+        reference "container-reference-string4";
+        leaf leaf-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-units-string5";
+          description "leaf-description-string5";
+          reference "leaf-reference-string5";
+        }
+        leaf-list leaf-list-identifier4 {
+          type string {
+            length "1..255" {
+              description "length-description-string7";
+              reference "length-reference-string7";
+            }
+            pattern "type-pattern-string6" {
+              description "pattern-description-string7";
+              reference "pattern-reference-string7";
+            }
+          }
+          units "leaf-list-units-string5";
+          min-elements 1;
+          max-elements 2;
+          description "leaf-list-description-string5";
+          reference "leaf-list-reference-string5";
+        }
+      }
+      leaf leaf-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-units-string4";
+        description "leaf-description-string4";
+        reference "leaf-reference-string4";
+      }
+      leaf-list leaf-list-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-list-units-string4";
+        min-elements 1;
+        max-elements 2;
+        description "leaf-list-description-string4";
+        reference "leaf-list-reference-string4";
+      }
+    }
+  }
+  container container-identifier1 {
+    presence "container-presence-string2";
+    description "container-description-string2";
+    reference "container-reference-string2";
+    leaf leaf-identifier2 {
+      type string {
+        length "1..255" {
+          description "length-description-string5";
+          reference "length-reference-string5";
+        }
+        pattern "type-pattern-string4" {
+          description "pattern-description-string5";
+          reference "pattern-reference-string5";
+        }
+      }
+      units "leaf-units-string3";
+      description "leaf-description-string3";
+      reference "leaf-reference-string3";
+    }
+    leaf-list leaf-list-identifier2 {
+      type string {
+        length "1..255" {
+          description "length-description-string5";
+          reference "length-reference-string5";
+        }
+        pattern "type-pattern-string4" {
+          description "pattern-description-string5";
+          reference "pattern-reference-string5";
+        }
+      }
+      units "leaf-list-units-string3";
+      min-elements 1;
+      max-elements 2;
+      description "leaf-list-description-string3";
+      reference "leaf-list-reference-string3";
+    }
+    list list-identifier2 {
+      key leaf-identifier3;
+      min-elements 1;
+      max-elements 2;
+      description "list-description-string3";
+      reference "list-reference-string3";
+      leaf leaf-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5";
+          pattern "type-pattern-string3" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-units-string4";
+        description "leaf-description-string4";
+        reference "leaf-reference-string4";
+      }
+      leaf-list leaf-list-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-list-units-string4";
+        min-elements 1;
+        max-elements 2;
+        description "leaf-list-description-string4";
+        reference "leaf-list-reference-string4";
+      }
+    }
+  }
+  leaf leaf-identifier1 {
+    type string {
+      length "1..255" {
+        description "length-description-string4";
+        reference "length-reference-string4";
+      }
+      pattern "type-pattern-string3" {
+        description "pattern-description-string4";
+        reference "pattern-reference-string4";
+      }
+    }
+    units "leaf-units-string2";
+    description "leaf-description-string2";
+    reference "leaf-reference-string2";
+  }
+  leaf-list leaf-list-identifier1 {
+    type string {
+      length "1..255" {
+        description "length-description-string4";
+        reference "length-reference-string4";
+      }
+      pattern "type-pattern-string3";
+      pattern "type-pattern-string5" {
+        description "pattern-description-string4";
+        reference "pattern-reference-string4";
+      }
+    }
+    units "leaf-list-units-string2";
+    min-elements 1;
+    max-elements 2;
+    description "leaf-list-description-string2";
+    reference "leaf-list-reference-string2";
+  }
+  list list-identifier1 {
+    key leaf-identifier2;
+    min-elements 1;
+    max-elements 2;
+    description "list-description-string2";
+    reference "list-reference-string2";
+    container container-identifier2 {
+      presence "container-presence-string3";
+      description "container-description-string3";
+      reference "container-reference-string3";
+      leaf leaf-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-units-string4";
+        description "leaf-description-string4";
+        reference "leaf-reference-string4";
+      }
+      leaf-list leaf-list-identifier3 {
+        type string {
+          length "1..255" {
+            description "length-description-string6";
+            reference "length-reference-string6";
+          }
+          pattern "type-pattern-string5" {
+            description "pattern-description-string6";
+            reference "pattern-reference-string6";
+          }
+        }
+        units "leaf-list-units-string4";
+        min-elements 1;
+        max-elements 2;
+        description "leaf-list-description-string4";
+        reference "leaf-list-reference-string4";
+      }
+    }
+    leaf leaf-identifier2 {
+      type string {
+        length "1..255" {
+          description "length-description-string5";
+          reference "length-reference-string5";
+        }
+        pattern "type-pattern-string4" {
+          description "pattern-description-string5";
+          reference "pattern-reference-string5";
+        }
+      }
+      units "leaf-units-string3";
+      description "leaf-description-string3";
+      reference "leaf-reference-string3";
+    }
+    leaf-list leaf-list-identifier2 {
+      type string {
+        length "1..255" {
+          description "length-description-string5";
+          reference "length-reference-string5";
+        }
+        pattern "type-pattern-string4" {
+          description "pattern-description-string5";
+          reference "pattern-reference-string5";
+        }
+      }
+      units "leaf-list-units-string3";
+      min-elements 1;
+      max-elements 2;
+      description "leaf-list-description-string3";
+      reference "leaf-list-reference-string3";
+    }
+  }
+}

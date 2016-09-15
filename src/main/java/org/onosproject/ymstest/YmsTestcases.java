@@ -2,15 +2,21 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160914.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.DefaultCont;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Cont2;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.DefaultCont2;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.DefaultList2;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.LfenumEnum;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion10Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion14Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion1Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion2Union;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.List2;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.
         lfunion14union.Lfunion14UnionEnum1;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
@@ -31,10 +37,12 @@ import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
 import org.onosproject.ymstest.manager.TopologyManager;
 import org.onosproject.ymstest.module.LinkListener;
+import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
 import org.onosproject.ymstest.module.MultiNotificationListener;
 import org.onosproject.ymstest.module.MultiNotificationManger;
 import org.onosproject.ymstest.module.NetworkManager;
 import org.onosproject.ymstest.module.NetworkManagerExt;
+import org.onosproject.ymstest.module.SimpleDataTypesManager;
 import org.onosproject.ymstest.module.SimpleRpcManager;
 
 import javax.xml.transform.OutputKeys;
@@ -285,6 +293,13 @@ public class YmsTestcases {
         // Build YANG module object
         List<Object> yangModuleList = new ArrayList<>();
 
+        Cont2 cont2 = new DefaultCont2.Cont2Builder()
+                .lfint8Next((byte) 1)
+                .build();
+
+        List<List2> lists = new ArrayList<>();
+        lists.add(new DefaultList2.List2Builder().networkId("10.1.1.1").build());
+
         Cont cont = new DefaultCont.ContBuilder()
                 .lfint8Min((byte) -128)
                 .lfint8Max((byte) 127)
@@ -314,6 +329,8 @@ public class YmsTestcases {
                 .lfunion10(new Lfunion10Union(BitSet.valueOf(new byte[]{0x11}))) // TODO why false is printing
                 .lfunion14(new Lfunion14Union(Lfunion14UnionEnum1.ONE))
                         //.lfbinary(new byte[] {0x00, 0x01}) TODO Uncomment this after binary is supported
+                .cont2(cont2)
+                .list2(lists)
                 .build();
 
         Object object = SimpleDataTypesOpParam.builder().cont(cont).build();
@@ -501,6 +518,29 @@ public class YmsTestcases {
         ymsService.registerService(new NetworkManager(), NetworkService.class, null);
         ymsService.registerService(new TopologyManager(), TopologyService.class, null);
         print("Registered network service in YMS");
+
+        // TODO Need to add validation
+
+        return result;
+    }
+
+    /**
+     * Test NBI basic data types.
+     *
+     * @return Test result
+     */
+    public boolean testNbiSimpleDataTypes() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        ymsService.registerService(new SimpleDataTypesManager(), SimpleDataTypesService.class, null);
+        ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
+        print("Registered SimpleDataTypes service in YMS");
 
         // TODO Need to add validation
 
