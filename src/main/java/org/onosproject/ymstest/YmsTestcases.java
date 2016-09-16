@@ -191,6 +191,51 @@ public class YmsTestcases {
     }
 
     /**
+     * Send RESTconf put request.
+     *
+     * @param uri  REST request uri
+     * @param body REST request body
+     */
+    private String put(String uri, String body) {
+        String output = null;
+
+        try {
+
+            URL url = new URL(uri);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            String userPassword = "karaf:karaf";
+            String encoding = new String(new Base64().encode(userPassword.getBytes()));
+            conn.setRequestProperty("Authorization", "Basic " + encoding);
+
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Content-Type", "application/json");
+
+            OutputStream os = conn.getOutputStream();
+            os.write(body.getBytes());
+            os.flush();
+
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            print("Output from Server ...\n");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+
+            conn.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    /**
      * Test SBI basic encode flow.
      *
      * @return Test result
@@ -605,6 +650,7 @@ public class YmsTestcases {
 
         return result;
     }
+
     /**
      * Test NBI basic notification register and send flow.
      *
@@ -680,7 +726,7 @@ public class YmsTestcases {
             return false;
         }
         NetworkManagerExt managerExt = new NetworkManagerExt();
-        ymsService.registerService(managerExt, Network.class, null);
+        ymsService.registerService(managerExt, NetworkService.class, null);
         print("YmsService Registered");
         // TODO Need to add validation
         // Get YANG codec handler*/
@@ -690,7 +736,7 @@ public class YmsTestcases {
                 "  \"surname\": \"Bangalore\"\n" +
                 "}";
         try {
-            Thread.sleep(200);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -704,11 +750,10 @@ public class YmsTestcases {
         }
 
         // Add device schema in YMS codec
-        yangCodecHandler.addDeviceSchema(Network.class);
+        yangCodecHandler.addDeviceSchema(NetworkService.class);
 
         // Build YANG module object
         List<Object> yangModuleList = new ArrayList<>();
-
 
         yangModuleList.add(managerExt.getObject());
 
@@ -729,7 +774,136 @@ public class YmsTestcases {
         String xmlPrettyOutput = prettyFormat(xmlOutput);
         print(xmlPrettyOutput);
 
+        if (!xmlPrettyOutput.equals("<filter xmlns=\"ydt.filter-type\" type=\"subtree\">\n" +
+                "  <network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
+                "    <name>Huawei</name>\n" +
+                "    <surname>Bangalore</surname>\n" +
+                "  </network>\n" +
+                "</filter>\n")) {
+            result = false;
+            print("Encoded xml output not matching with expected");
+        }
+        return result;
+    }
 
+
+    /**
+     * Test NBI basic SubtreeFiltering.
+     *
+     * @return Test result
+     */
+    public boolean testSubtreeFilteringList() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+        if (ymsService == null) {
+            print("ymsService is Null");
+            return false;
+        }
+        NetworkManager manager = new NetworkManager();
+        ymsService.registerService(manager, NetworkService.class, null);
+        print("YmsService Registered");
+        // TODO Need to add validation
+        // Get YANG codec handler*/
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/network";
+        String body = "{\n" +
+                "  \t\t\t\t\"name\": \"Huawei\",\n" +
+                "\t\t\t\t\"surname\": \"Bangalore\",\n" +
+                "                \"networklist\" : [{\n" +
+                "                \t\"network-id\" :\"2.2.2.2\",\n" +
+                "                \t\"server-provided\" : \"mysore\"\n" +
+                "                }]\n" +
+                "}";
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        post(uri, body);
+        Network network = manager.getNetwork((NetworkOpParam)
+                NetworkOpParam.builder().build());
+
+        if (!network.name().equals("Huawei")) {
+            result = false;
+        }
+        if (!network.surname().equals("Bangalore")) {
+            result = false;
+        }
+        System.out.println(network.name());
+        System.out.println(network.surname());
+        System.out.println(network.networklist());
+        return result;
+    }
+
+    /**
+     * Test NBI basic SubtreeFiltering.
+     *
+     * @return Test result
+     */
+    public boolean testSubtreeFilteringPut() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+        if (ymsService == null) {
+            print("ymsService is Null");
+            return false;
+        }
+        NetworkManager manager = new NetworkManager();
+        ymsService.registerService(manager, NetworkService.class, null);
+        print("YmsService Registered");
+        // TODO Need to add validation
+        // Get YANG codec handler*/
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/network";
+        String body = "{\n" +
+                "  \t\t\t\t\"name\": \"Huawei\",\n" +
+                "\t\t\t\t\"surname\": \"Bangalore\"\n" +
+                "}";
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        post(uri, body);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Network network = manager.getNetwork((NetworkOpParam)
+                NetworkOpParam.builder().build());
+
+        if (!network.name().equals("Huawei")) {
+            result = false;
+        }
+        if (!network.surname().equals("Bangalore")) {
+            result = false;
+        }
+        System.out.println(network.name());
+        System.out.println(network.surname());
+
+        body = "{\n" +
+                "  \t\t\t\"networklist\" : [{\n" +
+                "                \t\"network-id\" :\"2.2.2.2\",\n" +
+                "                \t\"server-provided\" : \"mysore\"\n" +
+                "                }]\n" +
+                "}";
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        put(uri, body);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        network = manager.getNetwork((NetworkOpParam)
+                NetworkOpParam.builder().build());
+        System.out.println(network.name());
+        System.out.println(network.surname());
+        System.out.println(network.networklist());
         return result;
     }
 }
