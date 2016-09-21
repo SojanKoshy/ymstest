@@ -21,11 +21,6 @@ public class TerminationPointStore
         return tpId;
     }
 
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
     public void tpId(String tpId) {
         this.tpId = tpId;
     }

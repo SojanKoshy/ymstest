@@ -34,10 +34,6 @@ public class NodeStore
         return nodeProp;
     }
 
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
 
     public void addToNodeProp(String value) {
         nodeProp().add(value);

@@ -21,11 +21,6 @@ public class TopologyStore
     private List<Node> nodeStoreList = new ArrayList<>();
 
     @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
-    @Override
     public List<Node> node() {
         return nodeStoreList;
     }

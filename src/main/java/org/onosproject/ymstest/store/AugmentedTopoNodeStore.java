@@ -17,11 +17,6 @@ public class AugmentedTopoNodeStore
         return routerId;
     }
 
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
     public void routerId(String routerId) {
         this.routerId = routerId;
     }

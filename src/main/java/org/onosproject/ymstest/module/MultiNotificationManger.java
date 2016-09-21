@@ -29,8 +29,7 @@ public class MultiNotificationManger extends ListenerRegistry<MultiNotificationE
 
     public void sendNotification() {
         MultiNotificationEventSubject subject = new MultiNotificationEventSubject();
-        LinkDown linkDown = new DefaultLinkDown.LinkDownBuilder().
-                onosYangNodeOperationType(LinkDown.OnosYangNodeOperationType.CREATE).build();
+        LinkDown linkDown = new DefaultLinkDown.LinkDownBuilder().build();
         subject.linkDown(linkDown);
 
         process(new MultiNotificationEvent(MultiNotificationEvent.Type.LINKDOWN, subject));

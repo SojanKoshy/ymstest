@@ -51,11 +51,6 @@ public class NetworkStore
         return false;
     }
 
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
     /**
      * Returns the builder object of surname.
      *

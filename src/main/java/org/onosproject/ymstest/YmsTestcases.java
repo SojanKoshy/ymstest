@@ -278,7 +278,7 @@ public class YmsTestcases {
 
         // Encode JO to XML
         String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
-                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML_ENCODING,
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
                 YmsOperationType.RPC_REQUEST);
 
         if (xmlOutput == null) {
@@ -384,7 +384,7 @@ public class YmsTestcases {
 
         // Encode JO to XML
         String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
-                null, yangModuleList, YangProtocolEncodingFormat.XML_ENCODING,
+                null, yangModuleList, YangProtocolEncodingFormat.XML,
                 YmsOperationType.EDIT_CONFIG_REQUEST);
 
         if (xmlOutput == null) {
@@ -455,7 +455,7 @@ public class YmsTestcases {
                 "    </network>\n" +
                 "</filter>\n";
 
-        List<Object> yangModuleDecodedList = yangCodecHandler.decode(xml, YangProtocolEncodingFormat.XML_ENCODING,
+        List<Object> yangModuleDecodedList = yangCodecHandler.decode(xml, YangProtocolEncodingFormat.XML,
                 YmsOperationType.RPC_REQUEST);
 
         if (yangModuleDecodedList == null) {
@@ -509,7 +509,7 @@ public class YmsTestcases {
 
         try {
             List<Object> yangModuleDecodedList = yangCodecHandler.decode(invalidXml,
-                    YangProtocolEncodingFormat.XML_ENCODING, YmsOperationType.RPC_REQUEST);
+                    YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
 
             if (yangModuleDecodedList != null) {
                 result = false;
@@ -533,7 +533,7 @@ public class YmsTestcases {
 
         try {
             List<Object> yangModuleDecodedList2 = yangCodecHandler.decode(invalidXml2,
-                    YangProtocolEncodingFormat.XML_ENCODING, YmsOperationType.RPC_REQUEST);
+                    YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
 
             if (yangModuleDecodedList2 != null) {
                 result = false;
@@ -763,7 +763,7 @@ public class YmsTestcases {
 
         // Encode JO to XML
         String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
-                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML_ENCODING,
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
                 YmsOperationType.RPC_REQUEST);
 
         if (xmlOutput == null) {

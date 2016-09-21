@@ -19,11 +19,6 @@ public class NetworkPathStore implements NetworkPath {
     }
 
     @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
-    @Override
     public Object yangAugmentedInfo(Class classObject) {
         return null;
     }

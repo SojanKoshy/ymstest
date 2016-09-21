@@ -29,11 +29,6 @@ public class TerminationPointsStore
     }
 
     @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
-    @Override
     public List<TerminationPoint> terminationPoint() {
         return terminationPoint;
     }

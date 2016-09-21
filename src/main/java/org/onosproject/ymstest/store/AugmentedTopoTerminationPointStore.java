@@ -19,11 +19,6 @@ public class AugmentedTopoTerminationPointStore
         return ipAddress;
     }
 
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
     public void ipAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }

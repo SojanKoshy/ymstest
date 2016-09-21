@@ -22,11 +22,6 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     }
 
     @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
-    @Override
     public ContainerIdentifier1 containerIdentifier1() {
         return null;
     }

@@ -7,12 +7,6 @@ import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.cont
  */
 public class MultiNotificationStore implements MultiNotification {
     @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        System.out.println("MultiNotificationStore:onosYangNodeOperationType");
-        return null;
-    }
-
-    @Override
     public MultiNotification processSubtreeFiltering(MultiNotification multiNotification,
                                                      boolean isSelectAllSchemaChild) {
         System.out.println("MultiNotificationStore:processSubtreeFiltering");
