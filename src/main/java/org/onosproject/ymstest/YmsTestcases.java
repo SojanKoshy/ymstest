@@ -2,7 +2,7 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160914.ModuleIdentifier0Service;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -17,8 +17,7 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatat
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion1Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.Lfunion2Union;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.List2;
-import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.
-        lfunion14union.Lfunion14UnionEnum1;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.cont.lfunion14union.Lfunion14UnionEnum1;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkOpParam;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.NetworkService;
@@ -28,8 +27,7 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.TopologyService;
 import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
-import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.
-        MultiNotificationService;
+import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotificationService;
 import org.onosproject.yms.ych.YangCodecHandler;
 import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;

@@ -23,12 +23,6 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
     private BigDecimal leafIdentifier2;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
-
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
     @Override
     public ContainerIdentifier2 containerIdentifier2() {
         return containerIdentifier2;

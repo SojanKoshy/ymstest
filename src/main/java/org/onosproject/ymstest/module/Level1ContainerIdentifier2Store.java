@@ -62,16 +62,6 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
     }
 
     /**
-     * Returns the attribute onosYangNodeOperationType.
-     *
-     * @return value of onosYangNodeOperationType
-     */
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
-    /**
      * Returns the attribute listIdentifier3.
      *
      * @return list of listIdentifier3

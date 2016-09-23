@@ -57,15 +57,6 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
         return  leafListIdentifier2;
     }
 
-    /**
-     * Returns the attribute onosYangNodeOperationType.
-     *
-     * @return value of onosYangNodeOperationType
-     */
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType(){
-            return null;
-    }
 
     /**
      * Returns the attribute containerIdentifier2.

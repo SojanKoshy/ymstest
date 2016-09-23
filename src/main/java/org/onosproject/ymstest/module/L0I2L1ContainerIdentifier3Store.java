@@ -38,16 +38,6 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
     }
 
     /**
-     * Returns the attribute onosYangNodeOperationType.
-     *
-     * @return value of onosYangNodeOperationType
-     */
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType(){
-        return null;
-    }
-
-    /**
      * Returns the attribute containerIdentifier4.
      *
      * @return value of containerIdentifier4

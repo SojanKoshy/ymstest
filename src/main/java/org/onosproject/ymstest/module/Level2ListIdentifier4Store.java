@@ -50,16 +50,6 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
     }
 
     /**
-     * Returns the attribute onosYangNodeOperationType.
-     *
-     * @return value of onosYangNodeOperationType
-     */
-    @Override
-    public OnosYangNodeOperationType onosYangNodeOperationType() {
-        return null;
-    }
-
-    /**
      * Returns the attribute yangAugmentedInfo.
      *
      * @param classObject value of Augmentedclass
