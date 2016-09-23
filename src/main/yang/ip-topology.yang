@@ -1,4 +1,3 @@
-
 module ip-topology {
     yang-version 1;
     namespace urn:ip:topo;

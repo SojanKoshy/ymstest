@@ -906,4 +906,27 @@ public class YmsTestcases {
         System.out.println(network.networklist());
         return result;
     }
+
+    /**
+     * Test NBI basic register flow.
+     *
+     * @return Test result
+     */
+    public boolean testNbiFullRegister() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
+        print("Registered network service in YMS");
+
+        // TODO Need to add validation
+
+        return result;
+    }
+
 }

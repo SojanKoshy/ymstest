@@ -2,7 +2,7 @@ module import-identifier1 {
     namespace "test:import-identifier1";
     prefix test;
 
-    revision 2016-09-14;
+    revision 2016-09-19;
 
     identity my-identity {
         status current;
