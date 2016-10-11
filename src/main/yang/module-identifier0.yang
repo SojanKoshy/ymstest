@@ -68,14 +68,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -106,14 +106,14 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
             }
             list list-identifier6 {
               key leaf-identifier7;
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "list-description-string7";
               reference "list-reference-string7";
@@ -144,7 +144,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -179,14 +179,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -221,14 +221,14 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
             }
             list list-identifier6 {
               key leaf-identifier7;
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "list-description-string7";
               reference "list-reference-string7";
@@ -259,7 +259,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -293,14 +293,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -335,7 +335,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -368,7 +368,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -403,14 +403,14 @@ module module-identifier0 {
           }
         }
         units "leaf-list-units-string4";
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "leaf-list-description-string4";
         reference "leaf-list-reference-string4";
       }
       list list-identifier3 {
         key leaf-identifier4;
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "list-description-string4";
         reference "list-reference-string4";
@@ -449,14 +449,14 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
             }
             list list-identifier6 {
               key leaf-identifier7;
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "list-description-string7";
               reference "list-reference-string7";
@@ -487,7 +487,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -521,14 +521,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -563,7 +563,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -596,7 +596,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -630,14 +630,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -676,7 +676,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -709,7 +709,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -742,7 +742,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -786,14 +786,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -824,14 +824,14 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
             }
             list list-identifier6 {
               key leaf-identifier7;
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "list-description-string7";
               reference "list-reference-string7";
@@ -862,7 +862,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -897,14 +897,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -939,14 +939,14 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
             }
             list list-identifier6 {
               key leaf-identifier7;
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "list-description-string7";
               reference "list-reference-string7";
@@ -977,7 +977,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -1011,14 +1011,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -1053,7 +1053,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -1086,7 +1086,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -1121,14 +1121,14 @@ module module-identifier0 {
           }
         }
         units "leaf-list-units-string4";
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "leaf-list-description-string4";
         reference "leaf-list-reference-string4";
       }
       list list-identifier3 {
         key leaf-identifier4;
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "list-description-string4";
         reference "list-reference-string4";
@@ -1167,14 +1167,14 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
             }
             list list-identifier6 {
               key leaf-identifier7;
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "list-description-string7";
               reference "list-reference-string7";
@@ -1205,7 +1205,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -1239,14 +1239,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -1281,7 +1281,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -1314,7 +1314,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -1348,14 +1348,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -1394,7 +1394,7 @@ module module-identifier0 {
                   }
                 }
                 units "leaf-list-units-string8";
-                min-elements 100;
+                min-elements 1;
                 max-elements 1;
                 description "leaf-list-description-string8";
                 reference "leaf-list-reference-string8";
@@ -1427,7 +1427,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -1460,7 +1460,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -1507,14 +1507,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -1545,14 +1545,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -1583,7 +1583,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -1618,14 +1618,14 @@ module module-identifier0 {
           }
         }
         units "leaf-list-units-string4";
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "leaf-list-description-string4";
         reference "leaf-list-reference-string4";
       }
       list list-identifier3 {
         key leaf-identifier4;
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "list-description-string4";
         reference "list-reference-string4";
@@ -1660,14 +1660,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -1698,7 +1698,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -1732,14 +1732,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -1774,7 +1774,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -1807,7 +1807,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -1842,14 +1842,14 @@ module module-identifier0 {
         }
       }
       units "leaf-list-units-string3";
-      min-elements 100;
+      min-elements 1;
       max-elements 1;
       description "leaf-list-description-string3";
       reference "leaf-list-reference-string3";
     }
     list list-identifier2 {
       key leaf-identifier3;
-      min-elements 100;
+      min-elements 1;
       max-elements 1;
       description "list-description-string3";
       reference "list-reference-string3";
@@ -1888,14 +1888,14 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
           }
           list list-identifier5 {
             key leaf-identifier6;
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "list-description-string6";
             reference "list-reference-string6";
@@ -1926,7 +1926,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -1960,14 +1960,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -2002,7 +2002,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -2035,7 +2035,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2069,14 +2069,14 @@ module module-identifier0 {
           }
         }
         units "leaf-list-units-string4";
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "leaf-list-description-string4";
         reference "leaf-list-reference-string4";
       }
       list list-identifier3 {
         key leaf-identifier4;
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "list-description-string4";
         reference "list-reference-string4";
@@ -2115,7 +2115,7 @@ module module-identifier0 {
                 }
               }
               units "leaf-list-units-string7";
-              min-elements 100;
+              min-elements 1;
               max-elements 1;
               description "leaf-list-description-string7";
               reference "leaf-list-reference-string7";
@@ -2148,7 +2148,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2181,7 +2181,7 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
@@ -2235,8 +2235,8 @@ module module-identifier0 {
       }
       list list-identifier3 {
         key leaf-identifier4;
-        min-elements 100;
-        max-elements 1;
+        min-elements 1;
+        max-elements 100;
         description "list-description-string4";
         reference "list-reference-string4";
         leaf leaf-identifier4 {
@@ -2262,14 +2262,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -2291,7 +2291,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2319,15 +2319,15 @@ module module-identifier0 {
         }
       }
       units "leaf-list-units-string3";
-      min-elements 100;
+      min-elements 1;
       max-elements 1;
       description "leaf-list-description-string3";
       reference "leaf-list-reference-string3";
     }
     list list-identifier2 {
       key leaf-identifier3;
-      min-elements 100;
-      max-elements 1;
+      min-elements 1;
+      max-elements 100;
       description "list-description-string3";
       reference "list-reference-string3";
       container container-identifier3 {
@@ -2352,7 +2352,7 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
@@ -2360,7 +2360,7 @@ module module-identifier0 {
         list list-identifier4
          {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -2391,7 +2391,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2419,14 +2419,14 @@ module module-identifier0 {
           }
         }
         units "leaf-list-units-string4";
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "leaf-list-description-string4";
         reference "leaf-list-reference-string4";
       }
       list list-identifier3 {
         key leaf-identifier4;
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "list-description-string4";
         reference "list-reference-string4";
@@ -2461,7 +2461,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2487,7 +2487,7 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
@@ -2513,14 +2513,14 @@ module module-identifier0 {
       }
     }
     units "leaf-list-units-string2";
-    min-elements 100;
+    min-elements 1;
     max-elements 1;
     description "leaf-list-description-string2";
     reference "leaf-list-reference-string2";
   }
   list list-identifier1 {
     key leaf-identifier2;
-    min-elements 100;
+    min-elements 1;
     max-elements 1;
     description "list-description-string2";
     reference "list-reference-string2";
@@ -2550,14 +2550,14 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
         }
         list list-identifier4 {
           key leaf-identifier5;
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "list-description-string5";
           reference "list-reference-string5";
@@ -2579,7 +2579,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2604,14 +2604,14 @@ module module-identifier0 {
           }
         }
         units "leaf-list-units-string4";
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "leaf-list-description-string4";
         reference "leaf-list-reference-string4";
       }
       list list-identifier3 {
         key leaf-identifier4;
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "list-description-string4";
         reference "list-reference-string4";
@@ -2646,7 +2646,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2670,7 +2670,7 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
@@ -2695,15 +2695,15 @@ module module-identifier0 {
         }
       }
       units "leaf-list-units-string3";
-      min-elements 100;
+      min-elements 1;
       max-elements 1;
       description "leaf-list-description-string3";
       reference "leaf-list-reference-string3";
     }
     list list-identifier2 {
       key leaf-identifier3;
-      min-elements 100;
-      max-elements 1;
+      min-elements 1;
+      max-elements 100;
       description "list-description-string3";
       reference "list-reference-string3";
       container container-identifier3 {
@@ -2732,7 +2732,7 @@ module module-identifier0 {
               }
             }
             units "leaf-list-units-string6";
-            min-elements 100;
+            min-elements 1;
             max-elements 1;
             description "leaf-list-description-string6";
             reference "leaf-list-reference-string6";
@@ -2756,7 +2756,7 @@ module module-identifier0 {
             }
           }
           units "leaf-list-units-string5";
-          min-elements 100;
+          min-elements 1;
           max-elements 1;
           description "leaf-list-description-string5";
           reference "leaf-list-reference-string5";
@@ -2789,7 +2789,7 @@ module module-identifier0 {
           }
         }
         units "leaf-list-units-string4";
-        min-elements 100;
+        min-elements 1;
         max-elements 1;
         description "leaf-list-description-string4";
         reference "leaf-list-reference-string4";

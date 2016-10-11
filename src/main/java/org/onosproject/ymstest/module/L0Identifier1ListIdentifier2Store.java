@@ -1,8 +1,10 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.DefaultListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.ListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.ContainerIdentifier3;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +14,21 @@ import java.util.Map;
  */
 public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
     private String leafIdentifier3;
-    private List<String> leafListIdentifier3;
+    private List<String> leafListIdentifier3 = new ArrayList<>();
     private ContainerIdentifier3 containerIdentifier3;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
+
+    public void leafIdentifier3(String leafIdentifier3) {
+        this.leafIdentifier3 = leafIdentifier3;
+    }
+
+    public void leafListIdentifier3(List<String> leafListIdentifier3) {
+        this.leafListIdentifier3 = leafListIdentifier3;
+    }
+
+    public void containerIdentifier3(ContainerIdentifier3 containerIdentifier3) {
+        this.containerIdentifier3 = containerIdentifier3;
+    }
 
     /**
      * Returns the attribute leafIdentifier3.
@@ -22,8 +36,8 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
      * @return value of leafIdentifier3
      */
     @Override
-    public String leafIdentifier3(){
-            return leafIdentifier3;
+    public String leafIdentifier3() {
+        return leafIdentifier3;
     }
 
     /**
@@ -32,8 +46,8 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
      * @return list of leafListIdentifier3
      */
     @Override
-    public  List<String> leafListIdentifier3(){
-            return leafListIdentifier3;
+    public List<String> leafListIdentifier3() {
+        return leafListIdentifier3;
     }
 
 
@@ -43,7 +57,7 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
      * @return value of containerIdentifier3
      */
     @Override
-    public ContainerIdentifier3 containerIdentifier3(){
+    public ContainerIdentifier3 containerIdentifier3() {
         return containerIdentifier3;
     }
 
@@ -54,8 +68,8 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
      * @return value of YangAugmentedInfo
      */
     @Override
-    public Object yangAugmentedInfo(Class classObject){
-            return yangAugmentedInfoMap.get(classObject);
+    public Object yangAugmentedInfo(Class classObject) {
+        return yangAugmentedInfoMap.get(classObject);
     }
 
     /**
@@ -64,19 +78,19 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
      * @return value of yangAugmentedInfoMap
      */
     @Override
-    public Map<Class<?>, Object> yangAugmentedInfoMap(){
+    public Map<Class<?>, Object> yangAugmentedInfoMap() {
         return yangAugmentedInfoMap;
     }
 
     /**
      * Checks if the passed ListIdentifier2 maps the content match query condition.
      *
-     * @param listIdentifier2 listIdentifier2 being passed to check for content match
+     * @param listIdentifier2        listIdentifier2 being passed to check for content match
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
      */
     @Override
-    public ListIdentifier2 processSubtreeFiltering(ListIdentifier2 listIdentifier2, boolean isSelectAllSchemaChild){
+    public ListIdentifier2 processSubtreeFiltering(ListIdentifier2 listIdentifier2, boolean isSelectAllSchemaChild) {
         return null;
     }
 
@@ -87,8 +101,8 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
      * @return result of leaf value set in object
      */
     @Override
-    public boolean isLeafValueSet(LeafIdentifier leaf){
-        return (leafIdentifier3()!=null);
+    public boolean isLeafValueSet(LeafIdentifier leaf) {
+        return (leafIdentifier3() != null);
     }
 
     /**
@@ -98,9 +112,286 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
      * @return result of leaf value set in object
      */
     @Override
-    public boolean isSelectLeaf(LeafIdentifier leaf){
+    public boolean isSelectLeaf(LeafIdentifier leaf) {
         return false;
     }
 
+    public void processEdit(ListIdentifier2 listIdentifier2) {
+        if (!(listIdentifier2 instanceof DefaultListIdentifier2)) {
+            //Operations are part of the default Node
+            throw new RuntimeException("default Node expected");
+        }
+        DefaultListIdentifier2 containerNode = (DefaultListIdentifier2) listIdentifier2;
+        if (containerNode.onosYangNodeOperationType() == null) {
+            throw new RuntimeException("No operation set for Node");
+        }
+
+        /*
+         * Process the leaf list attributes
+         */
+        processLeafListIdentifer2Edit(listIdentifier2, containerNode.onosYangNodeOperationType());
+
+        /*
+         * Process the child nodes
+         */
+        processContainerIdentifier2Edit(listIdentifier2,
+                containerNode.onosYangNodeOperationType());
+
+
+       /* *//*
+         * Process the augmented node contents
+         *//*
+        for (Map.Entry<Class<?>, Object> entry
+                : containerIdentifier1.yangAugmentedInfoMap().entrySet()) {
+            Class<?> augmentClass = entry.getKey();
+            Object augmentObjectPara = entry.getValue();
+            Object storeAugmentedObject = yangAugmentedInfo(augmentClass);
+            if (storeAugmentedObject != null &&
+                    storeAugmentedObject instanceof
+                            AugmentedOperationProcessor) {
+                ProcessAugmentedEditOutput output =
+                        ((AugmentedOperationProcessor)
+                                storeAugmentedObject)
+                                .processAugmentedEdit(augmentObjectPara);
+                switch (output.mapOperate) {
+                    case DELETE_OLD_ADD_NEW: {
+                        yangAugmentedInfoMap().remove(storeAugmentedObject);
+                        addYangAugmentedInfo(output.newStoreNode, augmentClass);
+                    }
+                    case DELETE_OLD: {
+                        yangAugmentedInfoMap().remove(storeAugmentedObject);
+                    }
+                    default: {
+                        //do nothing
+                    }
+                }
+            } else if (storeAugmentedObject == null) {
+                //TODO: the augment class is hard coded, since it is not
+                // there in the generated classes, remove it once the YANG
+                // tools can support it.
+                storeAugmentedObject = new AugmentedTopoNodeStore();
+                ProcessAugmentedEditOutput output =
+                        ((AugmentedOperationProcessor)
+                                storeAugmentedObject).processNewAugmentedEdit(
+                                augmentObjectPara);
+                switch (output.mapOperate) {
+                    case ADD_NEW: {
+                        addYangAugmentedInfo(output.newStoreNode, augmentClass);
+                    }
+                    default: {
+                        //do nothing
+                    }
+                }
+
+            }
+*/
+
+        switch (containerNode.onosYangNodeOperationType()) {
+            case CREATE: {
+                if (containerNode.leafIdentifier3() != null) {
+                    throw new RuntimeException("L0Identifier1ListIdentifier2Store");
+                }
+                leafIdentifier3(containerNode.leafIdentifier3());
+                return;
+            }
+            case DELETE: {
+                //do nothing, current stored node will be removed
+                return;
+            }
+
+            case REPLACE: {
+
+                leafIdentifier3(listIdentifier2.leafIdentifier3());
+                return;
+            }
+
+            case REMOVE: {
+                //do nothing, current stored node will be removed
+                return;
+            }
+            case MERGE: {
+                if (listIdentifier2.leafIdentifier3() == null) {
+                    throw new RuntimeException("L0Identifier1ListIdentifier2Store");
+                }
+                leafIdentifier3(listIdentifier2.leafIdentifier3());
+                return;
+            }
+            case NONE:
+            default: {
+                //do nothing, child schema is already processed above
+                return;
+            }
+        }
+
+    }
+
+    private void processContainerIdentifier2Edit(
+            ListIdentifier2 listIdentifier2, DefaultListIdentifier2.OnosYangNodeOperationType
+            onosYangNodeOperationType) {
+        if (listIdentifier2.containerIdentifier3() == null) {
+            return;
+        }
+
+        if (containerIdentifier3() != null && !(containerIdentifier3() instanceof
+                L0I2L1ContainerIdentifier3Store)) {
+            //stored node is not correct
+            throw new RuntimeException("store termination points expected");
+        }
+
+        L0I2L1ContainerIdentifier3Store identifier3Store
+                = (L0I2L1ContainerIdentifier3Store) containerIdentifier3();
+        ContainerIdentifier3 containerIdentifier3Para = listIdentifier2.containerIdentifier3();
+
+        switch (onosYangNodeOperationType) {
+            case CREATE: {
+                if (identifier3Store != null) {
+                    throw new RuntimeException("TerminationPointsStore" +
+                            " is already " +
+                            "created");
+                }
+                identifier3Store = new L0I2L1ContainerIdentifier3Store();
+                containerIdentifier3(identifier3Store);
+                identifier3Store.processEdit(containerIdentifier3Para);
+                return;
+            }
+            case DELETE: {
+                if (identifier3Store == null) {
+                    throw new RuntimeException("TerminationPointsStore" +
+                            " is not in store");
+                }
+                identifier3Store.processEdit(containerIdentifier3Para);
+                containerIdentifier3(null);
+                return;
+            }
+
+            case REPLACE: {
+                if (identifier3Store != null) {
+                    identifier3Store.processEdit(containerIdentifier3Para);
+                    return;
+                }
+                identifier3Store = new L0I2L1ContainerIdentifier3Store();
+                containerIdentifier3(identifier3Store);
+                identifier3Store.processEdit(containerIdentifier3Para);
+                return;
+            }
+
+            case REMOVE: {
+                if (identifier3Store == null) {
+                    return;
+                }
+                identifier3Store.processEdit(containerIdentifier3Para);
+                containerIdentifier3(null);
+                return;
+            }
+            case MERGE: {
+                if (identifier3Store == null) {
+                    identifier3Store = new L0I2L1ContainerIdentifier3Store();
+                    containerIdentifier3(identifier3Store);
+                    identifier3Store.processEdit(containerIdentifier3Para);
+                    return;
+                }
+                identifier3Store.processEdit(containerIdentifier3Para);
+                return;
+            }
+            case NONE: {
+                if (identifier3Store == null) {
+                    if (containerIdentifier3Para != null) {
+                        identifier3Store = new L0I2L1ContainerIdentifier3Store();
+                        containerIdentifier3(identifier3Store);
+                        identifier3Store
+                                .processEdit(containerIdentifier3Para);
+                    }
+                    return;
+                }
+                identifier3Store.processEdit(containerIdentifier3Para);
+                return;
+            }
+            default:
+        }
+    }
+
+
+    private void processLeafListIdentifer2Edit(ListIdentifier2 listIdentifier2,
+                                               DefaultListIdentifier2.OnosYangNodeOperationType
+                                                       onosYangNodeOperationType) {
+        if (listIdentifier2.leafListIdentifier3() == null
+                || listIdentifier2.leafListIdentifier3().isEmpty()) {
+            return;
+        }
+        for (String leafListIdentifer3Para : listIdentifier2.leafListIdentifier3()) {
+            String storedLeafListIdentifier3 = findLeafListIdentifer2(leafListIdentifer3Para);
+
+            switch (onosYangNodeOperationType) {
+                case CREATE: {
+                    if (storedLeafListIdentifier3 != null) {
+                        throw new RuntimeException(
+                                "nodeProp: " + leafListIdentifer3Para +
+                                        " is already created");
+                    }
+                    addToLeafListIdentifer3(leafListIdentifer3Para);
+                    continue; //continue with next node prop
+                }
+                case DELETE: {
+                    if (storedLeafListIdentifier3 == null) {
+                        throw new RuntimeException(
+                                "nodeProp: " + leafListIdentifer3Para + " is not in "
+                                        + "store");
+                    }
+                    leafListIdentifier3().remove(storedLeafListIdentifier3);
+                    continue; //continue with next node prop
+                }
+
+                case REPLACE: {
+                    if (storedLeafListIdentifier3 != null) {
+                        //node prop is already present do nothing
+                        continue; //continue with next node prop
+                    }
+                    leafListIdentifier3().add(leafListIdentifer3Para);
+                    continue; //continue with next node prop
+                }
+
+                case REMOVE: {
+                    if (storedLeafListIdentifier3 == null) {
+                        //node prop is not present do nothing
+                        continue; //continue with next node prop
+                    }
+                    leafListIdentifier3().remove(storedLeafListIdentifier3);
+                    continue; //continue with next node prop
+                }
+                case MERGE: {
+                    if (storedLeafListIdentifier3 == null) {
+                        leafListIdentifier3().add(leafListIdentifer3Para);
+                        continue; //continue with next node prop
+                    }
+
+                    //node prop is already present do nothing
+                    continue; //continue with next node prop
+                }
+                case NONE:
+                default: {
+                    //nothing to be done
+                    continue; //continue with next node prop
+                }
+            }
+        }
+
+    }
+
+    private String findLeafListIdentifer2(String leafListIdentifer) {
+        if (leafListIdentifier3().isEmpty()) {
+            return null;
+        }
+
+        for (String leaflistIdentifer3 : leafListIdentifier3()) {
+            if (leaflistIdentifer3.equals(leafListIdentifer)) {
+                return leaflistIdentifer3;
+            }
+        }
+        return null;
+    }
+
+    public void addToLeafListIdentifer3(String value) {
+        leafListIdentifier3().add(value);
+    }
 
 }

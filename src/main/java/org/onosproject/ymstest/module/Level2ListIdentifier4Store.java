@@ -171,6 +171,9 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
 
         switch (listNode.onosYangNodeOperationType()) {
             case CREATE: {
+                   if (listNode.leafIdentifier5() != null) {
+                    throw new RuntimeException("Level2ListIdentifier4Store");
+                }
                 leafIdentifier5(listNode.leafIdentifier5());
                 return;
             }
@@ -180,9 +183,7 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
             }
 
             case REPLACE: {
-              /*  if (listNode.leafIdentifier5() == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
-                }*/
+
                 leafIdentifier5(listIdentifier4.leafIdentifier5());
                 return;
             }
@@ -193,7 +194,7 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
             }
             case MERGE: {
                 if (listIdentifier4.leafIdentifier5() == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
+                    throw new RuntimeException("Level2ListIdentifier4Store");
                 }
                 leafIdentifier5(listIdentifier4.leafIdentifier5());
                 return;
@@ -279,7 +280,7 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
     }
 
     private String findLeafListIdentifer5(String leafListIdentifer) {
-        if (leafIdentifier5().isEmpty()) {
+        if (leafListIdentifier5().isEmpty()) {
             return null;
         }
 

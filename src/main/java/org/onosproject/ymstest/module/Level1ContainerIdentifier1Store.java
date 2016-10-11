@@ -169,6 +169,9 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
 
         switch (containerNode.onosYangNodeOperationType()) {
             case CREATE: {
+                if (containerNode.leafIdentifier2() != null) {
+                    throw new RuntimeException("Level1ContainerIdentifier1Store");
+                }
                 leafIdentifier2(containerNode.leafIdentifier2());
                 return;
             }
@@ -178,9 +181,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
             }
 
             case REPLACE: {
-                if (containerNode.leafIdentifier2() == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
-                }
+
                 leafIdentifier2(containerIdentifier1.leafIdentifier2());
                 return;
             }
@@ -191,7 +192,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
             }
             case MERGE: {
                 if (containerIdentifier1.leafIdentifier2() == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
+                    throw new RuntimeException("Level1ContainerIdentifier1Store");
                 }
                 leafIdentifier2(containerIdentifier1.leafIdentifier2());
                 return;

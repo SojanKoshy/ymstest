@@ -1,34 +1,27 @@
 package org.onosproject.ymstest.module;
 
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.DefaultListIdentifier3;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.ListIdentifier3;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.rpcidentifier1.rpcidentifier1output.containeridentifier3.DefaultListIdentifier4;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.ContainerIdentifier3;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.DefaultContainerIdentifier3;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.containeridentifier3.DefaultListIdentifier4;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.containeridentifier3.ListIdentifier4;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by root1 on 20/9/16.
+ * Created by root1 on 26/9/16.
  */
-public class Level1ListIdentifier3Store implements ListIdentifier3 {
+public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdentifier3 {
 
-
-    private BitSet leafIdentifer4;
-
+    private short leafIdentifier4;
     private List<String> leafListIdentifier4 = new ArrayList<>();
-
-    //store need to be created
     private List<ListIdentifier4> listIdentifier4 = new ArrayList<>();
-
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
-
-    public void leafIdentifier4(BitSet leafIdentifer4) {
-        this.leafIdentifer4 = leafIdentifer4;
+    public void leafIdentifier4(short leafIdentifier4) {
+        this.leafIdentifier4 = leafIdentifier4;
     }
 
     public void leafListIdentifier4(List<String> leafListIdentifier4) {
@@ -45,8 +38,8 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
      * @return value of leafIdentifier4
      */
     @Override
-    public BitSet leafIdentifier4() {
-        return leafIdentifer4;
+    public short leafIdentifier4() {
+        return leafIdentifier4;
     }
 
     /**
@@ -58,7 +51,6 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
     public List<String> leafListIdentifier4() {
         return leafListIdentifier4;
     }
-
 
     /**
      * Returns the attribute listIdentifier4.
@@ -92,14 +84,15 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
     }
 
     /**
-     * Checks if the passed ListIdentifier3 maps the content match query condition.
+     * Checks if the passed ContainerIdentifier3 maps the content match query condition.
      *
-     * @param listIdentifier3        listIdentifier3 being passed to check for content match
+     * @param containerIdentifier3   containerIdentifier3 being passed to check for content match
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
      */
     @Override
-    public ListIdentifier3 processSubtreeFiltering(ListIdentifier3 listIdentifier3, boolean isSelectAllSchemaChild) {
+    public ContainerIdentifier3 processSubtreeFiltering(ContainerIdentifier3 containerIdentifier3, boolean
+            isSelectAllSchemaChild) {
         return null;
     }
 
@@ -111,7 +104,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
      */
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
-        return (leafIdentifer4 != null);
+        return (new Short(leafIdentifier4()) != null);
     }
 
     /**
@@ -125,27 +118,23 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
         return false;
     }
 
-    public void addToLeafListIdentifer4(String value) {
-        leafListIdentifier4().add(value);
-    }
-
-
-    public void processEdit(ListIdentifier3 listIdentifier3) {
-        if (!(listIdentifier3 instanceof DefaultListIdentifier3)) {
+    public void processEdit(ContainerIdentifier3 containerIdentifier3) {
+        if (!(containerIdentifier3 instanceof DefaultContainerIdentifier3)) {
             //Operations are part of the default Node
             throw new RuntimeException("default Node expected");
         }
-        DefaultListIdentifier3 listNode = (DefaultListIdentifier3) listIdentifier3;
-        if (listNode.onosYangNodeOperationType() == null) {
+        DefaultContainerIdentifier3 containerNode = (DefaultContainerIdentifier3) containerIdentifier3;
+        if (containerNode.onosYangNodeOperationType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer4Edit(listIdentifier3, listNode.onosYangNodeOperationType());
+        processLeafListIdentifer4Edit(containerIdentifier3, containerNode.onosYangNodeOperationType());
 
-        processListIdentifer4Edit(listIdentifier3);
+
+        processListIdentifer4Edit(containerIdentifier3);
 
        /* *//*
          * Process the augmented node contents
@@ -195,12 +184,12 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
             }
 */
 
-        switch (listNode.onosYangNodeOperationType()) {
+        switch (containerNode.onosYangNodeOperationType()) {
             case CREATE: {
-                if (listNode.leafIdentifier4() != null) {
-                    throw new RuntimeException("Level1ListIdentifier3Store");
+                if (new Short(containerNode.leafIdentifier4()) != null) {
+                    throw new RuntimeException("L0Identifier1C2ContainerIdentifier3Store");
                 }
-                leafIdentifier4(listNode.leafIdentifier4());
+                leafIdentifier4(containerNode.leafIdentifier4());
                 return;
             }
             case DELETE: {
@@ -209,8 +198,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
             }
 
             case REPLACE: {
-
-                leafIdentifier4(listIdentifier3.leafIdentifier4());
+                leafIdentifier4(containerIdentifier3.leafIdentifier4());
                 return;
             }
 
@@ -219,10 +207,10 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
                 return;
             }
             case MERGE: {
-                if (listIdentifier3.leafIdentifier4() == null) {
-                    throw new RuntimeException("Level1ListIdentifier3Store");
+                if (new Short(containerIdentifier3.leafIdentifier4()) == null) {
+                    throw new RuntimeException("L0Identifier1C2ContainerIdentifier3Store");
                 }
-                leafIdentifier4(listIdentifier3.leafIdentifier4());
+                leafIdentifier4(containerIdentifier3.leafIdentifier4());
                 return;
             }
             case NONE:
@@ -235,14 +223,117 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
     }
 
 
-    private void processLeafListIdentifer4Edit(ListIdentifier3 listIdentifier3,
-                                               DefaultListIdentifier3.OnosYangNodeOperationType
-                                                       onosYangNodeOperationType) {
-        if (listIdentifier3.leafListIdentifier4() == null
-                || listIdentifier3.leafListIdentifier4().isEmpty()) {
+    private void processListIdentifer4Edit(ContainerIdentifier3 containerIdentifier3) {
+        if (containerIdentifier3.listIdentifier4() == null || containerIdentifier3.listIdentifier4().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
+        for (ListIdentifier4 identifier4 : containerIdentifier3.listIdentifier4()) {
+            ListIdentifier4 listInStore = findListIdentifer4InStore(identifier4);
+
+            if (listInStore != null && !(listInStore instanceof L0Identifier1C2C3ListIdentifier4Store)) {
+                //stored node is not correct
+                throw new RuntimeException("store Node expected");
+            }
+            L0Identifier1C2C3ListIdentifier4Store storedIdentifier4Store = (L0Identifier1C2C3ListIdentifier4Store) listInStore;
+
+            if (!(identifier4 instanceof DefaultListIdentifier4)) {
+                //Operations are part of the default Node
+                throw new RuntimeException("default Node expected");
+            }
+            DefaultListIdentifier4 opNode = (DefaultListIdentifier4) identifier4;
+            if (opNode.onosYangNodeOperationType() == null) {
+                throw new RuntimeException("No operation set for Node");
+            }
+            switch (opNode.onosYangNodeOperationType()) {
+                case CREATE: {
+                    if (storedIdentifier4Store != null) {
+                        throw new RuntimeException(
+                                "Node: " + identifier4.leafIdentifier5() + " is already " +
+                                        "created");
+                    }
+                    storedIdentifier4Store = new L0Identifier1C2C3ListIdentifier4Store();
+                    listIdentifier4.add(storedIdentifier4Store);
+                    storedIdentifier4Store.processEdit(identifier4);
+                    continue; //continue to process the next input node
+                }
+                case DELETE: {
+                    if (storedIdentifier4Store == null) {
+                        throw new RuntimeException(
+                                "Node: " + identifier4.leafIdentifier5() + " is not in " +
+                                        "store");
+                    }
+                    storedIdentifier4Store.processEdit(identifier4);
+                    listIdentifier4.remove(storedIdentifier4Store);
+                    continue; //continue to process the next input node
+                }
+
+                case REPLACE: {
+                    if (storedIdentifier4Store != null) {
+                        storedIdentifier4Store.processEdit(identifier4);
+                        continue; //continue to process the next input node
+                    }
+                    storedIdentifier4Store = new L0Identifier1C2C3ListIdentifier4Store();
+                    listIdentifier4.add(storedIdentifier4Store);
+                    storedIdentifier4Store.processEdit(identifier4);
+                    continue; //continue to process the next input node
+                }
+
+                case REMOVE: {
+                    if (storedIdentifier4Store == null) {
+                        continue; //continue to process the next input node
+                    }
+                    storedIdentifier4Store.processEdit(identifier4);
+                    listIdentifier4.remove(storedIdentifier4Store);
+                    continue; //continue to process the next input node
+                }
+                case MERGE: {
+                    if (storedIdentifier4Store == null) {
+                        storedIdentifier4Store = new L0Identifier1C2C3ListIdentifier4Store();
+                        listIdentifier4.add(storedIdentifier4Store);
+                        storedIdentifier4Store.processEdit(identifier4);
+                        continue; //continue to process the next input node
+                    }
+                    storedIdentifier4Store.processEdit(identifier4);
+                    continue; //continue to process the next input node
+                }
+                case NONE: {
+                    if (storedIdentifier4Store == null) {
+                        if (identifier4 != null) {
+                            storedIdentifier4Store = new L0Identifier1C2C3ListIdentifier4Store();
+                            listIdentifier4.add(storedIdentifier4Store);
+                            storedIdentifier4Store.processEdit(identifier4);
+                        }
+                        continue; //continue to process the next input node
+                    }
+                    storedIdentifier4Store.processEdit(identifier4);
+                    continue; //continue to process the next input node
+                }
+                default:
+            }
+        }
+    }
+
+    private ListIdentifier4 findListIdentifer4InStore(ListIdentifier4 findNode) {
+        for (ListIdentifier4 node : listIdentifier4) {
+//            if (node.nodeId() == null) {
+//                continue;
+//            }
+            if (node.leafIdentifier5() == findNode.leafIdentifier5()) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+
+    private void processLeafListIdentifer4Edit(ContainerIdentifier3 containerIdentifier3,
+                                               DefaultContainerIdentifier3.OnosYangNodeOperationType
+                                                       onosYangNodeOperationType) {
+        if (containerIdentifier3.leafListIdentifier4() == null
+                || containerIdentifier3.leafListIdentifier4().isEmpty()) {
+            return;
+        }
+        for (String leafListIdentifer4Para : containerIdentifier3.leafListIdentifier4()) {
             String storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
 
             switch (onosYangNodeOperationType) {
@@ -279,7 +370,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
                         //node prop is not present do nothing
                         continue; //continue with next node prop
                     }
-                    leafListIdentifier4.remove(storedLeafListIdentifier4);
+                    leafListIdentifier4().remove(storedLeafListIdentifier4);
                     continue; //continue with next node prop
                 }
                 case MERGE: {
@@ -314,106 +405,9 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
         return null;
     }
 
-    private void processListIdentifer4Edit(ListIdentifier3 listIdentifier3) {
-        if (listIdentifier3.listIdentifier4() == null || listIdentifier3.listIdentifier4().isEmpty()) {
-            return;
-        }
-        for (ListIdentifier4 identifier4 : listIdentifier3.listIdentifier4()) {
-            ListIdentifier4 listInStore = findListIdentifer4InStore(identifier4);
-
-            if (listInStore != null && !(listInStore instanceof Level1ListIdentifier3Store)) {
-                //stored node is not correct
-                throw new RuntimeException("store Node expected");
-            }
-            Level1ListIdentifier4Store storedIdentifier4Store = (Level1ListIdentifier4Store) listInStore;
-
-            if (!(identifier4 instanceof DefaultListIdentifier4)) {
-                //Operations are part of the default Node
-                throw new RuntimeException("default Node expected");
-            }
-            DefaultListIdentifier3 opNode = (DefaultListIdentifier3) identifier4;
-            if (opNode.onosYangNodeOperationType() == null) {
-                throw new RuntimeException("No operation set for Node");
-            }
-            switch (opNode.onosYangNodeOperationType()) {
-                case CREATE: {
-                    if (storedIdentifier4Store != null) {
-                        throw new RuntimeException(
-                                "Node: " + identifier4.leafListIdentifier5() + " is already " +
-                                        "created");
-                    }
-                    storedIdentifier4Store = new Level1ListIdentifier4Store();
-                    listIdentifier4.add(storedIdentifier4Store);
-                    storedIdentifier4Store.processEdit(identifier4);
-                    continue; //continue to process the next input node
-                }
-                case DELETE: {
-                    if (storedIdentifier4Store == null) {
-                        throw new RuntimeException(
-                                "Node: " + identifier4.leafListIdentifier5() + " is not in " +
-                                        "store");
-                    }
-                    storedIdentifier4Store.processEdit(identifier4);
-                    listIdentifier4.remove(storedIdentifier4Store);
-                    continue; //continue to process the next input node
-                }
-
-                case REPLACE: {
-                    if (storedIdentifier4Store != null) {
-                        storedIdentifier4Store.processEdit(identifier4);
-                        continue; //continue to process the next input node
-                    }
-                    storedIdentifier4Store = new Level1ListIdentifier4Store();
-                    listIdentifier4.add(storedIdentifier4Store);
-                    storedIdentifier4Store.processEdit(identifier4);
-                    continue; //continue to process the next input node
-                }
-
-                case REMOVE: {
-                    if (storedIdentifier4Store == null) {
-                        continue; //continue to process the next input node
-                    }
-                    storedIdentifier4Store.processEdit(identifier4);
-                    listIdentifier4.remove(storedIdentifier4Store);
-                    continue; //continue to process the next input node
-                }
-                case MERGE: {
-                    if (storedIdentifier4Store == null) {
-                        storedIdentifier4Store = new Level1ListIdentifier4Store();
-                        listIdentifier4.add(storedIdentifier4Store);
-                        storedIdentifier4Store.processEdit(identifier4);
-                        continue; //continue to process the next input node
-                    }
-                    storedIdentifier4Store.processEdit(identifier4);
-                    continue; //continue to process the next input node
-                }
-                case NONE: {
-                    if (storedIdentifier4Store == null) {
-                        if (identifier4 != null) {
-                            storedIdentifier4Store = new Level1ListIdentifier4Store();
-                            listIdentifier4.add(storedIdentifier4Store);
-                            storedIdentifier4Store.processEdit(identifier4);
-                        }
-                        continue; //continue to process the next input node
-                    }
-                    storedIdentifier4Store.processEdit(identifier4);
-                    continue; //continue to process the next input node
-                }
-                default:
-            }
-        }
+    public void addToLeafListIdentifer4(String value) {
+        leafListIdentifier4().add(value);
     }
 
-    private ListIdentifier4 findListIdentifer4InStore(ListIdentifier4 findNode) {
-        for (ListIdentifier4 node : listIdentifier4) {
-//            if (node.nodeId() == null) {
-//                continue;
-//            }
-            if (node.leafListIdentifier5().equals(findNode.leafListIdentifier5())) {
-                return node;
-            }
-        }
-        return null;
-    }
 
 }

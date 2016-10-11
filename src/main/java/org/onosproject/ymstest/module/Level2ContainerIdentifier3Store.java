@@ -193,6 +193,9 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
 
         switch (containerNode.onosYangNodeOperationType()) {
             case CREATE: {
+                  if (new Boolean(containerIdentifier3.leafIdentifier4()) != null) {
+                    throw new RuntimeException("Level2ContainerIdentifier3Store");
+                }
                 leafIdentifier4(containerNode.leafIdentifier4());
                 return;
             }
@@ -202,9 +205,6 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
             }
 
             case REPLACE: {
-              /*  if (listNode.leafIdentifier5() == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
-                }*/
                 leafIdentifier4(containerIdentifier3.leafIdentifier4());
                 return;
             }
@@ -214,10 +214,10 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
                 return;
             }
             case MERGE: {
-               /* if (containerIdentifier3.leafIdentifier4() == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
+                if (new Boolean(containerIdentifier3.leafIdentifier4()) == null) {
+                    throw new RuntimeException("Level2ContainerIdentifier3Store");
                 }
-                leafIdentifier4(containerIdentifier3.leafIdentifier4());*/
+                leafIdentifier4(containerIdentifier3.leafIdentifier4());
                 return;
             }
             case NONE:

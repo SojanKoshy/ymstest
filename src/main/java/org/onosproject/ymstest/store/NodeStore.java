@@ -150,6 +150,9 @@ public class NodeStore
 
         switch (opNode.onosYangNodeOperationType()) {
             case CREATE: {
+                if (nodePara.nodeId() != null) {
+                    throw new RuntimeException("Key: node.nodeId() is null");
+                }
                 nodeId(nodePara.nodeId());
                 return;
             }
@@ -159,9 +162,6 @@ public class NodeStore
             }
 
             case REPLACE: {
-                if (nodePara.nodeId() == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
-                }
                 nodeId(nodePara.nodeId());
                 return;
             }

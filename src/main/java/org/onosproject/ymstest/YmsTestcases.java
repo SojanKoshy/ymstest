@@ -2,6 +2,8 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0OpParam;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
@@ -61,6 +63,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -924,6 +927,56 @@ public class YmsTestcases {
 
         // TODO Need to add validation
 
+        return result;
+    }
+
+    public boolean testNbiModuleIdentifier0() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        ModuleIdentifier0Manager manager= new ModuleIdentifier0Manager();
+        ymsService.registerService(manager, ModuleIdentifier0Service.class, null);
+        print("Registered network service in YMS");
+
+        // TODO Need to add validation
+        // Get YANG codec handler*/
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/module-identifier0";
+        String body = "{\n" +
+                "\t\"container-identifier1\": {\n" +
+                "\t\t\"container-identifier2\": {\n" +
+                "\t\t\t\"leaf-identifier3\": \"10111011\"\n" +
+                "\t\t}\n" +
+                "\t}\n" +
+                "}\n" +
+                "\t\t\t";
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        post(uri, body);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+       /*  ModuleIdentifier0 moduleIdentifier0 = manager.getModuleIdentifier0((ModuleIdentifier0OpParam) ModuleIdentifier0OpParam.builder().build());
+        byte[] x = {1,0,1,1,0};
+        byte[] result1= moduleIdentifier0.containerIdentifier1().containerIdentifier2().leafIdentifier3();
+        int i=0 ;
+       for(Byte byt : result1) {
+                if(!byt.equals(x[i])) {
+                    break;
+           }
+       }
+       if(i != x.length-1){
+            System.out.println("fail");
+       }*/
         return result;
     }
 
