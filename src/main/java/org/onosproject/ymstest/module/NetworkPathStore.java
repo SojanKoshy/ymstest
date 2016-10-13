@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 
 import java.util.Map;
@@ -15,6 +16,11 @@ public class NetworkPathStore implements NetworkPath {
 
     @Override
     public String destination() {
+        return null;
+    }
+
+    @Override
+    public Network.OnosYangOpType yangNetworkPathOpType() {
         return null;
     }
 

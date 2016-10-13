@@ -51,6 +51,11 @@ public class NetworkStore
         return false;
     }
 
+    @Override
+    public OnosYangOpType yangNetworkOpType() {
+        return null;
+    }
+
     /**
      * Returns the builder object of surname.
      *

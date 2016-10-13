@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.DefaultContainerIdentifier1;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.ContainerIdentifier2;
@@ -44,6 +45,11 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
     @Override
     public List<String> leafListIdentifier2() {
         return leafListIdentifer2;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangContainerIdentifier1OpType() {
+        return null;
     }
 
     public void leafListIdentifier2(List<String> leafListIdentifer2) {
@@ -102,20 +108,20 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
             throw new RuntimeException("default Node expected");
         }
         DefaultContainerIdentifier1 containerNode = (DefaultContainerIdentifier1) containerIdentifier1;
-        if (containerNode.onosYangNodeOperationType() == null) {
+        if (containerNode.yangContainerIdentifier1OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer2Edit(containerIdentifier1, containerNode.onosYangNodeOperationType());
+        processLeafListIdentifer2Edit(containerIdentifier1, containerNode.yangContainerIdentifier1OpType());
 
         /*
          * Process the child nodes
          */
         processContainerIdentifier2Edit(containerIdentifier1,
-                containerNode.onosYangNodeOperationType());
+                containerNode.yangContainerIdentifier1OpType());
 
         processListIdentifer2Edit(containerIdentifier1);
 
@@ -167,7 +173,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
             }
 */
 
-        switch (containerNode.onosYangNodeOperationType()) {
+        switch (containerNode.yangContainerIdentifier1OpType()) {
             case CREATE: {
                 if (containerNode.leafIdentifier2() != null) {
                     throw new RuntimeException("Level1ContainerIdentifier1Store");
@@ -207,7 +213,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
     }
 
     private void processContainerIdentifier2Edit(
-            ContainerIdentifier1 containerIdentifier1, DefaultContainerIdentifier1.OnosYangNodeOperationType
+            ContainerIdentifier1 containerIdentifier1, ModuleIdentifier0.OnosYangOpType
             onosYangNodeOperationType) {
         if (containerIdentifier1.containerIdentifier2() == null) {
             return;
@@ -310,10 +316,10 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
                 throw new RuntimeException("default Node expected");
             }
             DefaultListIdentifier2 opNode = (DefaultListIdentifier2) identifier2;
-            if (opNode.onosYangNodeOperationType() == null) {
+            if (opNode.yangListIdentifier2OpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (opNode.onosYangNodeOperationType()) {
+            switch (opNode.yangListIdentifier2OpType()) {
                 case CREATE: {
                     if (storedIdentifier2Store != null) {
                         throw new RuntimeException(
@@ -396,7 +402,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
 
 
     private void processLeafListIdentifer2Edit(ContainerIdentifier1 containerIdentifier1,
-                                               DefaultContainerIdentifier1.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (containerIdentifier1.leafListIdentifier2() == null
                 || containerIdentifier1.leafListIdentifier2().isEmpty()) {

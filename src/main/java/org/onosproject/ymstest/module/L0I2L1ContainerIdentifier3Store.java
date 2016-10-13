@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.ContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.DefaultContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.containeridentifier3.ContainerIdentifier4;
@@ -50,6 +51,11 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
     @Override
     public List<String> leafListIdentifier4() {
         return leafListIdentifier4;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangContainerIdentifier3OpType() {
+        return null;
     }
 
     /**
@@ -124,15 +130,15 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
             throw new RuntimeException("default Node expected");
         }
         DefaultContainerIdentifier3 conatinetNode = (DefaultContainerIdentifier3) containerIdentifier3;
-        if (conatinetNode.onosYangNodeOperationType() == null) {
+        if (conatinetNode.yangContainerIdentifier3OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer4Edit(containerIdentifier3, conatinetNode.onosYangNodeOperationType());
-        processContainerIdentifier4Edit(containerIdentifier3, conatinetNode.onosYangNodeOperationType());
+        processLeafListIdentifer4Edit(containerIdentifier3, conatinetNode.yangContainerIdentifier3OpType());
+        processContainerIdentifier4Edit(containerIdentifier3, conatinetNode.yangContainerIdentifier3OpType());
 
        /* *//*
          * Process the augmented node contents
@@ -182,7 +188,7 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
             }
 */
 
-        switch (conatinetNode.onosYangNodeOperationType()) {
+        switch (conatinetNode.yangContainerIdentifier3OpType()) {
             case CREATE: {
                 if (containerIdentifier3.leafIdentifier4() != null) {
                     throw new RuntimeException("L0I2L1ContainerIdentifier3Store");
@@ -220,7 +226,7 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
 
 
     private void processLeafListIdentifer4Edit(ContainerIdentifier3 listIdentifier4,
-                                               DefaultContainerIdentifier3.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (listIdentifier4.leafIdentifier4() == null
                 || listIdentifier4.leafListIdentifier4().isEmpty()) {
@@ -303,7 +309,7 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
     }
 
     private void processContainerIdentifier4Edit(
-            ContainerIdentifier3 containerIdentifier3, DefaultContainerIdentifier3.OnosYangNodeOperationType
+            ContainerIdentifier3 containerIdentifier3, ModuleIdentifier0.OnosYangOpType
             onosYangNodeOperationType) {
         if (containerIdentifier3.containerIdentifier4() == null) {
             return;

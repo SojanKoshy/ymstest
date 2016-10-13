@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.DefaultListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.ListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
@@ -57,6 +58,11 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
     @Override
     public List<String> leafListIdentifier4() {
         return leafListIdentifier4;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangListIdentifier3OpType() {
+        return null;
     }
 
 
@@ -136,14 +142,14 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
             throw new RuntimeException("default Node expected");
         }
         DefaultListIdentifier3 listNode = (DefaultListIdentifier3) listIdentifier3;
-        if (listNode.onosYangNodeOperationType() == null) {
+        if (listNode.yangListIdentifier3OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer4Edit(listIdentifier3, listNode.onosYangNodeOperationType());
+        processLeafListIdentifer4Edit(listIdentifier3, listNode.yangListIdentifier3OpType());
 
         processListIdentifer4Edit(listIdentifier3);
 
@@ -195,7 +201,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
             }
 */
 
-        switch (listNode.onosYangNodeOperationType()) {
+        switch (listNode.yangListIdentifier3OpType()) {
             case CREATE: {
                 if (listNode.leafIdentifier4() != null) {
                     throw new RuntimeException("Level1ListIdentifier3Store");
@@ -236,7 +242,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
 
 
     private void processLeafListIdentifer4Edit(ListIdentifier3 listIdentifier3,
-                                               DefaultListIdentifier3.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (listIdentifier3.leafListIdentifier4() == null
                 || listIdentifier3.leafListIdentifier4().isEmpty()) {
@@ -332,10 +338,10 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
                 throw new RuntimeException("default Node expected");
             }
             DefaultListIdentifier3 opNode = (DefaultListIdentifier3) identifier4;
-            if (opNode.onosYangNodeOperationType() == null) {
+            if (opNode.yangListIdentifier3OpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (opNode.onosYangNodeOperationType()) {
+            switch (opNode.yangListIdentifier3OpType()) {
                 case CREATE: {
                     if (storedIdentifier4Store != null) {
                         throw new RuntimeException(

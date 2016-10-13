@@ -14,11 +14,18 @@ import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.Node;
 public class TopologyStore
         implements Topology {
 
+    protected Topology.OnosYangOpType onosYangOpType;
+
     public TopologyStore() {
 
     }
 
     private List<Node> nodeStoreList = new ArrayList<>();
+
+    @Override
+    public OnosYangOpType yangTopologyOpType() {
+        return onosYangOpType;
+    }
 
     @Override
     public List<Node> node() {
@@ -37,9 +44,9 @@ public class TopologyStore
 
     private Node findNodeInStore(Node findNode) {
         for (Node node : nodeStoreList) {
-//            if (node.nodeId() == null) {
-//                continue;
-//            }
+            if (node.nodeId() == null) {
+                continue;
+            }
             if (node.nodeId().equals(findNode.nodeId())) {
                 return node;
             }
@@ -73,10 +80,10 @@ public class TopologyStore
                 throw new RuntimeException("default Node expected");
             }
             DefaultNode opNode = (DefaultNode) nodePara;
-            if (opNode.onosYangNodeOperationType() == null) {
+            if (opNode.yangNodeOpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (opNode.onosYangNodeOperationType()) {
+            switch (opNode.yangNodeOpType()) {
                 case CREATE: {
                     if (storedNode != null) {
                         throw new RuntimeException(

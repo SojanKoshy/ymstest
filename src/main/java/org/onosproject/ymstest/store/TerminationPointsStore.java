@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.Topology;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
         .DefaultTerminationPoints;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
@@ -26,6 +27,11 @@ public class TerminationPointsStore
     @Override
     public short numberOfTp() {
         return numberOfTp;
+    }
+
+    @Override
+    public Topology.OnosYangOpType yangTerminationPointsOpType() {
+        return null;
     }
 
     @Override
@@ -77,7 +83,7 @@ public class TerminationPointsStore
         }
         DefaultTerminationPoints opNode
                 = (DefaultTerminationPoints) terminationPointsPara;
-        if (opNode.onosYangNodeOperationType() == null) {
+        if (opNode.yangTerminationPointsOpType() == null) {
             throw new RuntimeException("No operation set for termination " +
                                                "points");
         }
@@ -86,13 +92,13 @@ public class TerminationPointsStore
          * Process the child nodes
          */
         processTerminationPointEdit(terminationPointsPara,
-                                    opNode.onosYangNodeOperationType());
+                                    opNode.yangTerminationPointsOpType());
 
         /*
          * TODO: Process the augmented node contents
          */
 
-        switch (opNode.onosYangNodeOperationType()) {
+        switch (opNode.yangTerminationPointsOpType()) {
             case CREATE: {
                 numberOfTp(terminationPointsPara.numberOfTp());
                 return;
@@ -147,7 +153,7 @@ public class TerminationPointsStore
 
     private void processTerminationPointEdit(
             TerminationPoints terminationPointsPara,
-            DefaultTerminationPoints.OnosYangNodeOperationType
+            Topology.OnosYangOpType
                     onosYangNodeOperationType) {
         if (terminationPointsPara.terminationPoint() == null) {
             return;

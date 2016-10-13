@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.ContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.DefaultContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.containeridentifier3.DefaultListIdentifier4;
@@ -50,6 +51,11 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
     @Override
     public List<String> leafListIdentifier4() {
         return leafListIdentifier4;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangContainerIdentifier3OpType() {
+        return null;
     }
 
     /**
@@ -124,14 +130,14 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
             throw new RuntimeException("default Node expected");
         }
         DefaultContainerIdentifier3 containerNode = (DefaultContainerIdentifier3) containerIdentifier3;
-        if (containerNode.onosYangNodeOperationType() == null) {
+        if (containerNode.yangContainerIdentifier3OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer4Edit(containerIdentifier3, containerNode.onosYangNodeOperationType());
+        processLeafListIdentifer4Edit(containerIdentifier3, containerNode.yangContainerIdentifier3OpType());
 
 
         processListIdentifer4Edit(containerIdentifier3);
@@ -184,7 +190,7 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
             }
 */
 
-        switch (containerNode.onosYangNodeOperationType()) {
+        switch (containerNode.yangContainerIdentifier3OpType()) {
             case CREATE: {
                 if (new Short(containerNode.leafIdentifier4()) != null) {
                     throw new RuntimeException("L0Identifier1C2ContainerIdentifier3Store");
@@ -241,10 +247,10 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
                 throw new RuntimeException("default Node expected");
             }
             DefaultListIdentifier4 opNode = (DefaultListIdentifier4) identifier4;
-            if (opNode.onosYangNodeOperationType() == null) {
+            if (opNode.yangListIdentifier4OpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (opNode.onosYangNodeOperationType()) {
+            switch (opNode.yangListIdentifier4OpType()) {
                 case CREATE: {
                     if (storedIdentifier4Store != null) {
                         throw new RuntimeException(
@@ -327,8 +333,8 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
 
 
     private void processLeafListIdentifer4Edit(ContainerIdentifier3 containerIdentifier3,
-                                               DefaultContainerIdentifier3.OnosYangNodeOperationType
-                                                       onosYangNodeOperationType) {
+                                               ModuleIdentifier0.OnosYangOpType
+                                                       yangContainerIdentifier3OpType) {
         if (containerIdentifier3.leafListIdentifier4() == null
                 || containerIdentifier3.leafListIdentifier4().isEmpty()) {
             return;
@@ -336,7 +342,7 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
         for (String leafListIdentifer4Para : containerIdentifier3.leafListIdentifier4()) {
             String storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
 
-            switch (onosYangNodeOperationType) {
+            switch (yangContainerIdentifier3OpType) {
                 case CREATE: {
                     if (storedLeafListIdentifier4 != null) {
                         throw new RuntimeException(

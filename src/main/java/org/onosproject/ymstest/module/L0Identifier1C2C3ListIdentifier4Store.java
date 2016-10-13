@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.containeridentifier3.DefaultListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.containeridentifier3.ListIdentifier4;
 
@@ -44,6 +45,11 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
     @Override
     public List<String> leafListIdentifier5() {
         return leafListIdentifier5;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangListIdentifier4OpType() {
+        return null;
     }
 
     /**
@@ -107,14 +113,14 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
             throw new RuntimeException("default Node expected");
         }
         DefaultListIdentifier4 listNode = (DefaultListIdentifier4) listIdentifier4;
-        if (listNode.onosYangNodeOperationType() == null) {
+        if (listNode.yangListIdentifier4OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer4Edit(listIdentifier4, listNode.onosYangNodeOperationType());
+        processLeafListIdentifer4Edit(listIdentifier4, listNode.yangListIdentifier4OpType());
 
        /* *//*
          * Process the augmented node contents
@@ -164,7 +170,7 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
             }
 */
 
-        switch (listNode.onosYangNodeOperationType()) {
+        switch (listNode.yangListIdentifier4OpType()) {
             case CREATE: {
                 if (new Integer(listNode.leafIdentifier5()) != null) {
                     throw new RuntimeException("L0Identifier1C2C3ListIdentifier4Store");
@@ -203,7 +209,7 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
     }
 
     private void processLeafListIdentifer4Edit(ListIdentifier4 listIdentifier4,
-                                               DefaultListIdentifier4.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (listIdentifier4.leafListIdentifier5() == null
                 || listIdentifier4.leafListIdentifier5().isEmpty()) {

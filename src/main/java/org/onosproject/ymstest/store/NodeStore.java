@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.Topology;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.DefaultNode;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.Node;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
@@ -32,6 +33,11 @@ public class NodeStore
     @Override
     public List<String> nodeProp() {
         return nodeProp;
+    }
+
+    @Override
+    public Topology.OnosYangOpType yangNodeOpType() {
+        return null;
     }
 
 
@@ -85,20 +91,20 @@ public class NodeStore
             throw new RuntimeException("default Node expected");
         }
         DefaultNode opNode = (DefaultNode) nodePara;
-        if (opNode.onosYangNodeOperationType() == null) {
+        if (opNode.yangNodeOpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processNodePropEdit(nodePara, opNode.onosYangNodeOperationType());
+        processNodePropEdit(nodePara, opNode.yangNodeOpType());
 
         /*
          * Process the child nodes
          */
         processTerminationPointsEdit(nodePara,
-                                     opNode.onosYangNodeOperationType());
+                                     opNode.yangNodeOpType());
 
         /*
          * Process the augmented node contents
@@ -148,9 +154,9 @@ public class NodeStore
             }
         }
 
-        switch (opNode.onosYangNodeOperationType()) {
+        switch (opNode.yangNodeOpType()) {
             case CREATE: {
-                if (nodePara.nodeId() != null) {
+                if (nodePara.nodeId() == null) {
                     throw new RuntimeException("Key: node.nodeId() is null");
                 }
                 nodeId(nodePara.nodeId());
@@ -200,7 +206,7 @@ public class NodeStore
     }
 
     private void processNodePropEdit(Node nodepara,
-                                     DefaultNode.OnosYangNodeOperationType
+                                     Topology.OnosYangOpType
                                              onosYangNodeOperationType) {
         if (nodepara.nodeProp() == null
                 || nodepara.nodeProp().isEmpty()) {
@@ -266,7 +272,7 @@ public class NodeStore
     }
 
     private void processTerminationPointsEdit(
-            Node nodePara, DefaultNode.OnosYangNodeOperationType
+            Node nodePara, Topology.OnosYangOpType
             onosYangNodeOperationType) {
         if (nodePara.terminationPoints() == null) {
             return;

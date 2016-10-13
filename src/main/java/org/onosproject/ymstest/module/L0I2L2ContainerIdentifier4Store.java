@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.containeridentifier3.ContainerIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.containeridentifier3.DefaultContainerIdentifier4;
 
@@ -44,6 +45,11 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
     @Override
     public List<String> leafListIdentifier5() {
         return leafListIdentifier5;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangContainerIdentifier4OpType() {
+        return null;
     }
 
     /**
@@ -112,14 +118,14 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
             throw new RuntimeException("default Node expected");
         }
         DefaultContainerIdentifier4 containerNode = (DefaultContainerIdentifier4) containerIdentifier4;
-        if (containerNode.onosYangNodeOperationType() == null) {
+        if (containerNode.yangContainerIdentifier4OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer5Edit(containerIdentifier4, containerNode.onosYangNodeOperationType());
+        processLeafListIdentifer5Edit(containerIdentifier4, containerNode.yangContainerIdentifier4OpType());
 
        /* *//*
          * Process the augmented node contents
@@ -169,7 +175,7 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
             }
 */
 
-        switch (containerNode.onosYangNodeOperationType()) {
+        switch (containerNode.yangContainerIdentifier4OpType()) {
             case CREATE: {
                 if (new Long(containerIdentifier4.leafIdentifier5()) == null) {
                     throw new RuntimeException("L0I2L2ContainerIdentifier4Store");
@@ -208,7 +214,7 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
     }
 
     private void processLeafListIdentifer5Edit(ContainerIdentifier4 containerIdentifier4,
-                                               DefaultContainerIdentifier4.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (new Long(containerIdentifier4.leafIdentifier5()) == null
                 || containerIdentifier4.leafListIdentifier5().isEmpty()) {

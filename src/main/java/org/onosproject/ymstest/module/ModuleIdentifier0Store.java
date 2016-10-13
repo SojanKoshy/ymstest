@@ -45,6 +45,11 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     }
 
     @Override
+    public OnosYangOpType yangModuleIdentifier0OpType() {
+        return null;
+    }
+
+    @Override
     public ContainerIdentifier1 containerIdentifier1() {
         return null;
     }
@@ -77,9 +82,9 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
 //        }
         processContainerIdentifier1(moduleIdentifier0OpParam);
         processListIdentifer1Edit(moduleIdentifier0OpParam);
-        processLeafListIdentifer2Edit(moduleIdentifier0OpParam,moduleIdentifier0OpParam.onosYangNodeOperationType());
+        processLeafListIdentifer2Edit(moduleIdentifier0OpParam,moduleIdentifier0OpParam.yangModuleIdentifier0OpType());
 
-        switch (moduleIdentifier0OpParam.onosYangNodeOperationType()) {
+        switch (moduleIdentifier0OpParam.yangModuleIdentifier0OpType()) {
             case CREATE: {
                 if (new Byte(moduleIdentifier0OpParam.leafIdentifier1()) != null) {
                     throw new RuntimeException("ModuleIdentifier0Store");
@@ -136,10 +141,10 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
             throw new RuntimeException("default Node expected");
         }
         DefaultContainerIdentifier1 opNode = (DefaultContainerIdentifier1) nodePara;
-        if (opNode.onosYangNodeOperationType() == null) {
+        if (opNode.yangContainerIdentifier1OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
-        switch (opNode.onosYangNodeOperationType()) {
+        switch (opNode.yangContainerIdentifier1OpType()) {
             case CREATE: {
                 if (storedNode != null) {
                     throw new RuntimeException(
@@ -238,10 +243,10 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
                 throw new RuntimeException("default Node expected");
             }
             DefaultListIdentifier1 opNode = (DefaultListIdentifier1) identifier1;
-            if (opNode.onosYangNodeOperationType() == null) {
+            if (opNode.yangListIdentifier1OpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (opNode.onosYangNodeOperationType()) {
+            switch (opNode.yangListIdentifier1OpType()) {
                 case CREATE: {
                     if (storedIdentifier2Store != null) {
                         throw new RuntimeException(
@@ -323,7 +328,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     }
 
     private void processLeafListIdentifer2Edit(ModuleIdentifier0OpParam moduleIdentifier0OpParam,
-                                               ModuleIdentifier0OpParam.OnosYangNodeOperationType
+                                               OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (moduleIdentifier0OpParam.leafListIdentifier1() == null
                 || moduleIdentifier0OpParam.leafListIdentifier1().isEmpty()) {
