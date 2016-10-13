@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.store;
 
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,14 @@ import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
  */
 public class TerminationPointStore
         implements TerminationPoint {
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     private String tpId;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
     protected Topology.OnosYangOpType yangTerminationPointOpType;
