@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.store;
 
+import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopology;
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
         .terminationpoints.terminationpoint.AugmentedTopoTerminationPoint;
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
@@ -17,6 +18,11 @@ public class AugmentedTopoTerminationPointStore
     @Override
     public String ipAddress() {
         return ipAddress;
+    }
+
+    @Override
+    public IpTopology.OnosYangOpType yangAugmentedTopoTerminationPointOpType() {
+        return null;
     }
 
     public void ipAddress(String ipAddress) {
@@ -49,7 +55,7 @@ public class AugmentedTopoTerminationPointStore
                 (DefaultAugmentedTopoTerminationPoint) para;
         ProcessAugmentedEditOutput output = new ProcessAugmentedEditOutput();
         switch (defaultAugmentedTopoTerminationPoint
-                .onosYangNodeOperationType()) {
+                .yangAugmentedTopoTerminationPointOpType()) {
             case CREATE: {
                 ipAddress(defaultAugmentedTopoTerminationPoint.ipAddress());
                 output.mapOperate = AugmentEditMapOperate.ADD_NEW;
@@ -92,7 +98,7 @@ public class AugmentedTopoTerminationPointStore
                 (DefaultAugmentedTopoTerminationPoint) para;
         ProcessAugmentedEditOutput output = new ProcessAugmentedEditOutput();
         switch (defaultAugmentedTopoTerminationPoint
-                .onosYangNodeOperationType()) {
+                .yangAugmentedTopoTerminationPointOpType()) {
             case CREATE: {
                 throw new RuntimeException("augmented topo link already " +
                                                    "present");

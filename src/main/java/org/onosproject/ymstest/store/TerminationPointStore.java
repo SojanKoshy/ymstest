@@ -3,6 +3,8 @@ package org.onosproject.ymstest.store;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.Topology;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
         .terminationpoints.DefaultTerminationPoint;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
@@ -15,10 +17,16 @@ public class TerminationPointStore
         implements TerminationPoint {
     private String tpId;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
+    protected Topology.OnosYangOpType yangTerminationPointOpType;
 
     @Override
     public String tpId() {
         return tpId;
+    }
+
+    @Override
+    public Topology.OnosYangOpType yangTerminationPointOpType() {
+        return yangTerminationPointOpType;
     }
 
     public void tpId(String tpId) {
@@ -62,7 +70,7 @@ public class TerminationPointStore
         }
         DefaultTerminationPoint opNode
                 = (DefaultTerminationPoint) terminationPointPara;
-        if (opNode.onosYangNodeOperationType() == null) {
+        if (opNode.yangTerminationPointOpType() == null) {
             throw new RuntimeException("No operation set for termination " +
                                                "point");
         }
@@ -112,7 +120,7 @@ public class TerminationPointStore
 
         }
 
-        switch (opNode.onosYangNodeOperationType()) {
+        switch (opNode.yangTerminationPointOpType()) {
             case CREATE: {
                 tpId(terminationPointPara.tpId());
                 return;

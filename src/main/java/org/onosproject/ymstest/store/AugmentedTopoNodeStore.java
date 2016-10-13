@@ -1,5 +1,6 @@
 package org.onosproject.ymstest.store;
 
+import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopology;
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
         .AugmentedTopoNode;
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
@@ -15,6 +16,11 @@ public class AugmentedTopoNodeStore
     @Override
     public String routerId() {
         return routerId;
+    }
+
+    @Override
+    public IpTopology.OnosYangOpType yangAugmentedTopoNodeOpType() {
+        return null;
     }
 
     public void routerId(String routerId) {
@@ -43,7 +49,7 @@ public class AugmentedTopoNodeStore
         DefaultAugmentedTopoNode augmentedTopoNodePara =
                 (DefaultAugmentedTopoNode) para;
         ProcessAugmentedEditOutput output = new ProcessAugmentedEditOutput();
-        switch (augmentedTopoNodePara.onosYangNodeOperationType()) {
+        switch (augmentedTopoNodePara.yangAugmentedTopoNodeOpType()) {
             case CREATE: {
                 routerId(augmentedTopoNodePara.routerId());
                 output.mapOperate = AugmentEditMapOperate.ADD_NEW;
@@ -84,7 +90,7 @@ public class AugmentedTopoNodeStore
         DefaultAugmentedTopoNode augmentedTopoNodePara =
                 (DefaultAugmentedTopoNode) para;
         ProcessAugmentedEditOutput output = new ProcessAugmentedEditOutput();
-        switch (augmentedTopoNodePara.onosYangNodeOperationType()) {
+        switch (augmentedTopoNodePara.yangAugmentedTopoNodeOpType()) {
             case CREATE: {
                 throw new RuntimeException("augmented topo node already " +
                                                    "present");
