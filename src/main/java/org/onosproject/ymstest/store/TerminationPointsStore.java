@@ -1,6 +1,7 @@
 package org.onosproject.ymstest.store;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,14 @@ import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
  */
 public class TerminationPointsStore
         implements TerminationPoints {
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     private short numberOfTp;
     private boolean isNoOfTpSet;
 

@@ -6,13 +6,22 @@ import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
         .DefaultAugmentedTopoNode;
 
+import java.util.BitSet;
+
 /**
  * Created by v70786 on 31/8/16.
  */
 public class AugmentedTopoNodeStore
         implements AugmentedTopoNode, AugmentedOperationProcessor {
     private String routerId;
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     @Override
     public String routerId() {
         return routerId;

@@ -1,12 +1,12 @@
 package org.onosproject.ymstest.store;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.Topology;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.TopologyOpParam;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.DefaultNode;
 import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.Node;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by v70786 on 30/8/16.

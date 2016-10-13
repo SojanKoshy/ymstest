@@ -7,6 +7,8 @@ import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
         .terminationpoints.terminationpoint
         .DefaultAugmentedTopoTerminationPoint;
 
+import java.util.BitSet;
+
 /**
  * Created by v70786 on 1/9/16.
  */
@@ -14,7 +16,14 @@ public class AugmentedTopoTerminationPointStore
         implements
         AugmentedTopoTerminationPoint, AugmentedOperationProcessor {
     protected String ipAddress;
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     @Override
     public String ipAddress() {
         return ipAddress;
