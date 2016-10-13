@@ -23,7 +23,14 @@ public class NetworkStore
     protected List<Networklist> networklist = new ArrayList<>();
     protected NetworkPathStore networkPathStore = new NetworkPathStore();
 
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     @Override
     public String name() {
         return name;
@@ -49,6 +56,11 @@ public class NetworkStore
     @Override
     public boolean isHappy() {
         return false;
+    }
+
+    @Override
+    public OnosYangOpType yangNetworkOpType() {
+        return null;
     }
 
     /**

@@ -1,9 +1,11 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.containeridentifier3.DefaultListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.containeridentifier3.ListIdentifier4;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +51,11 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
         return leafListIdentifier5;
     }
 
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangListIdentifier4OpType() {
+        return null;
+    }
+
     /**
      * Returns the attribute yangAugmentedInfo.
      *
@@ -82,7 +89,14 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
     public ListIdentifier4 processSubtreeFiltering(ListIdentifier4 listIdentifier4, boolean isSelectAllSchemaChild) {
         return null;
     }
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     /**
      * Checks if the leaf value is set.
      *
@@ -111,14 +125,14 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
             throw new RuntimeException("default Node expected");
         }
         DefaultListIdentifier4 listNode = (DefaultListIdentifier4) listIdentifier4;
-        if (listNode.onosYangNodeOperationType() == null) {
+        if (listNode.yangListIdentifier4OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer5Edit(listIdentifier4, listNode.onosYangNodeOperationType());
+        processLeafListIdentifer5Edit(listIdentifier4, listNode.yangListIdentifier4OpType());
 
 
        /* *//*
@@ -169,11 +183,8 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
             }
 */
 
-        switch (listNode.onosYangNodeOperationType()) {
+        switch (listNode.yangListIdentifier4OpType()) {
             case CREATE: {
-                   if (listNode.leafIdentifier5() != null) {
-                    throw new RuntimeException("Level2ListIdentifier4Store");
-                }
                 leafIdentifier5(listNode.leafIdentifier5());
                 return;
             }
@@ -193,9 +204,6 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
                 return;
             }
             case MERGE: {
-                if (listIdentifier4.leafIdentifier5() == null) {
-                    throw new RuntimeException("Level2ListIdentifier4Store");
-                }
                 leafIdentifier5(listIdentifier4.leafIdentifier5());
                 return;
             }
@@ -210,7 +218,7 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
 
 
     private void processLeafListIdentifer5Edit(ListIdentifier4 listIdentifier4,
-                                               DefaultListIdentifier4.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (listIdentifier4.leafIdentifier5() == null
                 || listIdentifier4.leafIdentifier5().isEmpty()) {
