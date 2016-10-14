@@ -25,11 +25,11 @@ public class NetworkManager
 
         //TODO: Default implementation is for merge, need to implement the code for replace, delete etc
 
-        if (network.getValueLeafFlags().get(Network.LeafIdentifier.NAME.getLeafIndex())) {
+        if (network.valueLeafFlags().get(Network.LeafIdentifier.NAME.getLeafIndex())) {
             appDataStore.name(network.name());
         }
 
-        if (network.getValueLeafFlags().get(Network.LeafIdentifier.SURNAME.getLeafIndex())) {
+        if (network.valueLeafFlags().get(Network.LeafIdentifier.SURNAME.getLeafIndex())) {
             appDataStore.surname(network.surname());
         }
 
@@ -38,11 +38,11 @@ public class NetworkManager
             for (Networklist networkListElement : network.networklist()) {
                 DefaultNetworklist listElement = (DefaultNetworklist) networkListElement;
                 networkListBuilder = DefaultNetworklist.builder();
-                if (listElement.getValueLeafFlags().get(Networklist.LeafIdentifier.NETWORKID.getLeafIndex())) {
+                if (listElement.valueLeafFlags().get(Networklist.LeafIdentifier.NETWORKID.getLeafIndex())) {
                     networkListBuilder.networkId(listElement.networkId());
                 }
 
-                if (listElement.getValueLeafFlags().get(Networklist.LeafIdentifier.SERVERPROVIDED.getLeafIndex())) {
+                if (listElement.valueLeafFlags().get(Networklist.LeafIdentifier.SERVERPROVIDED.getLeafIndex())) {
                     networkListBuilder.serverProvided(listElement.serverProvided());
                 }
                 appDataStore.addToNetworklist(networkListBuilder.build());

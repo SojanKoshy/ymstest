@@ -22,12 +22,12 @@ public class NetworkManagerExt implements NetworkService {
         networkBuilder = new NetworkOpParam.NetworkBuilder();
         //TODO: Default implementation is for merge, need to implement the code for replace, delete etc
 
-        if (network.getValueLeafFlags().get(Network.LeafIdentifier.NAME.getLeafIndex())) {
+        if (network.valueLeafFlags().get(Network.LeafIdentifier.NAME.getLeafIndex())) {
             networkBuilder.name(network.name());
             appDataStore.name(network.name());
         }
 
-        if (network.getValueLeafFlags().get(Network.LeafIdentifier.SURNAME.getLeafIndex())) {
+        if (network.valueLeafFlags().get(Network.LeafIdentifier.SURNAME.getLeafIndex())) {
             networkBuilder.surname(network.surname());
             appDataStore.surname(network.surname());
         }

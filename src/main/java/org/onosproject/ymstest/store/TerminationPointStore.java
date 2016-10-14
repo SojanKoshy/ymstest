@@ -1,12 +1,12 @@
 package org.onosproject.ymstest.store;
 
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.Topology;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node.terminationpoints.DefaultTerminationPoint;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node.terminationpoints.TerminationPoint;
+
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
-        .terminationpoints.DefaultTerminationPoint;
-import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
-        .terminationpoints.TerminationPoint;
 
 /**
  * Created by v70786 on 31/8/16.
@@ -15,10 +15,23 @@ public class TerminationPointStore
         implements TerminationPoint {
     private String tpId;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
-
+    protected Topology.OnosYangOpType yangTerminationPointOpType;
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     @Override
     public String tpId() {
         return tpId;
+    }
+
+    @Override
+    public Topology.OnosYangOpType yangTerminationPointOpType() {
+        return yangTerminationPointOpType;
     }
 
     public void tpId(String tpId) {
@@ -62,7 +75,7 @@ public class TerminationPointStore
         }
         DefaultTerminationPoint opNode
                 = (DefaultTerminationPoint) terminationPointPara;
-        if (opNode.onosYangNodeOperationType() == null) {
+        if (opNode.yangTerminationPointOpType() == null) {
             throw new RuntimeException("No operation set for termination " +
                                                "point");
         }
@@ -112,7 +125,7 @@ public class TerminationPointStore
 
         }
 
-        switch (opNode.onosYangNodeOperationType()) {
+        switch (opNode.yangTerminationPointOpType()) {
             case CREATE: {
                 tpId(terminationPointPara.tpId());
                 return;

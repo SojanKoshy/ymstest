@@ -1,7 +1,9 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.Network;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 
+import java.util.BitSet;
 import java.util.Map;
 
 /**
@@ -15,6 +17,11 @@ public class NetworkPathStore implements NetworkPath {
 
     @Override
     public String destination() {
+        return null;
+    }
+
+    @Override
+    public Network.OnosYangOpType yangNetworkPathOpType() {
         return null;
     }
 
@@ -41,5 +48,13 @@ public class NetworkPathStore implements NetworkPath {
     @Override
     public boolean isSelectLeaf(LeafIdentifier leaf) {
         return false;
+    }
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
     }
 }

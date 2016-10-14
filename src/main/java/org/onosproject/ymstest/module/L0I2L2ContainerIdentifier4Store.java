@@ -1,9 +1,11 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.containeridentifier3.ContainerIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.listidentifier2.containeridentifier3.DefaultContainerIdentifier4;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,14 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
     public void leafListIdentifier5(List<String> leafListIdentifier5) {
         this.leafListIdentifier5 = leafListIdentifier5;
     }
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     public void leafIdentifier5(long leafIdentifier5) {
         this.leafIdentifier5 = leafIdentifier5;
     }
@@ -44,6 +53,11 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
     @Override
     public List<String> leafListIdentifier5() {
         return leafListIdentifier5;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangContainerIdentifier4OpType() {
+        return null;
     }
 
     /**
@@ -112,14 +126,14 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
             throw new RuntimeException("default Node expected");
         }
         DefaultContainerIdentifier4 containerNode = (DefaultContainerIdentifier4) containerIdentifier4;
-        if (containerNode.onosYangNodeOperationType() == null) {
+        if (containerNode.yangContainerIdentifier4OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer5Edit(containerIdentifier4, containerNode.onosYangNodeOperationType());
+        processLeafListIdentifer5Edit(containerIdentifier4, containerNode.yangContainerIdentifier4OpType());
 
        /* *//*
          * Process the augmented node contents
@@ -169,11 +183,9 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
             }
 */
 
-        switch (containerNode.onosYangNodeOperationType()) {
+        switch (containerNode.yangContainerIdentifier4OpType()) {
             case CREATE: {
-                if (new Long(containerIdentifier4.leafIdentifier5()) == null) {
-                    throw new RuntimeException("L0I2L2ContainerIdentifier4Store");
-                }
+
                 leafIdentifier5(containerNode.leafIdentifier5());
                 return;
             }
@@ -192,9 +204,6 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
                 return;
             }
             case MERGE: {
-                if (new Long(containerIdentifier4.leafIdentifier5()) == null) {
-                    throw new RuntimeException("Key: node.nodeId() is null");
-                }
                 leafIdentifier5(containerIdentifier4.leafIdentifier5());
                 return;
             }
@@ -208,7 +217,7 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
     }
 
     private void processLeafListIdentifer5Edit(ContainerIdentifier4 containerIdentifier4,
-                                               DefaultContainerIdentifier4.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (new Long(containerIdentifier4.leafIdentifier5()) == null
                 || containerIdentifier4.leafListIdentifier5().isEmpty()) {

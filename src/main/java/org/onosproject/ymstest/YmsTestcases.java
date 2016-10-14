@@ -2,8 +2,7 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0OpParam;
+import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
@@ -36,6 +35,7 @@ import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
 import org.onosproject.ymstest.manager.TopologyManager;
+import org.onosproject.ymstest.module.Agument1Manager;
 import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
 import org.onosproject.ymstest.module.MultiNotificationListener;
@@ -63,7 +63,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -563,6 +562,8 @@ public class YmsTestcases {
 
         ymsService.registerService(new NetworkManager(), NetworkService.class, null);
         ymsService.registerService(new TopologyManager(), TopologyService.class, null);
+        ymsService.registerService(new Agument1Manager(), Augment1Service.class, null);
+        ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation
@@ -586,6 +587,7 @@ public class YmsTestcases {
 
         ymsService.registerService(new SimpleDataTypesManager(), SimpleDataTypesService.class, null);
         ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
+
         print("Registered SimpleDataTypes service in YMS");
 
         // TODO Need to add validation

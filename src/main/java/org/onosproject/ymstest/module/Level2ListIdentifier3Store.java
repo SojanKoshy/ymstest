@@ -1,11 +1,13 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.DefaultListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.listidentifier3.ContainerIdentifier4;
 import org.onosproject.yang.gen.v1.test.yangautoprefiximport.identifier1.rev20160919.importidentifier1.MyIdentity;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +46,14 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
     public MyIdentity leafIdentifier4() {
         return leafIdentifier4;
     }
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     /**
      * Returns the attribute leafListIdentifier4.
      *
@@ -53,6 +62,11 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
     @Override
     public List<String> leafListIdentifier4() {
         return leafListIdentifier4;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangListIdentifier3OpType() {
+        return null;
     }
 
     /**
@@ -126,16 +140,16 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
             throw new RuntimeException("default Node expected");
         }
         DefaultListIdentifier3 listIdentifier = (DefaultListIdentifier3) listIdentifier3;
-        if (listIdentifier.onosYangNodeOperationType() == null) {
+        if (listIdentifier.yangListIdentifier3OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer4Edit(listIdentifier3, listIdentifier.onosYangNodeOperationType());
+        processLeafListIdentifer4Edit(listIdentifier3, listIdentifier.yangListIdentifier3OpType());
 
-        processContainerIdentifier4Edit(listIdentifier3, listIdentifier.onosYangNodeOperationType());
+        processContainerIdentifier4Edit(listIdentifier3, listIdentifier.yangListIdentifier3OpType());
 
 
        /* *//*
@@ -186,11 +200,8 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
             }
 */
 
-        switch (listIdentifier.onosYangNodeOperationType()) {
+        switch (listIdentifier.yangListIdentifier3OpType()) {
             case CREATE: {
-                if (listIdentifier.leafIdentifier4() != null) {
-                    throw new RuntimeException("Level2ListIdentifier3Store");
-                }
                 leafIdentifier4(listIdentifier.leafIdentifier4());
                 return;
             }
@@ -209,9 +220,6 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
                 return;
             }
             case MERGE: {
-                if (listIdentifier.leafIdentifier4() == null) {
-                    throw new RuntimeException("Level2ListIdentifier3Store");
-                }
                 leafIdentifier4(listIdentifier3.leafIdentifier4());
                 return;
             }
@@ -225,7 +233,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
     }
 
     private void processLeafListIdentifer4Edit(ListIdentifier3 listIdentifier3,
-                                               DefaultListIdentifier3.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (listIdentifier3.leafListIdentifier4() == null
                 || listIdentifier3.leafListIdentifier4().isEmpty()) {
@@ -308,7 +316,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
     }
 
     private void processContainerIdentifier4Edit(
-            ListIdentifier3 listIdentifier3, DefaultListIdentifier3.OnosYangNodeOperationType
+            ListIdentifier3 listIdentifier3, ModuleIdentifier0.OnosYangOpType
             onosYangNodeOperationType) {
         if (listIdentifier3.containerIdentifier4() == null) {
             return;

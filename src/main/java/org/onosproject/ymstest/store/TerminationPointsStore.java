@@ -1,16 +1,15 @@
 package org.onosproject.ymstest.store;
 
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.Topology;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node.DefaultTerminationPoints;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node.TerminationPoints;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node.terminationpoints.TerminationPoint;
+
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
-        .DefaultTerminationPoints;
-import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
-        .TerminationPoints;
-import org.onosproject.yang.gen.v1.urn.topo.rev20140101.topology.node
-        .terminationpoints.TerminationPoint;
 
 /**
  * Created by v70786 on 31/8/16.
@@ -22,10 +21,22 @@ public class TerminationPointsStore
 
     private List<TerminationPoint> terminationPoint = new ArrayList<>();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     @Override
     public short numberOfTp() {
         return numberOfTp;
+    }
+
+    @Override
+    public Topology.OnosYangOpType yangTerminationPointsOpType() {
+        return null;
     }
 
     @Override
@@ -77,7 +88,7 @@ public class TerminationPointsStore
         }
         DefaultTerminationPoints opNode
                 = (DefaultTerminationPoints) terminationPointsPara;
-        if (opNode.onosYangNodeOperationType() == null) {
+        if (opNode.yangTerminationPointsOpType() == null) {
             throw new RuntimeException("No operation set for termination " +
                                                "points");
         }
@@ -86,13 +97,13 @@ public class TerminationPointsStore
          * Process the child nodes
          */
         processTerminationPointEdit(terminationPointsPara,
-                                    opNode.onosYangNodeOperationType());
+                                    opNode.yangTerminationPointsOpType());
 
         /*
          * TODO: Process the augmented node contents
          */
 
-        switch (opNode.onosYangNodeOperationType()) {
+        switch (opNode.yangTerminationPointsOpType()) {
             case CREATE: {
                 numberOfTp(terminationPointsPara.numberOfTp());
                 return;
@@ -147,7 +158,7 @@ public class TerminationPointsStore
 
     private void processTerminationPointEdit(
             TerminationPoints terminationPointsPara,
-            DefaultTerminationPoints.OnosYangNodeOperationType
+            Topology.OnosYangOpType
                     onosYangNodeOperationType) {
         if (terminationPointsPara.terminationPoint() == null) {
             return;

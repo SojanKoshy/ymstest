@@ -1,11 +1,13 @@
 package org.onosproject.ymstest.module;
 
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.ContainerIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.DefaultContainerIdentifier2;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.DefaultListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.ListIdentifier3;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.notificationidentifier1.listidentifier2.DefaultListIdentifier3;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +34,14 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
     public void leafListIdentifier3(List<String> leafListIdentifier3) {
         this.leafListIdentifier3 = leafListIdentifier3;
     }
-
+    @Override
+    public BitSet valueLeafFlags(){
+        return null;
+    }
+    @Override
+    public BitSet selectLeafFlags(){
+        return null;
+    }
     public void listIdentifier3(List<ListIdentifier3> listIdentifier3) {
         this.listIdentifier3 = listIdentifier3;
     }
@@ -59,6 +68,11 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
     @Override
     public List<String> leafListIdentifier3() {
         return leafListIdentifier3;
+    }
+
+    @Override
+    public ModuleIdentifier0.OnosYangOpType yangContainerIdentifier2OpType() {
+        return null;
     }
 
     /**
@@ -137,14 +151,14 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
             throw new RuntimeException("default Node expected");
         }
         DefaultContainerIdentifier2 containerNode = (DefaultContainerIdentifier2) containerIdentifier2;
-        if (containerNode.onosYangNodeOperationType() == null) {
+        if (containerNode.yangContainerIdentifier2OpType() == null) {
             throw new RuntimeException("No operation set for Node");
         }
 
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer3Edit(containerIdentifier2, containerNode.onosYangNodeOperationType());
+        processLeafListIdentifer3Edit(containerIdentifier2, containerNode.yangContainerIdentifier2OpType());
 
         processListIdentifer2Edit(containerIdentifier2);
 
@@ -196,11 +210,8 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
             }
 */
 
-        switch (containerNode.onosYangNodeOperationType()) {
+        switch (containerNode.yangContainerIdentifier2OpType()) {
             case CREATE: {
-                if (containerNode.leafIdentifier3() != null) {
-                    throw new RuntimeException("Level1ContainerIdentifier2Store");
-                }
                 leafIdentifier3(containerNode.leafIdentifier3());
                 return;
             }
@@ -220,9 +231,6 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
                 return;
             }
             case MERGE: {
-                if (containerIdentifier2.leafIdentifier3() == null) {
-                    throw new RuntimeException("Level1ContainerIdentifier2Store");
-                }
                 leafIdentifier3(containerIdentifier2.leafIdentifier3());
                 return;
             }
@@ -236,7 +244,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
     }
 
     private void processLeafListIdentifer3Edit(ContainerIdentifier2 containerIdentifier2,
-                                               DefaultContainerIdentifier2.OnosYangNodeOperationType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (containerIdentifier2.leafListIdentifier3() == null
                 || containerIdentifier2.leafListIdentifier3().isEmpty()) {
@@ -320,10 +328,10 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
                 throw new RuntimeException("default Node expected");
             }
             DefaultListIdentifier3 opNode = (DefaultListIdentifier3) identifier3;
-            if (opNode.onosYangNodeOperationType() == null) {
+            if (opNode.yangListIdentifier3OpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (opNode.onosYangNodeOperationType()) {
+            switch (opNode.yangListIdentifier3OpType()) {
                 case CREATE: {
                     if (storedIdentifier3Store != null) {
                         throw new RuntimeException(
