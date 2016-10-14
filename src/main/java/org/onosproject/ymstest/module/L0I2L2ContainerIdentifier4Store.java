@@ -185,7 +185,6 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
 
         switch (containerNode.yangContainerIdentifier4OpType()) {
             case CREATE: {
-
                 leafIdentifier5(containerNode.leafIdentifier5());
                 return;
             }
