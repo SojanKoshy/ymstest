@@ -295,7 +295,7 @@ public class NodeStore
                 = (TerminationPointsStore) terminationPoints();
         TerminationPoints terminationPointsPara = nodePara.terminationPoints();
 
-        switch (onosYangNodeOperationType) {
+        switch (nodePara.terminationPoints().yangTerminationPointsOpType()) {
             case CREATE: {
                 if (storedTerminationPoints != null) {
                     throw new RuntimeException("TerminationPointsStore" +
