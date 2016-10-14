@@ -18,6 +18,10 @@ public class ModuleIdentifier0Manager  extends ListenerRegistry<ModuleIdentifier
 
     private ModuleIdentifier0Store appStore = new ModuleIdentifier0Store();
 
+    public ModuleIdentifier0Store getAppStore() {
+        return appStore;
+    }
+
     @Override
     public ModuleIdentifier0 getModuleIdentifier0(ModuleIdentifier0OpParam moduleIdentifier0) {
         return moduleIdentifier0.processSubtreeFiltering(appStore, false);
