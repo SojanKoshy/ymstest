@@ -129,6 +129,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
 
     private void processContainerIdentifier1(ModuleIdentifier0OpParam moduleIdentifier,OnosYangOpType onosYangOpType) {
 
+
         if (moduleIdentifier.containerIdentifier1() == null) {
             return;
         }
@@ -139,10 +140,10 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
             throw new RuntimeException("store termination points expected");
         }
 
-        Level1ContainerIdentifier1Store storedNode = (Level1ContainerIdentifier1Store) containerIdentifier1();
+        Level1ContainerIdentifier1Store storedNode = (Level1ContainerIdentifier1Store)containerIdentifier1();
         ContainerIdentifier1 containerIdentifier1 = moduleIdentifier.containerIdentifier1();
 
-        switch (onosYangOpType) {
+        switch (moduleIdentifier.containerIdentifier1().yangContainerIdentifier1OpType()) {
             case CREATE: {
                 if (storedNode != null) {
                     throw new RuntimeException(
