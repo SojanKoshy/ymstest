@@ -4,7 +4,6 @@ package org.onosproject.ymstest.module;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0OpParam;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.DefaultContainerIdentifier1;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.DefaultListIdentifier1;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ListIdentifier1;
 
@@ -16,8 +15,7 @@ import java.util.List;
  * Created by root1 on 14/9/16.
  */
 public class ModuleIdentifier0Store implements ModuleIdentifier0 {
-
-    private List<ContainerIdentifier1> nodeStoreList = new ArrayList<>();
+    private ContainerIdentifier1 containerIdentifier1 ;
 
     private List<ListIdentifier1> listIdentifier1 = new ArrayList<>();
     private byte leafIdentifier1;
@@ -34,7 +32,14 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     public void leafListIdentifier1(List<String> leafListIdentifier1) {
         this.leafListIdentifier1 = leafListIdentifier1;
     }
+    @Override
+    public ContainerIdentifier1 containerIdentifier1() {
+        return containerIdentifier1;
+    }
 
+    public void containerIdentifier1(ContainerIdentifier1 containerIdentifier1) {
+        this.containerIdentifier1 = containerIdentifier1;
+    }
     @Override
     public byte leafIdentifier1() {
         return leafIdentifier1;
@@ -50,10 +55,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
         return null;
     }
 
-    @Override
-    public ContainerIdentifier1 containerIdentifier1() {
-        return null;
-    }
+
 
     @Override
     public List<ListIdentifier1> listIdentifier1() {
@@ -88,7 +90,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
 //                .OnosYangNodeOperationType.NONE) {
 //            throw new RuntimeException("store modification not supported");
 //        }
-        processContainerIdentifier1(moduleIdentifier0OpParam);
+        processContainerIdentifier1(moduleIdentifier0OpParam,moduleIdentifier0OpParam.yangModuleIdentifier0OpType());
         processListIdentifer1Edit(moduleIdentifier0OpParam);
         processLeafListIdentifer2Edit(moduleIdentifier0OpParam,moduleIdentifier0OpParam.yangModuleIdentifier0OpType());
 
@@ -125,59 +127,53 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     }
 
 
-    private void processContainerIdentifier1(ModuleIdentifier0OpParam moduleIdentifier) {
+    private void processContainerIdentifier1(ModuleIdentifier0OpParam moduleIdentifier,OnosYangOpType onosYangOpType) {
+
         if (moduleIdentifier.containerIdentifier1() == null) {
             return;
         }
-        ContainerIdentifier1 nodePara = moduleIdentifier.containerIdentifier1();
-        ContainerIdentifier1 nodeInStore = findNodeInStore(nodePara);
 
-        if (nodeInStore != null && !(nodeInStore instanceof Level1ContainerIdentifier1Store)) {
+        if (containerIdentifier1() != null && !(containerIdentifier1() instanceof
+                Level1ContainerIdentifier1Store)) {
             //stored node is not correct
-            throw new RuntimeException("store Node expected");
+            throw new RuntimeException("store termination points expected");
         }
-        Level1ContainerIdentifier1Store storedNode = (Level1ContainerIdentifier1Store) nodeInStore;
 
-        if (!(nodePara instanceof DefaultContainerIdentifier1)) {
-            //Operations are part of the default Node
-            throw new RuntimeException("default Node expected");
-        }
-        DefaultContainerIdentifier1 opNode = (DefaultContainerIdentifier1) nodePara;
-        if (opNode.yangContainerIdentifier1OpType() == null) {
-            throw new RuntimeException("No operation set for Node");
-        }
-        switch (opNode.yangContainerIdentifier1OpType()) {
+        Level1ContainerIdentifier1Store storedNode = (Level1ContainerIdentifier1Store) containerIdentifier1();
+        ContainerIdentifier1 containerIdentifier1 = moduleIdentifier.containerIdentifier1();
+
+        switch (onosYangOpType) {
             case CREATE: {
                 if (storedNode != null) {
                     throw new RuntimeException(
-                            "Node: " + nodePara.leafIdentifier2() + " is already " +
+                            "Node: is already " +
                                     "created");
                 }
                 storedNode = new Level1ContainerIdentifier1Store();
-                nodeStoreList.add(storedNode);
-                storedNode.processEdit(nodePara);
+                containerIdentifier1(storedNode);
+                storedNode.processEdit(containerIdentifier1);
                 return;
 
             }
             case DELETE: {
                 if (storedNode == null) {
                     throw new RuntimeException(
-                            "Node: " + nodePara.leafIdentifier2() + " is not in " +
+                            "Node: is not in " +
                                     "store");
                 }
-                storedNode.processEdit(nodePara);
-                nodeStoreList.remove(storedNode);
+                storedNode.processEdit(containerIdentifier1);
+                containerIdentifier1(null);
                 return;
             }
 
             case REPLACE: {
                 if (storedNode != null) {
-                    storedNode.processEdit(nodePara);
+                    storedNode.processEdit(containerIdentifier1);
 
                 }
                 storedNode = new Level1ContainerIdentifier1Store();
-                nodeStoreList.add(storedNode);
-                storedNode.processEdit(nodePara);
+                containerIdentifier1(storedNode);
+                storedNode.processEdit(containerIdentifier1);
                 return;
             }
 
@@ -185,46 +181,34 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
                 if (storedNode == null) {
                     return;
                 }
-                storedNode.processEdit(nodePara);
-                nodeStoreList.remove(storedNode);
+                storedNode.processEdit(containerIdentifier1);
+                containerIdentifier1(storedNode);
                 return;
             }
             case MERGE: {
                 if (storedNode == null) {
                     storedNode = new Level1ContainerIdentifier1Store();
-                    nodeStoreList.add(storedNode);
-                    storedNode.processEdit(nodePara);
+                    containerIdentifier1(storedNode);
+                    storedNode.processEdit(containerIdentifier1);
 
                 }
-                storedNode.processEdit(nodePara);
+                storedNode.processEdit(containerIdentifier1);
                 return;
             }
             case NONE: {
                 if (storedNode == null) {
-                    if (nodePara != null) {
+                    if (containerIdentifier1 != null) {
                         storedNode = new Level1ContainerIdentifier1Store();
-                        nodeStoreList.add(storedNode);
-                        storedNode.processEdit(nodePara);
+                        containerIdentifier1(storedNode);
+                        storedNode.processEdit(containerIdentifier1);
                     }
 
                 }
-                storedNode.processEdit(nodePara);
+                storedNode.processEdit(containerIdentifier1);
                 return;
             }
             default:
         }
-    }
-
-    private ContainerIdentifier1 findNodeInStore(ContainerIdentifier1 findNode) {
-        for (ContainerIdentifier1 node : nodeStoreList) {
-            if (node.leafIdentifier2() == null) {
-                continue;
-            }
-            if (node.leafIdentifier2().equals(findNode.leafIdentifier2())) {
-                return node;
-            }
-        }
-        return null;
     }
 
     private void processListIdentifer1Edit(ModuleIdentifier0OpParam moduleIdentifier0OpParam) {
