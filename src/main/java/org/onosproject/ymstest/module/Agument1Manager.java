@@ -35,7 +35,7 @@ public class Agument1Manager implements Augment1Service{
      * @return augment1
      */
     public Augment1 getAugmentedAugment1Interfaces(Augment1OpParam augment1){
-        return null;
+        return augment1.processSubtreeFiltering(appStore,false);
     }
 
     /**
