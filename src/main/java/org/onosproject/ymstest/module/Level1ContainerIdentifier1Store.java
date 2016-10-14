@@ -192,7 +192,6 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
             }
 
             case REPLACE: {
-
                 leafIdentifier2(containerIdentifier1.leafIdentifier2());
                 return;
             }

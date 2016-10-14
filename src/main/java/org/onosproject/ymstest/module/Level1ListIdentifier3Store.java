@@ -210,6 +210,9 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
 
         switch (listNode.yangListIdentifier3OpType()) {
             case CREATE: {
+                if (listNode.leafIdentifier4() != null) {
+                    throw new RuntimeException("Level1ListIdentifier3Store");
+                }
                 leafIdentifier4(listNode.leafIdentifier4());
                 return;
             }
