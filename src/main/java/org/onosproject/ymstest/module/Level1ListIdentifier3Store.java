@@ -4,7 +4,7 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdent
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.DefaultListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.ListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.rpcidentifier1.rpcidentifier1output.containeridentifier3.DefaultListIdentifier4;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.DefaultListIdentifier4;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -338,11 +338,11 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
                 //Operations are part of the default Node
                 throw new RuntimeException("default Node expected");
             }
-            DefaultListIdentifier3 opNode = (DefaultListIdentifier3) identifier4;
-            if (opNode.yangListIdentifier3OpType() == null) {
+            DefaultListIdentifier4 opNode = (DefaultListIdentifier4) identifier4;
+            if (opNode.yangListIdentifier4OpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (opNode.yangListIdentifier3OpType()) {
+            switch (opNode.yangListIdentifier4OpType()) {
                 case CREATE: {
                     if (storedIdentifier4Store != null) {
                         throw new RuntimeException(

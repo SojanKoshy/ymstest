@@ -4,6 +4,7 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdent
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.DefaultListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
 
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Level1ListIdentifier4Store implements ListIdentifier4 {
 
     private boolean leafIdentifer5;
 
-    private List<String> leafListIdentifier5;
+    private List<String> leafListIdentifier5 = new ArrayList<>();
 
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
@@ -58,7 +59,7 @@ public class Level1ListIdentifier4Store implements ListIdentifier4 {
      */
     @Override
     public List<String> leafListIdentifier5() {
-        return leafListIdentifier5();
+        return leafListIdentifier5;
     }
 
     @Override
