@@ -250,7 +250,7 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
                 = (L0I2L1ContainerIdentifier3Store) containerIdentifier3();
         ContainerIdentifier3 containerIdentifier3Para = listIdentifier2.containerIdentifier3();
 
-        switch (onosYangNodeOperationType) {
+        switch (listIdentifier2.containerIdentifier3().yangContainerIdentifier3OpType()) {
             case CREATE: {
                 if (identifier3Store != null) {
                     throw new RuntimeException("TerminationPointsStore" +

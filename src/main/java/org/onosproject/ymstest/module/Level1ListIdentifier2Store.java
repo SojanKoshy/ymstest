@@ -5,8 +5,9 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.ListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafIdentifier3Enum;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafListIdentifier3Enum;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ListIdentifier3;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.notificationidentifier1.listidentifier2.DefaultListIdentifier3;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.DefaultListIdentifier3;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -24,7 +25,7 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
     private ContainerIdentifier3 containerIdentifier3;
 
     private LeafIdentifier3Enum leafIdentifier3;
-    private List<String> leafListIdentifier3 = new ArrayList<>();
+    private List<LeafListIdentifier3Enum> leafListIdentifier3 = new ArrayList<>();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
     public void listIdentifier3(List<ListIdentifier3> listIdentifier3) {
@@ -46,7 +47,7 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
         this.leafIdentifier3 = leafIdentifier3;
     }
 
-    public void leafListIdentifier3(List<String> leafListIdentifier3) {
+    public void leafListIdentifier3(List<LeafListIdentifier3Enum> leafListIdentifier3) {
         this.leafListIdentifier3 = leafListIdentifier3;
     }
 
@@ -66,7 +67,7 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
      * @return list of leafListIdentifier3
      */
     @Override
-    public List<String> leafListIdentifier3() {
+    public List<LeafListIdentifier3Enum> leafListIdentifier3() {
         return leafListIdentifier3;
     }
 
@@ -250,7 +251,7 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
 
     }
 
-    public void addToLeafListIdentifer3(String value) {
+    public void addToLeafListIdentifer3(LeafListIdentifier3Enum value) {
         leafListIdentifier3().add(value);
     }
 
@@ -261,8 +262,8 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
                 || listIdentifier2.leafListIdentifier3().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer3Para : listIdentifier2.leafListIdentifier3()) {
-            String storedLeafListIdentifier3 = findLeafListIdentifer3(leafListIdentifer3Para);
+        for (LeafListIdentifier3Enum leafListIdentifer3Para : listIdentifier2.leafListIdentifier3()) {
+            LeafListIdentifier3Enum storedLeafListIdentifier3 = findLeafListIdentifer3(leafListIdentifer3Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -320,12 +321,12 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
 
     }
 
-    private String findLeafListIdentifer3(String leafListIdentifer) {
+    private LeafListIdentifier3Enum findLeafListIdentifer3(LeafListIdentifier3Enum leafListIdentifer) {
         if (leafListIdentifier3().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer3 : leafListIdentifier3()) {
+        for (LeafListIdentifier3Enum leaflistIdentifer3 : leafListIdentifier3()) {
             if (leaflistIdentifer3.equals(leafListIdentifer)) {
                 return leaflistIdentifer3;
             }
@@ -351,10 +352,10 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
                 throw new RuntimeException("default Node expected");
             }
             DefaultListIdentifier3 opNode = (DefaultListIdentifier3) identifier3;
-            if (listInStore.yangListIdentifier3OpType() == null) {
+            if (opNode.yangListIdentifier3OpType() == null) {
                 throw new RuntimeException("No operation set for Node");
             }
-            switch (listInStore.yangListIdentifier3OpType()) {
+            switch (opNode.yangListIdentifier3OpType()) {
                 case CREATE: {
                     if (storedIdentifier3Store != null) {
                         throw new RuntimeException(
@@ -452,7 +453,7 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
                 = (Level2ContainerIdentifier3Store) containerIdentifier3();
         ContainerIdentifier3 containerIdentifier3Para = nodePara.containerIdentifier3();
 
-        switch (onosYangNodeOperationType) {
+        switch (nodePara.containerIdentifier3().yangContainerIdentifier3OpType()) {
             case CREATE: {
                 if (storedTerminationPoints != null) {
                     throw new RuntimeException("TerminationPointsStore" +

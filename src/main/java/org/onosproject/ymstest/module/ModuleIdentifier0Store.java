@@ -19,7 +19,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
 
     private List<ListIdentifier1> listIdentifier1 = new ArrayList<>();
     private byte leafIdentifier1;
-    private List<String> leafListIdentifier1 = new ArrayList<>();
+    private List<Byte> leafListIdentifier1 = new ArrayList<>();
 
     public void listIdentifier1(List<ListIdentifier1> listIdentifier1) {
         this.listIdentifier1 = listIdentifier1;
@@ -29,7 +29,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
         this.leafIdentifier1 = leafIdentifier1;
     }
 
-    public void leafListIdentifier1(List<String> leafListIdentifier1) {
+    public void leafListIdentifier1(List<Byte> leafListIdentifier1) {
         this.leafListIdentifier1 = leafListIdentifier1;
     }
     @Override
@@ -46,7 +46,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     }
 
     @Override
-    public List<String> leafListIdentifier1() {
+    public List<Byte> leafListIdentifier1() {
         return leafListIdentifier1;
     }
 
@@ -323,8 +323,8 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
                 || moduleIdentifier0OpParam.leafListIdentifier1().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer1Para : moduleIdentifier0OpParam.leafListIdentifier1()) {
-            String storedLeafListIdentifier1 = findLeafListIdentifer1(leafListIdentifer1Para);
+        for (Byte leafListIdentifer1Para : moduleIdentifier0OpParam.leafListIdentifier1()) {
+            Byte storedLeafListIdentifier1 = findLeafListIdentifer1(leafListIdentifer1Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -382,12 +382,12 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
 
     }
 
-    private String findLeafListIdentifer1(String leafListIdentifer) {
+    private Byte findLeafListIdentifer1(Byte leafListIdentifer) {
         if (leafListIdentifier1().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer2 : leafListIdentifier1()) {
+        for (Byte leaflistIdentifer2 : leafListIdentifier1()) {
             if (leaflistIdentifer2.equals(leafListIdentifer)) {
                 return leaflistIdentifer2;
             }
@@ -395,7 +395,7 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
         return null;
     }
 
-    public void addToLeafListIdentifer1(String value) {
+    public void addToLeafListIdentifer1(Byte value) {
         leafListIdentifier1().add(value);
     }
 

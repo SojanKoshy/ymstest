@@ -21,7 +21,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
     // store should be cretaed
     private ContainerIdentifier2 containerIdentifier2;
     private List<ListIdentifier2> listIdentifier2 = new ArrayList<>();
-    private List<String> leafListIdentifer2 = new ArrayList();
+    private List<BigDecimal> leafListIdentifer2 = new ArrayList();
     private BigDecimal leafIdentifier2;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
@@ -51,7 +51,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
     }
 
     @Override
-    public List<String> leafListIdentifier2() {
+    public List<BigDecimal> leafListIdentifier2() {
         return leafListIdentifer2;
     }
 
@@ -60,7 +60,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
         return null;
     }
 
-    public void leafListIdentifier2(List<String> leafListIdentifer2) {
+    public void leafListIdentifier2(List<BigDecimal> leafListIdentifer2) {
         this.leafListIdentifer2 = leafListIdentifer2;
     }
 
@@ -73,7 +73,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
         this.leafIdentifier2 = leafIdentifier2;
     }
 
-    public void addToLeafListIdentifer2(String value) {
+    public void addToLeafListIdentifer2(BigDecimal value) {
         leafListIdentifier2().add(value);
     }
 
@@ -409,8 +409,8 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
                 || containerIdentifier1.leafListIdentifier2().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer2Para : containerIdentifier1.leafListIdentifier2()) {
-            String storedLeafListIdentifier2 = findLeafListIdentifer2(leafListIdentifer2Para);
+        for (BigDecimal leafListIdentifer2Para : containerIdentifier1.leafListIdentifier2()) {
+            BigDecimal storedLeafListIdentifier2 = findLeafListIdentifer2(leafListIdentifer2Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -468,12 +468,12 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
 
     }
 
-    private String findLeafListIdentifer2(String leafListIdentifer) {
+    private BigDecimal findLeafListIdentifer2(BigDecimal leafListIdentifer) {
         if (leafListIdentifier2().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer2 : leafListIdentifier2()) {
+        for (BigDecimal leaflistIdentifer2 : leafListIdentifier2()) {
             if (leaflistIdentifer2.equals(leafListIdentifer)) {
                 return leaflistIdentifer2;
             }

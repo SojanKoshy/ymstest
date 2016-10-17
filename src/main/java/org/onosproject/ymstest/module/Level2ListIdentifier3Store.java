@@ -19,7 +19,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
 
     private ContainerIdentifier4 containerIdentifier4;
 
-    private List<String> leafListIdentifier4 = new ArrayList<>();
+    private List<MyIdentity> leafListIdentifier4 = new ArrayList<>();
 
     private MyIdentity leafIdentifier4;
 
@@ -29,7 +29,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
         this.containerIdentifier4 = containerIdentifier4;
     }
 
-    public void leafListIdentifier4(List<String> leafListIdentifier) {
+    public void leafListIdentifier4(List<MyIdentity> leafListIdentifier) {
         this.leafListIdentifier4 = leafListIdentifier;
     }
 
@@ -60,7 +60,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
      * @return list of leafListIdentifier4
      */
     @Override
-    public List<String> leafListIdentifier4() {
+    public List<MyIdentity> leafListIdentifier4() {
         return leafListIdentifier4;
     }
 
@@ -239,8 +239,8 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
                 || listIdentifier3.leafListIdentifier4().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
-            String storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
+        for (MyIdentity leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
+            MyIdentity storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -298,16 +298,16 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
 
     }
 
-    public void addToLeafListIdentifer4(String value) {
+    public void addToLeafListIdentifer4(MyIdentity value) {
         leafListIdentifier4().add(value);
     }
 
-    private String findLeafListIdentifer4(String leafListIdentifer) {
+    private MyIdentity findLeafListIdentifer4(MyIdentity leafListIdentifer) {
         if (leafListIdentifier4().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer4 : leafListIdentifier4()) {
+        for (MyIdentity leaflistIdentifer4 : leafListIdentifier4()) {
             if (leaflistIdentifer4.equals(leafListIdentifer)) {
                 return leaflistIdentifer4;
             }
@@ -332,7 +332,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
                 = (Level2ContainerIdentifier4Store) containerIdentifier4();
         ContainerIdentifier4 containerIdentifier4Para = listIdentifier3.containerIdentifier4();
 
-        switch (onosYangNodeOperationType) {
+        switch (listIdentifier3.containerIdentifier4().yangContainerIdentifier4OpType()) {
             case CREATE: {
                 if (identifier4Store != null) {
                     throw new RuntimeException("TerminationPointsStore" +

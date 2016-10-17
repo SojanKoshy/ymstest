@@ -4,6 +4,7 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdent
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.listidentifier3.ContainerIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.listidentifier3.DefaultContainerIdentifier4;
 
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Level2ContainerIdentifier4Store implements ContainerIdentifier4 {
 
 
     private String leafIdentifier5;
-    private List<String> leafListIdentifier5;
+    private List<String> leafListIdentifier5 = new ArrayList<>();
 
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 

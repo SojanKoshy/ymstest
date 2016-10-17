@@ -20,7 +20,7 @@ import java.util.Map;
 public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifier2 {
 
     private long leafIdenyifier3;
-    private List<String> leafListIdentifier3 = new ArrayList<>();
+    private List<Long> leafListIdentifier3 = new ArrayList<>();
     private ContainerIdentifier3 containerIdentifier3;
     private List<ListIdentifier3> listIdentifier3 = new ArrayList<>();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
@@ -29,7 +29,7 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
         this.leafIdenyifier3 = leafIdenyifier3;
     }
 
-    public void leafListIdentifier3(List<String> leafListIdentifier3) {
+    public void leafListIdentifier3(List<Long> leafListIdentifier3) {
         this.leafListIdentifier3 = leafListIdentifier3;
     }
     @Override
@@ -65,7 +65,7 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
      * @return list of leafListIdentifier3
      */
     @Override
-    public List<String> leafListIdentifier3() {
+    public List<Long> leafListIdentifier3() {
         return leafListIdentifier3;
     }
 
@@ -271,7 +271,7 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
                 = (L0Identifier1C2ContainerIdentifier3Store) containerIdentifier3();
         ContainerIdentifier3 containerIdentifier3Para = containerIdentifier2.containerIdentifier3();
 
-        switch (onosYangNodeOperationType) {
+        switch (containerIdentifier2.containerIdentifier3().yangContainerIdentifier3OpType()) {
             case CREATE: {
                 if (identifier3Store != null) {
                     throw new RuntimeException("TerminationPointsStore" +
@@ -450,8 +450,8 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
                 || containerIdentifier2.leafListIdentifier3().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer3Para : containerIdentifier2.leafListIdentifier3()) {
-            String storedLeafListIdentifier2 = findLeafListIdentifer2(leafListIdentifer3Para);
+        for (Long leafListIdentifer3Para : containerIdentifier2.leafListIdentifier3()) {
+            Long storedLeafListIdentifier2 = findLeafListIdentifer2(leafListIdentifer3Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -509,12 +509,12 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
 
     }
 
-    private String findLeafListIdentifer2(String leafListIdentifer) {
+    private Long findLeafListIdentifer2(Long leafListIdentifer) {
         if (leafListIdentifier3().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer3 : leafListIdentifier3()) {
+        for (Long leaflistIdentifer3 : leafListIdentifier3()) {
             if (leaflistIdentifer3.equals(leafListIdentifer)) {
                 return leaflistIdentifer3;
             }
@@ -522,7 +522,7 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
         return null;
     }
 
-    public void addToLeafListIdentifer3(String value) {
+    public void addToLeafListIdentifer3(Long value) {
         leafListIdentifier3().add(value);
     }
 }

@@ -16,10 +16,10 @@ import java.util.Map;
 public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
 
     private int leafIdentifier5;
-    private List<String> leafListIdentifier5 = new ArrayList<>();
+    private List<Integer> leafListIdentifier5 = new ArrayList<>();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
-    public void leafListIdentifier5(List<String> leafListIdentifier5) {
+    public void leafListIdentifier5(List<Integer> leafListIdentifier5) {
         this.leafListIdentifier5 = leafListIdentifier5;
     }
 
@@ -51,7 +51,7 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
      * @return list of leafListIdentifier5
      */
     @Override
-    public List<String> leafListIdentifier5() {
+    public List<Integer> leafListIdentifier5() {
         return leafListIdentifier5;
     }
 
@@ -217,8 +217,8 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
                 || listIdentifier4.leafListIdentifier5().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer5Para : listIdentifier4.leafListIdentifier5()) {
-            String storedLeafListIdentifier5 = findLeafListIdentifer5(leafListIdentifer5Para);
+        for (Integer leafListIdentifer5Para : listIdentifier4.leafListIdentifier5()) {
+            Integer storedLeafListIdentifier5 = findLeafListIdentifer5(leafListIdentifer5Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -276,12 +276,12 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
 
     }
 
-    private String findLeafListIdentifer5(String leafListIdentifer) {
+    private Integer findLeafListIdentifer5(Integer leafListIdentifer) {
         if (leafListIdentifier5().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer5 : leafListIdentifier5()) {
+        for (Integer leaflistIdentifer5 : leafListIdentifier5()) {
             if (leaflistIdentifer5.equals(leafListIdentifer)) {
                 return leaflistIdentifer5;
             }
@@ -289,7 +289,7 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
         return null;
     }
 
-    public void addToLeafListIdentifer5(String value) {
+    public void addToLeafListIdentifer5(Integer value) {
         leafListIdentifier5().add(value);
     }
 }
