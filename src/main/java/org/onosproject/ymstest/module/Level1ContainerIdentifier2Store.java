@@ -19,7 +19,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
 
     private byte[] leafIdentifier3;
 
-    private List<String> leafListIdentifier3 = new ArrayList<>();
+    private List<byte[]> leafListIdentifier3 = new ArrayList<>();
 
     //Store has to be writen
     private List<ListIdentifier3> listIdentifier3 = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
         this.leafIdentifier3 = leafIdentifier3;
     }
 
-    public void leafListIdentifier3(List<String> leafListIdentifier3) {
+    public void leafListIdentifier3(List<byte[]> leafListIdentifier3) {
         this.leafListIdentifier3 = leafListIdentifier3;
     }
     @Override
@@ -66,7 +66,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
      * @return list of leafListIdentifier3
      */
     @Override
-    public List<String> leafListIdentifier3() {
+    public List<byte[]> leafListIdentifier3() {
         return leafListIdentifier3;
     }
 
@@ -141,7 +141,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
         return false;
     }
 
-    public void addToLeafListIdentifer3(String value) {
+    public void addToLeafListIdentifer3(byte[] value) {
         leafListIdentifier3().add(value);
     }
 
@@ -250,8 +250,8 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
                 || containerIdentifier2.leafListIdentifier3().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer3Para : containerIdentifier2.leafListIdentifier3()) {
-            String storedLeafListIdentifier3 = findLeafListIdentifer3(leafListIdentifer3Para);
+        for (byte[] leafListIdentifer3Para : containerIdentifier2.leafListIdentifier3()) {
+            byte[] storedLeafListIdentifier3 = findLeafListIdentifer3(leafListIdentifer3Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -412,12 +412,12 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
         return null;
     }
 
-    private String findLeafListIdentifer3(String leafListIdentifer) {
+    private byte[] findLeafListIdentifer3(byte[] leafListIdentifer) {
         if (leafListIdentifier3().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer3 : leafListIdentifier3()) {
+        for (byte[] leaflistIdentifer3 : leafListIdentifier3()) {
             if (leaflistIdentifer3.equals(leafListIdentifer)) {
                 return leaflistIdentifer3;
             }

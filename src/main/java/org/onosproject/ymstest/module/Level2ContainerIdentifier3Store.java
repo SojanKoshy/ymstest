@@ -18,7 +18,7 @@ import java.util.Map;
 public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
 
     private boolean leafIdentifier4;
-    private List<String> leafListIdentifier4 = new ArrayList<>();
+    private List<Boolean> leafListIdentifier4 = new ArrayList<>();
 
     //need to create store
     private List<ListIdentifier4> listIdentifier4 = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
         this.leafIdentifier4 = leafIdentifier4;
     }
 
-    public void leafListIdentifier4(List<String> leafListIdentifier4) {
+    public void leafListIdentifier4(List<Boolean> leafListIdentifier4) {
         this.leafListIdentifier4 = leafListIdentifier4;
     }
 
@@ -63,7 +63,7 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
      * @return list of leafListIdentifier4
      */
     @Override
-    public List<String> leafListIdentifier4() {
+    public List<Boolean> leafListIdentifier4() {
         return leafListIdentifier4;
     }
 
@@ -244,8 +244,8 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
                 || conatinerIdentifier3.leafListIdentifier4().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer5Para : conatinerIdentifier3.leafListIdentifier4()) {
-            String storedLeafListIdentifier5 = findLeafListIdentifer4(leafListIdentifer5Para);
+        for (Boolean leafListIdentifer5Para : conatinerIdentifier3.leafListIdentifier4()) {
+            Boolean storedLeafListIdentifier5 = findLeafListIdentifer4(leafListIdentifer5Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -303,16 +303,16 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
 
     }
 
-    public void addToLeafListIdentifer4(String value) {
+    public void addToLeafListIdentifer4(Boolean value) {
         leafListIdentifier4().add(value);
     }
 
-    private String findLeafListIdentifer4(String leafListIdentifer) {
+    private Boolean findLeafListIdentifer4(Boolean leafListIdentifer) {
         if (leafListIdentifier4().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer4 : leafListIdentifier4()) {
+        for (Boolean leaflistIdentifer4 : leafListIdentifier4()) {
             if (leaflistIdentifer4.equals(leafListIdentifer)) {
                 return leaflistIdentifer4;
             }

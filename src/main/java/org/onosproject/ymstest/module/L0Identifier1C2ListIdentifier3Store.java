@@ -17,7 +17,7 @@ import java.util.Map;
 public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
 
     private short leafIdentifier4;
-    private List<String> leafListIdentifier4 = new ArrayList<>();
+    private List<Short> leafListIdentifier4 = new ArrayList<>();
     private ContainerIdentifier4 containerIdentifier4;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
@@ -25,7 +25,7 @@ public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
         this.leafIdentifier4 = leafIdentifier4;
     }
 
-    public void leafListIdentifier4(List<String> leafListIdentifier4) {
+    public void leafListIdentifier4(List<Short> leafListIdentifier4) {
         this.leafListIdentifier4 = leafListIdentifier4;
     }
     @Override
@@ -56,7 +56,7 @@ public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
      * @return list of leafListIdentifier4
      */
     @Override
-    public List<String> leafListIdentifier4() {
+    public List<Short> leafListIdentifier4() {
         return leafListIdentifier4;
     }
 
@@ -325,8 +325,8 @@ public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
                 || listIdentifier3.leafListIdentifier4().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
-            String storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
+        for (Short leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
+            Short storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -384,12 +384,12 @@ public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
 
     }
 
-    private String findLeafListIdentifer4(String leafListIdentifer) {
+    private Short findLeafListIdentifer4(Short leafListIdentifer) {
         if (leafListIdentifier4().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer4 : leafListIdentifier4()) {
+        for (Short leaflistIdentifer4 : leafListIdentifier4()) {
             if (leaflistIdentifer4.equals(leafListIdentifer)) {
                 return leaflistIdentifer4;
             }
@@ -397,7 +397,7 @@ public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
         return null;
     }
 
-    public void addToLeafListIdentifer4(String value) {
+    public void addToLeafListIdentifer4(Short value) {
         leafListIdentifier4().add(value);
     }
 

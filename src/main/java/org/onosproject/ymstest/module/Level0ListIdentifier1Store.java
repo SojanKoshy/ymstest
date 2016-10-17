@@ -19,7 +19,7 @@ import java.util.Map;
 public class Level0ListIdentifier1Store implements ListIdentifier1 {
 
 
-    private List<String> leafListIdentifier2 = new ArrayList<>();
+    private List<Integer> leafListIdentifier2 = new ArrayList<>();
 
     private int leafIdentifier2;
 
@@ -41,7 +41,7 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
         this.containerIdentifier2 = containerIdentifier2;
     }
 
-    public void leafListIdentifier2(List<String> leafListIdentifier2) {
+    public void leafListIdentifier2(List<Integer> leafListIdentifier2) {
         this.leafListIdentifier2 = leafListIdentifier2;
     }
     @Override
@@ -68,7 +68,7 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
      * @return list of leafListIdentifier2
      */
     @Override
-    public List<String> leafListIdentifier2() {
+    public List<Integer> leafListIdentifier2() {
         return leafListIdentifier2;
     }
 
@@ -455,8 +455,8 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
                 || listIdentifier1.leafListIdentifier2().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer2Para : listIdentifier1.leafListIdentifier2()) {
-            String storedLeafListIdentifier2 = findLeafListIdentifer2(leafListIdentifer2Para);
+        for (Integer leafListIdentifer2Para : listIdentifier1.leafListIdentifier2()) {
+            Integer storedLeafListIdentifier2 = findLeafListIdentifer2(leafListIdentifer2Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -514,12 +514,12 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
 
     }
 
-    private String findLeafListIdentifer2(String leafListIdentifer) {
+    private Integer findLeafListIdentifer2(Integer leafListIdentifer) {
         if (leafListIdentifier2().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer2 : leafListIdentifier2()) {
+        for (Integer leaflistIdentifer2 : leafListIdentifier2()) {
             if (leaflistIdentifer2.equals(leafListIdentifer)) {
                 return leaflistIdentifer2;
             }
@@ -527,7 +527,7 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
         return null;
     }
 
-    public void addToLeafListIdentifer2(String value) {
+    public void addToLeafListIdentifer2(Integer value) {
         leafListIdentifier2().add(value);
     }
 }

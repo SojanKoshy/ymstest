@@ -18,7 +18,7 @@ import java.util.Map;
 public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
 
     private BigInteger leafIdentifier4;
-    private List<String> leafListIdentifier4 = new ArrayList<>();
+    private List<BigInteger> leafListIdentifier4 = new ArrayList<>();
     private ContainerIdentifier4 containerIdentifier4;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
@@ -26,7 +26,7 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
         this.leafIdentifier4 = leafIdentifier4;
     }
 
-    public void leafListIdentifier4(List<String> leafListIdentifier4) {
+    public void leafListIdentifier4(List<BigInteger> leafListIdentifier4) {
         this.leafListIdentifier4 = leafListIdentifier4;
     }
 
@@ -58,7 +58,7 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
      * @return list of leafListIdentifier4
      */
     @Override
-    public List<String> leafListIdentifier4() {
+    public List<BigInteger> leafListIdentifier4() {
         return leafListIdentifier4;
     }
 
@@ -238,8 +238,8 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
                 || listIdentifier4.leafListIdentifier4().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer4Para : listIdentifier4.leafListIdentifier4()) {
-            String storedLeafListIdentifier5 = findLeafListIdentifer5(leafListIdentifer4Para);
+        for (BigInteger leafListIdentifer4Para : listIdentifier4.leafListIdentifier4()) {
+            BigInteger storedLeafListIdentifier5 = findLeafListIdentifer5(leafListIdentifer4Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -297,16 +297,16 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
 
     }
 
-    public void addToLeafListIdentifer4(String value) {
+    public void addToLeafListIdentifer4(BigInteger value) {
         leafListIdentifier4().add(value);
     }
 
-    private String findLeafListIdentifer5(String leafListIdentifer) {
-        if (leafListIdentifer.isEmpty()) {
+    private BigInteger findLeafListIdentifer5(BigInteger leafListIdentifer) {
+        if (leafListIdentifer != null) {
             return null;
         }
 
-        for (String leaflistIdentifer5 : leafListIdentifier4()) {
+        for (BigInteger leaflistIdentifer5 : leafListIdentifier4()) {
             if (leaflistIdentifer5.equals(leafListIdentifer)) {
                 return leaflistIdentifer5;
             }

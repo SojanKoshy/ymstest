@@ -17,10 +17,10 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
 
 
     private long leafIdentifier5;
-    private List<String> leafListIdentifier5 = new ArrayList<>();
+    private List<Long> leafListIdentifier5 = new ArrayList<>();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
-    public void leafListIdentifier5(List<String> leafListIdentifier5) {
+    public void leafListIdentifier5(List<Long> leafListIdentifier5) {
         this.leafListIdentifier5 = leafListIdentifier5;
     }
     @Override
@@ -51,7 +51,7 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
      * @return list of leafListIdentifier5
      */
     @Override
-    public List<String> leafListIdentifier5() {
+    public List<Long> leafListIdentifier5() {
         return leafListIdentifier5;
     }
 
@@ -222,8 +222,8 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
                 || containerIdentifier4.leafListIdentifier5().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer5Para : containerIdentifier4.leafListIdentifier5()) {
-            String storedLeafListIdentifier5 = findLeafListIdentifer2(leafListIdentifer5Para);
+        for (Long leafListIdentifer5Para : containerIdentifier4.leafListIdentifier5()) {
+            Long storedLeafListIdentifier5 = findLeafListIdentifer2(leafListIdentifer5Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -281,12 +281,12 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
 
     }
 
-    private String findLeafListIdentifer2(String leafListIdentifer) {
+    private Long findLeafListIdentifer2(Long leafListIdentifer) {
         if (leafListIdentifier5().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer2 : leafListIdentifier5()) {
+        for (Long leaflistIdentifer2 : leafListIdentifier5()) {
             if (leaflistIdentifer2.equals(leafListIdentifer)) {
                 return leaflistIdentifer2;
             }
@@ -294,7 +294,7 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
         return null;
     }
 
-    public void addToLeafListIdentifer5(String value) {
+    public void addToLeafListIdentifer5(Long value) {
         leafListIdentifier5().add(value);
     }
 

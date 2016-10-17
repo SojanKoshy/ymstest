@@ -20,7 +20,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
 
     private BitSet leafIdentifer4;
 
-    private List<String> leafListIdentifier4 = new ArrayList<>();
+    private List<BitSet> leafListIdentifier4 = new ArrayList<>();
 
     //store need to be created
     private List<ListIdentifier4> listIdentifier4 = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
         this.leafIdentifer4 = leafIdentifer4;
     }
 
-    public void leafListIdentifier4(List<String> leafListIdentifier4) {
+    public void leafListIdentifier4(List<BitSet> leafListIdentifier4) {
         this.leafListIdentifier4 = leafListIdentifier4;
     }
     @Override
@@ -63,7 +63,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
      * @return list of leafListIdentifier4
      */
     @Override
-    public List<String> leafListIdentifier4() {
+    public List<BitSet> leafListIdentifier4() {
         return leafListIdentifier4;
     }
 
@@ -138,7 +138,7 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
         return false;
     }
 
-    public void addToLeafListIdentifer4(String value) {
+    public void addToLeafListIdentifer4(BitSet value) {
         leafListIdentifier4().add(value);
     }
 
@@ -247,8 +247,8 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
                 || listIdentifier3.leafListIdentifier4().isEmpty()) {
             return;
         }
-        for (String leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
-            String storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
+        for (BitSet leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
+            BitSet storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -306,12 +306,12 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
 
     }
 
-    private String findLeafListIdentifer4(String leafListIdentifer) {
+    private BitSet findLeafListIdentifer4(BitSet leafListIdentifer) {
         if (leafListIdentifier4().isEmpty()) {
             return null;
         }
 
-        for (String leaflistIdentifer4 : leafListIdentifier4()) {
+        for (BitSet leaflistIdentifer4 : leafListIdentifier4()) {
             if (leaflistIdentifer4.equals(leafListIdentifer)) {
                 return leaflistIdentifer4;
             }

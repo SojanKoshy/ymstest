@@ -2217,14 +2217,10 @@ module module-identifier0 {
         reference "leaf-reference-string4";
       }
       leaf-list leaf-list-identifier3 {
-        type string {
+        type binary {
           length "1..255" {
             description "length-description-string6";
             reference "length-reference-string6";
-          }
-          pattern "type-pattern-string5" {
-            description "pattern-description-string6";
-            reference "pattern-reference-string6";
           }
         }
         units "leaf-list-units-string4";
@@ -2251,16 +2247,12 @@ module module-identifier0 {
           reference "leaf-reference-string5";
         }
         leaf-list leaf-list-identifier4 {
-          type string {
-            length "1..255" {
-              description "length-description-string7";
-              reference "length-reference-string7";
-            }
-            pattern "type-pattern-string6" {
-              description "pattern-description-string7";
-              reference "pattern-reference-string7";
-            }
-          }
+          type bits {
+                        bit bit1;
+                        bit bit2;
+                        bit bit3;
+                        bit bit4;
+           }
           units "leaf-list-units-string5";
           min-elements 1;
           max-elements 1;
@@ -2280,16 +2272,7 @@ module module-identifier0 {
             reference "leaf-reference-string6";
           }
           leaf-list leaf-list-identifier5 {
-            type string {
-              length "1..255" {
-                description "length-description-string8";
-                reference "length-reference-string8";
-              }
-              pattern "type-pattern-string7" {
-                description "pattern-description-string8";
-                reference "pattern-reference-string8";
-              }
-            }
+            type boolean ;
             units "leaf-list-units-string6";
             min-elements 1;
             max-elements 1;
@@ -2308,16 +2291,9 @@ module module-identifier0 {
       reference "leaf-reference-string3";
     }
     leaf-list leaf-list-identifier2 {
-      type string {
-        length "1..255" {
-          description "length-description-string5";
-          reference "length-reference-string5";
-        }
-        pattern "type-pattern-string4" {
-          description "pattern-description-string5";
-          reference "pattern-reference-string5";
-        }
-      }
+      type decimal64 {
+              fraction-digits 2;
+            }
       units "leaf-list-units-string3";
       min-elements 1;
       max-elements 1;
@@ -2341,16 +2317,7 @@ module module-identifier0 {
           reference "leaf-reference-string5";
         }
         leaf-list leaf-list-identifier4 {
-          type string {
-            length "1..255" {
-              description "length-description-string7";
-              reference "length-reference-string7";
-            }
-            pattern "type-pattern-string6" {
-              description "pattern-description-string7";
-              reference "pattern-reference-string7";
-            }
-          }
+          type empty;
           units "leaf-list-units-string5";
           min-elements 1;
           max-elements 1;
@@ -2408,16 +2375,10 @@ module module-identifier0 {
         reference "leaf-reference-string4";
       }
       leaf-list leaf-list-identifier3 {
-        type string {
-          length "1..255" {
-            description "length-description-string6";
-            reference "length-reference-string6";
-          }
-          pattern "type-pattern-string5" {
-            description "pattern-description-string6";
-            reference "pattern-reference-string6";
-          }
-        }
+        type enumeration {
+                  enum "enum1";
+                  enum "enum2";
+                }
         units "leaf-list-units-string4";
         min-elements 1;
         max-elements 1;
@@ -2476,16 +2437,9 @@ module module-identifier0 {
           reference "leaf-reference-string5";
         }
         leaf-list leaf-list-identifier4 {
-          type string {
-            length "1..255" {
-              description "length-description-string7";
-              reference "length-reference-string7";
-            }
-            pattern "type-pattern-string6" {
-              description "pattern-description-string7";
-              reference "pattern-reference-string7";
-            }
-          }
+          type identityref {
+                        base prefix-identifier2:my-identity;
+                      }
           units "leaf-list-units-string5";
           min-elements 1;
           max-elements 1;
@@ -2502,19 +2456,10 @@ module module-identifier0 {
     reference "leaf-reference-string2";
   }
   leaf-list leaf-list-identifier1 {
-    type string {
-      length "1..255" {
-        description "length-description-string4";
-        reference "length-reference-string4";
-      }
-      pattern "type-pattern-string3" {
-        description "pattern-description-string4";
-        reference "pattern-reference-string4";
-      }
-    }
+    type int8;
     units "leaf-list-units-string2";
     min-elements 1;
-    max-elements 1;
+    max-elements 2;
     description "leaf-list-description-string2";
     reference "leaf-list-reference-string2";
   }
@@ -2539,16 +2484,7 @@ module module-identifier0 {
           reference "leaf-reference-string5";
         }
         leaf-list leaf-list-identifier4 {
-          type string {
-            length "1..255" {
-              description "length-description-string7";
-              reference "length-reference-string7";
-            }
-            pattern "type-pattern-string6" {
-              description "pattern-description-string7";
-              reference "pattern-reference-string7";
-            }
-          }
+          type int16;
           units "leaf-list-units-string5";
           min-elements 1;
           max-elements 1;
@@ -2568,16 +2504,7 @@ module module-identifier0 {
             reference "leaf-reference-string6";
           }
           leaf-list leaf-list-identifier5 {
-            type string {
-              length "1..255" {
-                description "length-description-string8";
-                reference "length-reference-string8";
-              }
-              pattern "type-pattern-string7" {
-                description "pattern-description-string8";
-                reference "pattern-reference-string8";
-              }
-            }
+            type int32;
             units "leaf-list-units-string6";
             min-elements 1;
             max-elements 1;
@@ -2593,16 +2520,7 @@ module module-identifier0 {
         reference "leaf-reference-string4";
       }
       leaf-list leaf-list-identifier3 {
-        type string {
-          length "1..255" {
-            description "length-description-string6";
-            reference "length-reference-string6";
-          }
-          pattern "type-pattern-string5" {
-            description "pattern-description-string6";
-            reference "pattern-reference-string6";
-          }
-        }
+        type int64;
         units "leaf-list-units-string4";
         min-elements 1;
         max-elements 1;
@@ -2659,16 +2577,7 @@ module module-identifier0 {
           reference "leaf-reference-string5";
         }
         leaf-list leaf-list-identifier4 {
-          type string {
-            length "1..255" {
-              description "length-description-string7";
-              reference "length-reference-string7";
-            }
-            pattern "type-pattern-string6" {
-              description "pattern-description-string7";
-              reference "pattern-reference-string7";
-            }
-          }
+          type uint8;
           units "leaf-list-units-string5";
           min-elements 1;
           max-elements 1;
@@ -2684,16 +2593,7 @@ module module-identifier0 {
       reference "leaf-reference-string3";
     }
     leaf-list leaf-list-identifier2 {
-      type string {
-        length "1..255" {
-          description "length-description-string5";
-          reference "length-reference-string5";
-        }
-        pattern "type-pattern-string4" {
-          description "pattern-description-string5";
-          reference "pattern-reference-string5";
-        }
-      }
+      type uint16;
       units "leaf-list-units-string3";
       min-elements 1;
       max-elements 1;
@@ -2721,16 +2621,7 @@ module module-identifier0 {
             reference "leaf-reference-string6";
           }
           leaf-list leaf-list-identifier5 {
-            type string {
-              length "1..255" {
-                description "length-description-string8";
-                reference "length-reference-string8";
-              }
-              pattern "type-pattern-string7" {
-                description "pattern-description-string8";
-                reference "pattern-reference-string8";
-              }
-            }
+            type uint32;
             units "leaf-list-units-string6";
             min-elements 1;
             max-elements 1;
@@ -2745,16 +2636,7 @@ module module-identifier0 {
           reference "leaf-reference-string5";
         }
         leaf-list leaf-list-identifier4 {
-          type string {
-            length "1..255" {
-              description "length-description-string7";
-              reference "length-reference-string7";
-            }
-            pattern "type-pattern-string6" {
-              description "pattern-description-string7";
-              reference "pattern-reference-string7";
-            }
-          }
+          type uint64;
           units "leaf-list-units-string5";
           min-elements 1;
           max-elements 1;
