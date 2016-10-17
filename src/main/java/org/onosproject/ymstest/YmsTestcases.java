@@ -5,7 +5,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
+import org.onosproject.yang.gen.v1.urn.ietf.rev20130715.IetfInetTypes;
 import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.pcecc.rev20161005.PceccService;
+import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.types.rev20161005.PcepTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -1086,6 +1088,8 @@ public class YmsTestcases {
         YmsService ymsService = get(YmsService.class);
         PceccManager manager = new PceccManager();
         ymsService.registerService(manager, PceccService.class, null);
+        ymsService.registerService(null, PcepTypes.class, null);
+        ymsService.registerService(null, IetfInetTypes.class, null);
         print("Registered Pcecc service in YMS");
 
         try {
@@ -1098,11 +1102,16 @@ public class YmsTestcases {
         String body = "{\n" +
                 "    \"pcecc-pkt\": {\n" +
                 "        \"request\" : {\n" +
-                "            \n" +
+                "            \"request-id\" : \"12\"\n" +
                 "        },\n" +
                 "        \"networklist\": [{\n" +
                 "             \"network-id\": \"123\"\n" +
                 "        }]\n" +
+                "    },\n" +
+                "    \"ip-address\" : {\n" +
+                "        \"ipv4\" : {\n" +
+                "            \"source-ipv4-address\" : \"1.1.1.1%1\"\n" +
+                "        }\n" +
                 "    }\n" +
                 "}";
 
