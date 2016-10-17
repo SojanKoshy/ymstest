@@ -1,0 +1,93 @@
+module pcep-types {
+    yang-version 1;
+    namespace "urn:ns:yang:pcep:types";
+    prefix "pcep-t";
+    import ietf-inet-types { prefix inet; revision-date 2013-07-15; }
+
+    revision "2016-10-05" {
+        description
+            "Initial revision.";
+        reference "RFC5440";
+    }
+
+    typedef request-id {
+        type uint32 {
+            range 1..max;
+        }
+    }
+
+    grouping tlv {
+        description "TLV groupings.";
+
+    }
+
+    grouping request-tlv {
+        container request {
+            uses tlv;
+            leaf request-id {
+                type request-id;
+            }
+        }
+    }
+
+    grouping endpoints {
+        choice address-family {
+            mandatory true;
+
+            case ipv4-case {
+                container ipv4 {
+                    leaf source-ipv4-address {
+                        type inet:ipv4-address;
+                        mandatory true;
+                    }
+
+                    leaf destination-ipv4-address {
+                        type inet:ipv4-address;
+                        mandatory true;
+                    }
+                }
+            }
+            case ipv6-case {
+                container ipv6 {
+                    leaf source-ipv6-address {
+                        type inet:ipv6-address;
+                        mandatory true;
+                    }
+
+                    leaf destination-ipv6-address {
+                        type inet:ipv6-address;
+                        mandatory true;
+                    }
+                }
+            }
+        }
+    }
+
+    grouping objectsheader {
+        leaf ignore {
+            type boolean;
+            default false;
+        }
+    }
+
+    grouping object {
+        uses objectsheader;
+    }
+
+    grouping nopath {
+        uses object;
+
+        leaf nature-of-issue {
+            type uint8;
+            mandatory true;
+        }
+
+        leaf unsatisfied-constraints {
+            when "nature-of-issue = 0" {
+            }
+            type boolean;
+            default false;
+        }
+    }
+
+}
