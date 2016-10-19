@@ -1,0 +1,67 @@
+module pcecc {
+    yang-version 1;
+    namespace "urn:ns:yang:pcep:pcecc";
+    prefix "pcecc";
+    import pcep-types { prefix pcep-types; revision-date 2016-10-05; }
+    import ietf-inet-types { prefix inet; revision-date 2013-07-15; }
+
+    revision "2016-10-05";
+
+
+    grouping pcecc-msg {
+        uses pcep-types:tlv;
+        uses pcep-types:request-tlv;
+        uses pcep-types:endpoints;
+        uses pcep-types:nopath;
+        container response {
+
+        }
+    }
+
+    container pcecc-pkt {
+        uses pcecc-msg;
+        container responses {
+
+        }
+        list networklist {
+            key "network-id";
+            leaf network-id {
+                type string;
+            }
+        }
+    }
+
+    container ip-address {
+        choice address-family {
+            mandatory true;
+
+            case ipv4-case {
+                container ipv4 {
+                    leaf source-ipv4-address {
+                        type inet:ipv4-address;
+                        mandatory true;
+                    }
+
+                    leaf destination-ipv4-address {
+                        type inet:ipv4-address;
+                        mandatory true;
+                    }
+                }
+            }
+            case ipv6-case {
+                container ipv6 {
+                    leaf source-ipv6-address {
+                        type inet:ipv6-address;
+                        mandatory true;
+                    }
+
+                    leaf destination-ipv6-address {
+                        type inet:ipv6-address;
+                        mandatory true;
+                    }
+                }
+            }
+        }
+    }
+
+}

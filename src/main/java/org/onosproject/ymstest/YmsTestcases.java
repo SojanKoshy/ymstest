@@ -5,6 +5,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
+import org.onosproject.yang.gen.v1.urn.ietf.rev20130715.IetfInetTypes;
+import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.pcecc.rev20161005.PceccService;
+import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.types.rev20161005.PcepTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -43,6 +46,7 @@ import org.onosproject.ymstest.module.MultiNotificationListener;
 import org.onosproject.ymstest.module.MultiNotificationManger;
 import org.onosproject.ymstest.module.NetworkManager;
 import org.onosproject.ymstest.module.NetworkManagerExt;
+import org.onosproject.ymstest.pcep.PceccManager;
 import org.onosproject.ymstest.module.SimpleDataTypesManager;
 import org.onosproject.ymstest.module.SimpleRpcManager;
 
@@ -868,11 +872,7 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         Network network = manager.getNetwork((NetworkOpParam)
                 NetworkOpParam.builder().build());
 
@@ -957,16 +957,11 @@ public class YmsTestcases {
                 "\t\t\t}\n" +
                 "\t\t\t}";
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         post(uri, body);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
        /*  ModuleIdentifier0 moduleIdentifier0 = manager.getModuleIdentifier0((ModuleIdentifier0OpParam) ModuleIdentifier0OpParam.builder().build());
         byte[] x = {1,0,1,1,0};
         byte[] result1= moduleIdentifier0.containerIdentifier1().containerIdentifier2().leafIdentifier3();
@@ -1083,6 +1078,45 @@ public class YmsTestcases {
 //            result = false;
 //            print("Encoded xml output not matching with expected");
 //        }
+
+        return result;
+    }
+
+    public boolean testPcecc() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+        PceccManager manager = new PceccManager();
+        ymsService.registerService(manager, PceccService.class, null);
+        ymsService.registerService(null, PcepTypes.class, null);
+        ymsService.registerService(null, IetfInetTypes.class, null);
+        print("Registered Pcecc service in YMS");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/pcecc";
+        String body = "{\n" +
+                "    \"pcecc-pkt\": {\n" +
+                "        \"request\" : {\n" +
+                "            \"request-id\" : \"12\"\n" +
+                "        },\n" +
+                "        \"networklist\": [{\n" +
+                "             \"network-id\": \"123\"\n" +
+                "        }]\n" +
+                "    },\n" +
+                "    \"ip-address\" : {\n" +
+                "        \"ipv4\" : {\n" +
+                "            \"source-ipv4-address\" : \"1.1.1.1%1\"\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+
+        post(uri, body);
+
 
         return result;
     }
