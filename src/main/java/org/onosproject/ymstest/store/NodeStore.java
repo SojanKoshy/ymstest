@@ -163,7 +163,7 @@ public class NodeStore
 
         switch (opNode.yangNodeOpType()) {
             case CREATE: {
-                if (nodePara.nodeId() != null) {
+                if (nodePara.nodeId() == null) {
                     throw new RuntimeException("Key: node.nodeId() is null");
                 }
                 nodeId(nodePara.nodeId());

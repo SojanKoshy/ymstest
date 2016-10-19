@@ -44,9 +44,9 @@ public class TopologyStore
 
     private Node findNodeInStore(Node findNode) {
         for (Node node : nodeStoreList) {
-//            if (node.nodeId() == null) {
-//                continue;
-//            }
+            if (node.nodeId() == null) {
+                continue;
+            }
             if (node.nodeId().equals(findNode.nodeId())) {
                 return node;
             }
