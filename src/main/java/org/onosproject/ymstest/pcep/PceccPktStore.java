@@ -82,11 +82,6 @@ public class PceccPktStore implements PceccPkt {
     }
 
     @Override
-    public PceccPkt processSubtreeFiltering(PceccPkt pceccPkt, boolean isSelectAllSchemaChild) {
-        return null;
-    }
-
-    @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
         return false;
     }

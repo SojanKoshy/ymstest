@@ -28,8 +28,4 @@ public class PceccStore implements Pcecc {
         return null;
     }
 
-    @Override
-    public Pcecc processSubtreeFiltering(Pcecc pcecc, boolean isSelectAllSchemaChild) {
-        return null;
-    }
 }
