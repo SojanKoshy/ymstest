@@ -52,11 +52,11 @@ public class TerminationPointStore
         return yangAugmentedInfoMap;
     }
 
-    @Override
+   /* @Override
     public TerminationPoint processSubtreeFiltering(
             TerminationPoint terminationPoint, boolean isSelectAllSchemaChild) {
         return null;
-    }
+    }*/
 
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {

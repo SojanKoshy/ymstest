@@ -35,11 +35,11 @@ public class NetworkPathStore implements NetworkPath {
         return null;
     }
 
-    @Override
+    /*@Override
     public NetworkPath processSubtreeFiltering(NetworkPath networkPath, boolean isSelectAllSchemaChild) {
         return null;
     }
-
+*/
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
         return false;

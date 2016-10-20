@@ -12,7 +12,7 @@ import java.util.BitSet;
 /**
  * Created by root1 on 13/10/16.
  */
-public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOperationProcessor {
+public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry, AugmentedOperationProcessor {
     protected Augment1.OnosYangOpType onosYangOpType;
     private byte ifType;
     private int uid;
@@ -25,12 +25,16 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
         this.uid = uid;
     }
 
+    public boolean isSubTreeFiltered() {
+        return false;
+    }
+
     /**
      * Returns the attribute ifType1.
      *
      * @return ifType1 value of ifType1
      */
-    public byte ifType1(){
+    public byte ifType1() {
         return ifType;
     }
 
@@ -39,7 +43,7 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
      *
      * @return uid value of uid
      */
-    public int uid(){
+    public int uid() {
         return uid;
     }
 
@@ -48,7 +52,7 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
      *
      * @return valueLeafFlags value of valueLeafFlags
      */
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
 
@@ -57,7 +61,7 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
      *
      * @return yangAugmentedAuIfEntryOpType value of yangAugmentedAuIfEntryOpType
      */
-    public Augment1.OnosYangOpType yangAugmentedAuIfEntryOpType(){
+    public Augment1.OnosYangOpType yangAugmentedAuIfEntryOpType() {
         return onosYangOpType;
     }
 
@@ -66,19 +70,19 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
      *
      * @return selectLeafFlags value of selectLeafFlags
      */
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
 
     /**
      * Checks if the passed AugmentedAuIfEntry maps the content match query condition.
      *
-     * @param augmentedAuIfEntry augmentedAuIfEntry being passed to check for content match
+     * @param augmentedAuIfEntry     augmentedAuIfEntry being passed to check for content match
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
      */
     public AugmentedAuIfEntry processSubtreeFiltering(AugmentedAuIfEntry augmentedAuIfEntry, boolean
-            isSelectAllSchemaChild){
+            isSelectAllSchemaChild) {
         return null;
     }
 
@@ -88,8 +92,8 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
      * @param leaf leaf whose value status needs to checked
      * @return result of leaf value set in object
      */
-    public boolean isLeafValueSet(LeafIdentifier leaf){
-        return (new Byte(ifType1())!=null && new Integer(uid())!=null);
+    public boolean isLeafValueSet(LeafIdentifier leaf) {
+        return (new Byte(ifType1()) != null && new Integer(uid()) != null);
     }
 
     /**
@@ -98,7 +102,7 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
      * @param leaf if leaf needs to be selected
      * @return result of leaf value set in object
      */
-    public boolean isSelectLeaf(LeafIdentifier leaf){
+    public boolean isSelectLeaf(LeafIdentifier leaf) {
         return false;
     }
 
@@ -157,7 +161,7 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
                         "present");
             }
             case DELETE: {
-                if (uid() != augmentedTopoNodePara.uid() && ifType1() !=augmentedTopoNodePara.ifType1()) {
+                if (uid() != augmentedTopoNodePara.uid() && ifType1() != augmentedTopoNodePara.ifType1()) {
                     throw new RuntimeException("No augmented topo node to " +
                             "delete");
                 }
@@ -174,7 +178,7 @@ public class AugmentedAuIfEntryStore implements AugmentedAuIfEntry ,AugmentedOpe
             }
 
             case REMOVE: {
-                if (uid() != augmentedTopoNodePara.uid() && ifType1() !=augmentedTopoNodePara.ifType1())  {
+                if (uid() != augmentedTopoNodePara.uid() && ifType1() != augmentedTopoNodePara.ifType1()) {
                     output.mapOperate = AugmentEditMapOperate.NO_MAP_OPERATION;
                     return output;
                 }

@@ -563,7 +563,6 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        ymsService.registerService(new NetworkManager(), NetworkService.class, null);
         ymsService.registerService(new TopologyManager(), TopologyService.class, null);
         ymsService.registerService(new Agument1Manager(), Augment1Service.class, null);
         ymsService.registerService(new IpTopologyManager(), IpTopologyService.class, null);
@@ -955,18 +954,54 @@ public class YmsTestcases {
         String body = "{\n" +
                 "\t\"container-identifier1\": {\n" +
                 "\t\t\"container-identifier2\": {\n" +
-                "\t\t\t\"leaf-identifier3\": \"LQ==\"\n" +
+                "\t\t\t\"leaf-identifier3\": \"LQ==\",\n" +
+                "\t\t\t\"leaf-list-identifier3\": [\"LQ==\"],\n" +
+                "\t\t\t\"list-identifier3\": [{\n" +
+                "\t\t\t\t\"leaf-identifier4\": \"bit2\",\n" +
+                "\t\t\t\t\"leaf-list-identifier4\": [\"bit1\"],\n" +
+                "\n" +
+                "\t\t\t\t\"list-identifier4\": [{\n" +
+                "\t\t\t\t\t\"leaf-identifier5\": \"false\",\n" +
+                "\t\t\t\t\t\"leaf-list-identifier5\": [\"true\"]\n" +
+                "\t\t\t\t}]\n" +
+                "\t\t\t}]\n" +
+                "\n" +
+                "\t\t},\n" +
+                "\t\t\"leaf-identifier2\": \"-9.999999999999999e11\",\n" +
+                "\t\t\"leaf-list-identifier2\": [\"-9.999999999999999e1\"],\n" +
+                "\t\t\"list-identifier2\": [{\n" +
+                "\t\t\t\"leaf-identifier3\": \"enum1\",\n" +
+                "\t\t\t\"leaf-list-identifier3\": [\"enum1\"],\n" +
+                "\t\t\t\"container-identifier3\": {\n" +
+                "\t\t\t\t\"leaf-identifier4\": \"\",\n" +
+                "\t\t\t\t\"leaf-list-identifier4\": [\"\"],\n" +
+                "\t\t\t\t\"list-identifier4\": [{\n" +
+                "\t\t\t\t\t\"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "\t\t\t\t\t\"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "\t\t\t\t}]\n" +
                 "\t\t\t}\n" +
-                "\t\t\t}\n" +
-                "\t\t\t}";
+                "\t\t}, {\t\n" +
+                "\t\t\t\"leaf-identifier3\": \"enum2\",\n" +
+                "\t\t\t\"list-identifier3\": [{\n" +
+                "\t\t\t\t\"leaf-identifier4\": \"myidentity\",\n" +
+                "\t\t\t\t\"container-identifier4\": {\t\n" +
+                "\t\t\t\t\t\"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "\t\t\t\t\t\"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "\t\t\t\t},\n" +
+                "\t\t\t\t\"leaf-list-identifier4\": [\"myidentity\"]\n" +
+                "\t\t\t}]\n" +
+                "\n" +
+                "\t\t}]\n" +
+                "\t}\n" +
+                "\t}";
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         post(uri, body);
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -982,6 +1017,44 @@ public class YmsTestcases {
        if(i != x.length-1){
             System.out.println("fail");
        }*/
+        // Get YANG codec handler
+        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
+        yangCodecHandler.addDeviceSchema(ModuleIdentifier0.class);
+
+        // Build YANG module object
+        List<Object> yangModuleList = new ArrayList<>();
+//        Networklist networklist = DefaultNetworklist.builder().networkId("1000").serverProvided("1000").build();
+//        List<Networklist> networklists = new ArrayList<Networklist>();
+//        networklists.add(networklist);
+//        NetworkPath networkPath = DefaultNetworkPath.builder().source("10.1.1.1").build();
+//
+//        Object object = NetworkOpParam.builder().name("My network").isHappy(true)
+//                .surname("Surname").networkPath(networkPath).networklist(networklists).build();
+//
+//        yangModuleList.add(object);
+
+        yangModuleList.add(manager.getAppStore());
+
+        // Get the XML string and compare
+        Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
+        tagAttributeLinkedMap.put("type", "subtree");
+
+        // Encode JO to XML
+        String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
+                YmsOperationType.RPC_REQUEST);
+
+        if (xmlOutput == null) {
+            print("xmlOutput is Null");
+        }
+
+        // Verify xml output
+        String xmlPrettyOutput = prettyFormat(xmlOutput);
+        print(xmlPrettyOutput);
         return result;
     }
 
@@ -1004,18 +1077,90 @@ public class YmsTestcases {
         String body = "{\n" +
                 "    \"container-identifier1\": {\n" +
                 "        \"container-identifier2\": {\n" +
-                "            \"leaf-identifier3\": \"10111011\",\n" +
-                "            \"leaf-list-identifier3\": [\"type-pattern-string5\", \"type-pattern-string5\", \"type-pattern-string5\"],\n" +
+                "            \"leaf-identifier3\": \"LQ==\",\n" +
+                "            \"leaf-list-identifier3\": [\"LQ==\", \"LQ==\", \"LQ==\"],\n" +
                 "            \"list-identifier3\": [{\n" +
                 "                \"leaf-identifier4\": \"bit2\",\n" +
-                "                \"leaf-list-identifier4\": [\"type-pattern-string6\"],\n" +
+                "                \"leaf-list-identifier4\": [\"bit1\"],\n" +
+                "\n" +
                 "                \"list-identifier4\": [{\n" +
                 "                    \"leaf-identifier5\": \"false\",\n" +
-                "                    \"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "                    \"leaf-list-identifier5\": [\"true\"]\n" +
                 "                }]\n" +
                 "            }]\n" +
+                "\n" +
+                "        },\n" +
+                "        \"leaf-identifier2\": \"-9.999999999999999e11\",\n" +
+                "        \"leaf-list-identifier2\": [\"-9.999999999999999e1\", \"-9.33333\", \"-9.999999999999999e2\"],\n" +
+                "        \"list-identifier2\": [{\n" +
+                "            \"leaf-identifier3\": \"enum1\",\n" +
+                "            \"leaf-list-identifier3\": [\"enum1\"],\n" +
+                "            \"container-identifier3\": {\n" +
+                "                \"leaf-identifier4\": \"\",\n" +
+                "                \"leaf-list-identifier4\": [\"\"],\n" +
+                "                \"list-identifier4\": [{\n" +
+                "                    \"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "                    \"leaf-list-identifier5\": [\"type-pattern-string7\", \"type-pattern-string7\", \"type-pattern-string7\"]\n" +
+                "                }]\n" +
+                "            }\n" +
+                "        }, {\n" +
+                "            \"leaf-identifier3\": \"enum2\",\n" +
+                "            \"list-identifier3\": [{\n" +
+                "                \"leaf-identifier4\": \"myidentity\",\n" +
+                "                \"container-identifier4\": {\n" +
+                "                    \"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "                    \"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "                },\n" +
+                "                \"leaf-list-identifier4\": [\"myidentity\"]\n" +
+                "            }]\n" +
+                "\n" +
+                "        }]\n" +
+                "    },\n" +
+                "\n" +
+                "    \"leaf-identifier1\": \"-120\",\n" +
+                "    \"leaf-list-identifier1\": [\"-120\"],\n" +
+                "    \"list-identifier1\": [{\n" +
+                "            \"leaf-identifier1\": \"-120\",\n" +
+                "            \"container-identifier2\": {\n" +
+                "                \"container-identifier3\": {\n" +
+                "                    \"leaf-identifier4\": \"22369\",\n" +
+                "                    \"leaf-list-identifier4\": [\"22369\"],\n" +
+                "                    \"list-identifier4\": [{\n" +
+                "                        \"leaf-identifier5\": \"123456789\",\n" +
+                "                        \"leaf-list-identifier5\": [\"123456789\"]\n" +
+                "                    }]\n" +
+                "                },\n" +
+                "                \"leaf-identifier3\": \"8123456789569005\",\n" +
+                "                \"leaf-list-identifier3\": [\"8123456789569005\"],\n" +
+                "                \"list-identifier3\": [{\n" +
+                "                    \"leaf-identifier4\": \"150\",\n" +
+                "                    \"leaf-list-identifier4\": [\"150\"],\n" +
+                "                    \"container-identifier4\": {\n" +
+                "                        \"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "                        \"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "                    }\n" +
+                "\n" +
+                "                }]\n" +
+                "\n" +
+                "            },\n" +
+                "            \"leaf-identifier2\": \"56692\",\n" +
+                "            \"leaf-list-identifier2\": [\"56692\"],\n" +
+                "            \"list-identifier2\": [{\n" +
+                "                \"leaf-identifier3\": \"type-pattern-string5\",\n" +
+                "                \"leaf-list-identifier3\": [\"type-pattern-string5\"],\n" +
+                "                \"container-identifier3\": {\n" +
+                "                    \"container-identifier4\": {\n" +
+                "                        \"leaf-identifier5\": \"1234567890\",\n" +
+                "                        \"leaf-list-identifier5\": [\"1234567890\"]\n" +
+                "                    },\n" +
+                "                    \"leaf-identifier4\": \"1234567890567889\",\n" +
+                "                    \"leaf-list-identifier4\": [\"1234567890567889\"]\n" +
+                "                }\n" +
+                "\n" +
+                "            }]\n" +
                 "        }\n" +
-                "    }\n" +
+                "\n" +
+                "    ]\n" +
                 "\n" +
                 "\n" +
                 "}";
@@ -1025,6 +1170,11 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         // Get YANG codec handler

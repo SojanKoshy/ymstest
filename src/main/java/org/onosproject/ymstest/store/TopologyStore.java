@@ -36,11 +36,11 @@ public class TopologyStore
         node().add(value);
     }
 
-    @Override
+    /*@Override
     public Topology processSubtreeFiltering(Topology topology,
                                             boolean isSelectAllSchemaChild) {
         return null;
-    }
+    }*/
 
     private Node findNodeInStore(Node findNode) {
         for (Node node : nodeStoreList) {

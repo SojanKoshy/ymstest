@@ -90,11 +90,11 @@ public class NetworkStore
         return;
     }
 
-    @Override
+    /*@Override
     public Network processSubtreeFiltering(Network network, boolean isSelectAllSchemaChild) {
         return null;
     }
-
+*/
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
         return getValueLeafFlags().get(leaf.getLeafIndex());

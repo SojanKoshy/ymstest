@@ -35,6 +35,11 @@ public class AugmentedTopoNodeStore
     public void routerId(String routerId) {
         this.routerId = routerId;
     }
+    @Override
+    public boolean isSubTreeFiltered() {
+        return false;
+    }
+/*
 
     @Override
     public AugmentedTopoNode processSubtreeFiltering(
@@ -42,6 +47,7 @@ public class AugmentedTopoNodeStore
             boolean isSelectAllSchemaChild) {
         return null;
     }
+*/
 
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {

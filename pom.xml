@@ -53,7 +53,7 @@
             <version>${project.version}</version>
         </dependency>
 
-        <dependency>
+       <!-- <dependency>
             <groupId>org.onosproject</groupId>
             <artifactId>onos-yang-maven-plugin</artifactId>
             <version>1.9.0-SNAPSHOT</version>
@@ -63,7 +63,7 @@
             <groupId>org.onosproject</groupId>
             <artifactId>onos-yang-datamodel</artifactId>
             <version>1.9.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.onosproject</groupId>
@@ -94,7 +94,7 @@
             <plugin>
                 <groupId>org.onosproject</groupId>
                 <artifactId>onos-yang-maven-plugin</artifactId>
-                <version>1.9.0-SNAPSHOT</version>
+                <version>1.10-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <goals>

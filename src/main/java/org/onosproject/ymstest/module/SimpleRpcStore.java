@@ -12,9 +12,9 @@ public class SimpleRpcStore implements SimpleRpc {
         return null;
     }
 
-    @Override
+   /* @Override
     public SimpleRpc processSubtreeFiltering(SimpleRpc simpleRpc, boolean isSelectAllSchemaChild) {
         System.out.println("TODO: processSubtreeFiltering");
         return null;
-    }
+    }*/
 }

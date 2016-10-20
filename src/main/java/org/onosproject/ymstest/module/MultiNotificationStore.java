@@ -11,10 +11,10 @@ public class MultiNotificationStore implements MultiNotification {
         return null;
     }
 
-    @Override
+    /*@Override
     public MultiNotification processSubtreeFiltering(MultiNotification multiNotification,
                                                      boolean isSelectAllSchemaChild) {
         System.out.println("MultiNotificationStore:processSubtreeFiltering");
         return null;
-    }
+    }*/
 }

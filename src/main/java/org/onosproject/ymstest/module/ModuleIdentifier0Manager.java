@@ -12,7 +12,7 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 /**
  * Created by root1 on 14/9/16.
  */
-public class ModuleIdentifier0Manager  extends ListenerRegistry<ModuleIdentifier0Event, ModuleIdentifier0EventListener>
+public class ModuleIdentifier0Manager extends ListenerRegistry<ModuleIdentifier0Event, ModuleIdentifier0EventListener>
         implements ModuleIdentifier0Service {
 
 
@@ -29,7 +29,11 @@ public class ModuleIdentifier0Manager  extends ListenerRegistry<ModuleIdentifier
 
     @Override
     public void setModuleIdentifier0(ModuleIdentifier0OpParam moduleIdentifier0) {
-        appStore.processEdit(moduleIdentifier0);
+        if (moduleIdentifier0.yangModuleIdentifier0OpType() != ModuleIdentifier0.OnosYangOpType.DELETE) {
+            appStore.processEdit(moduleIdentifier0);
+        } else {
+            appStore = null;
+        }
     }
 
     @Override

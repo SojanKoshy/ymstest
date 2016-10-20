@@ -85,10 +85,10 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
      */
-    @Override
+  /*  @Override
     public ListIdentifier4 processSubtreeFiltering(ListIdentifier4 listIdentifier4, boolean isSelectAllSchemaChild) {
         return null;
-    }
+    }*/
     @Override
     public BitSet valueLeafFlags(){
         return null;

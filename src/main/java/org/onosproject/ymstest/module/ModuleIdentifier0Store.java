@@ -61,12 +61,12 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     public List<ListIdentifier1> listIdentifier1() {
         return listIdentifier1;
     }
-
+/*
     @Override
     public ModuleIdentifier0 processSubtreeFiltering(ModuleIdentifier0 moduleIdentifier0,
                                                      boolean isSelectAllSchemaChild) {
         return null;
-    }
+    }*/
     @Override
     public BitSet valueLeafFlags(){
         return null;

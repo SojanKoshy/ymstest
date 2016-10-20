@@ -40,10 +40,10 @@ public class Agument1Store implements Augment1 {
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
      */
-    @Override
+   /* @Override
     public Augment1 processSubtreeFiltering(Augment1 augment1, boolean isSelectAllSchemaChild){
         return null;
-    }
+    }*/
     public void processEdit(
             Augment1 nodePara) {
         if (nodePara.interfaces()== null) {

@@ -75,12 +75,12 @@ public class NodeStore
     public Map<Class<?>, Object> yangAugmentedInfoMap() {
         return yangAugmentedInfoMap;
     }
-
+/*
     @Override
     public Node processSubtreeFiltering(Node node,
                                         boolean isSelectAllSchemaChild) {
         return null;
-    }
+    }*/
 
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {

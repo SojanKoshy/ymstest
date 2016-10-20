@@ -64,13 +64,13 @@ public class TerminationPointsStore
         return null;
     }
 
-    @Override
+   /* @Override
     public TerminationPoints processSubtreeFiltering(
             TerminationPoints terminationPoints,
             boolean isSelectAllSchemaChild) {
         return null;
     }
-
+*/
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
         return isNoOfTpSet;
