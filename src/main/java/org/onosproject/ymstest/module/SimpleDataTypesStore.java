@@ -22,10 +22,6 @@ public class SimpleDataTypesStore implements SimpleDataTypes {
     public void cont(Cont cont){
         this.cont = cont;
     }
-    @Override
-    public SimpleDataTypes processSubtreeFiltering(SimpleDataTypes simpleDataTypes, boolean isSelectAllSchemaChild) {
-        return null;
-    }
 
     public void processEdit(SimpleDataTypesOpParam simpleDataTypesOpParam) {
         processContainer(simpleDataTypesOpParam, simpleDataTypesOpParam.yangSimpleDataTypesOpType());

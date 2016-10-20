@@ -567,6 +567,7 @@ public class YmsTestcases {
         ymsService.registerService(new Agument1Manager(), Augment1Service.class, null);
         ymsService.registerService(new IpTopologyManager(), IpTopologyService.class, null);
         ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
+        ymsService.registerService(new SimpleDataTypesManager(), SimpleDataTypesService.class, null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation
@@ -587,14 +588,80 @@ public class YmsTestcases {
         if (ymsService == null) {
             print("ymsService is Null");
         }
-
-        ymsService.registerService(new SimpleDataTypesManager(), SimpleDataTypesService.class, null);
-        ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
+        SimpleDataTypesManager manager = new SimpleDataTypesManager();
+        ymsService.registerService(manager, SimpleDataTypesService.class, null);
 
         print("Registered SimpleDataTypes service in YMS");
 
         // TODO Need to add validation
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/simple-data-types";
+        String body = "{\n" +
+                "\"cont\": {\n" +
+                " \"lfint8Min\": \"0\",\n" +
+                "      \"lfint8Max\": \"1\",\n" +
+                "      \"lfint16Min\": \"0\",\n" +
+                "      \"lfint16Max\": \"0\",\n" +
+                "      \"lfint32Min\": \"0\",\n" +
+                "      \"lfint32Max\": \"0\",\n" +
+                "      \"lfint64Min\": \"0\",\n" +
+                "      \"lfint64Max\": \"0\",\n" +
+                "      \"lfuint8Max\": \"0\",\n" +
+                "      \"lfuint16Max\": \"0\",\n" +
+                "      \"lfuint32Max\": \"0\",\n" +
+                "      \"lfuint64Max\": \"1\",\n" +
+                "      \"lfbool1\": \"false\",\n" +
+                "      \"lfbool2\": \"false\",\n" +
+                "      \"lfbool3\": \"false\",\n" +
+                "      \"lfdecimal1\": \"1\",\n" +
+                "      \"lfdecimal2\": \"1\",\n" +
+                "      \"lfdecimal3\": \"1\",\n" +
+                "      \"lfdecimal4\": \"1\",\n" +
+                "      \"lfdecimal6\": \"1\",\n" +
+                "      \"lfref2\": \"0\"\n" +
+                "}\n" +
+                "}";
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        post(uri, body);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
+
+        // Add device schema in YMS codec
+        yangCodecHandler.addDeviceSchema(SimpleDataTypesService.class);
+
+        // Build YANG module object
+        List<Object> yangModuleList = new ArrayList<>();
+
+        yangModuleList.add(manager.getAppDataStore());
+
+        // Get the XML string and compare
+        Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
+        tagAttributeLinkedMap.put("type", "subtree");
+
+        // Encode JO to XML
+        String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
+                YmsOperationType.RPC_REQUEST);
+
+        if (xmlOutput == null) {
+            print("xmlOutput is Null");
+        }
+
+        // Verify xml output
+        String xmlPrettyOutput = prettyFormat(xmlOutput);
+        print(xmlPrettyOutput);
         return result;
     }
 

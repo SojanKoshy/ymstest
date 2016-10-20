@@ -18,16 +18,5 @@ public class IpTopologyStore implements IpTopology {
         return null;
     }
 
-    /**
-     * Checks if the passed IpTopology maps the content match query condition.
-     *
-     * @param ipTopology ipTopology being passed to check for content match
-     * @param isSelectAllSchemaChild is select all schema child
-     * @return match result
-     */
-    @Override
-    public IpTopology processSubtreeFiltering(IpTopology ipTopology, boolean isSelectAllSchemaChild){
-        return null;
-    }
 
 }

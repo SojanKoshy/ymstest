@@ -32,6 +32,7 @@ import java.util.Map;
  */
 public class ContainerStore implements Cont {
     protected SimpleDataTypes.OnosYangOpType onosYangOpType;
+    protected BitSet valueLeafFlags = new BitSet();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
     private byte lfint8Max;
     private byte lfint8Min;
@@ -78,6 +79,7 @@ public class ContainerStore implements Cont {
     private List<List2> list2 = new ArrayList<>();
 
     public void lfint8Max(byte lfint8Max) {
+        valueLeafFlags.set(LeafIdentifier.LFINT8MAX.getLeafIndex());
         this.lfint8Max = lfint8Max;
     }
 
@@ -702,7 +704,8 @@ public class ContainerStore implements Cont {
      * @return result of leaf value set in object
      */
     public boolean isLeafValueSet(LeafIdentifier leaf) {
-        return (lfstr != null);
+        //return valueLeafFlags.get(leaf.getLeafIndex());
+        return (new Integer(lfint8Min) != null);
     }
 
     /**

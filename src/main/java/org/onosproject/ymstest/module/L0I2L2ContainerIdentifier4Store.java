@@ -102,7 +102,7 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
      */
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
-        if (new Long(leafIdentifier5) != null) {
+            if (new Long(leafIdentifier5) != null) {
             return true;
         }
         return false;

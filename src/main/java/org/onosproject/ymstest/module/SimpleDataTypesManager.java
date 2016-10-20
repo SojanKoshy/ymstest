@@ -9,8 +9,12 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataT
  */
 public class SimpleDataTypesManager implements SimpleDataTypesService {
 
-    private SimpleDataTypesStore appDataStore = new SimpleDataTypesStore();
 
+
+    private SimpleDataTypesStore appDataStore = new SimpleDataTypesStore();
+    public SimpleDataTypesStore getAppDataStore() {
+        return appDataStore;
+    }
     @Override
     public SimpleDataTypes getSimpleDataTypes(SimpleDataTypesOpParam simpleDataTypes) {
         return simpleDataTypes.processSubtreeFiltering(appDataStore, false);
