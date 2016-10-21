@@ -84,162 +84,202 @@ public class ContainerStore implements Cont {
     }
 
     public void lfint8Min(byte lfint8Min) {
+        valueLeafFlags.set(LeafIdentifier.LFINT8MIN.getLeafIndex());
         this.lfint8Min = lfint8Min;
     }
 
     public void lfint16Min(short lfint16Min) {
+        valueLeafFlags.set(LeafIdentifier.LFINT16MIN.getLeafIndex());
         this.lfint16Min = lfint16Min;
     }
 
     public void lfint16Max(short lfint16Max) {
+        valueLeafFlags.set(LeafIdentifier.LFINT16MAX.getLeafIndex());
         this.lfint16Max = lfint16Max;
     }
 
     public void lfint32Min(int lfint32Min) {
+        valueLeafFlags.set(LeafIdentifier.LFINT32MIN.getLeafIndex());
         this.lfint32Min = lfint32Min;
     }
 
     public void lfint32Max(int lfint32Max) {
+        valueLeafFlags.set(LeafIdentifier.LFINT32MAX.getLeafIndex());
         this.lfint32Max = lfint32Max;
     }
 
     public void lfint64Min(long lfint64Min) {
+        valueLeafFlags.set(LeafIdentifier.LFINT64MIN.getLeafIndex());
         this.lfint64Min = lfint64Min;
     }
 
     public void lfint64Max(long lfint64Max) {
+        valueLeafFlags.set(LeafIdentifier.LFINT64MAX.getLeafIndex());
         this.lfint64Max = lfint64Max;
     }
 
     public void lfuint8Max(short lfuint8Max) {
+        valueLeafFlags.set(LeafIdentifier.LFUINT8MAX.getLeafIndex());
         this.lfuint8Max = lfuint8Max;
     }
 
     public void lfuint16Max(int lfuint16Max) {
+        valueLeafFlags.set(LeafIdentifier.LFUINT16MAX.getLeafIndex());
         this.lfuint16Max = lfuint16Max;
     }
 
     public void lfuint32Max(long lfuint32Max) {
+        valueLeafFlags.set(LeafIdentifier.LFUINT32MAX.getLeafIndex());
         this.lfuint32Max = lfuint32Max;
     }
 
     public void lfstr(String lfstr) {
+        valueLeafFlags.set(LeafIdentifier.LFSTR.getLeafIndex());
         this.lfstr = lfstr;
     }
 
     public void lfuint64Max(BigInteger lfuint64Max) {
+        valueLeafFlags.set(LeafIdentifier.LFUINT64MAX.getLeafIndex());
         this.lfuint64Max = lfuint64Max;
     }
 
     public void lfstr1(String lfstr1) {
+        valueLeafFlags.set(LeafIdentifier.LFSTR1.getLeafIndex());
         this.lfstr1 = lfstr1;
     }
 
     public void lfbool1(boolean lfbool1) {
+        valueLeafFlags.set(LeafIdentifier.LFBOOL1.getLeafIndex());
         this.lfbool1 = lfbool1;
     }
 
     public void lfbool2(boolean lfbool2) {
+        valueLeafFlags.set(LeafIdentifier.LFBOOL2.getLeafIndex());
         this.lfbool2 = lfbool2;
     }
 
     public void lfbool3(boolean lfbool3) {
+        valueLeafFlags.set(LeafIdentifier.LFBOOL3.getLeafIndex());
         this.lfbool3 = lfbool3;
     }
 
     public void lfdecimal1(BigDecimal lfdecimal1) {
+        valueLeafFlags.set(LeafIdentifier.LFDECIMAL1.getLeafIndex());
         this.lfdecimal1 = lfdecimal1;
     }
 
     public void lfdecimal2(BigDecimal lfdecimal2) {
+        valueLeafFlags.set(LeafIdentifier.LFDECIMAL2.getLeafIndex());
         this.lfdecimal2 = lfdecimal2;
     }
 
     public void lfdecimal3(BigDecimal lfdecimal3) {
+        valueLeafFlags.set(LeafIdentifier.LFDECIMAL3.getLeafIndex());
         this.lfdecimal3 = lfdecimal3;
     }
 
     public void lfdecimal4(BigDecimal lfdecimal4) {
+        valueLeafFlags.set(LeafIdentifier.LFDECIMAL4.getLeafIndex());
         this.lfdecimal4 = lfdecimal4;
     }
 
     public void lfdecimal6(BigDecimal lfdecimal6) {
+        valueLeafFlags.set(LeafIdentifier.LFDECIMAL6.getLeafIndex());
         this.lfdecimal6 = lfdecimal6;
     }
 
     public void lfenum(LfenumEnum lfenum) {
+        valueLeafFlags.set(LeafIdentifier.LFENUM.getLeafIndex());
         this.lfenum = lfenum;
     }
 
     public void lfbits(BitSet lfbits) {
+        valueLeafFlags.set(LeafIdentifier.LFBITS.getLeafIndex());
         this.lfbits = lfbits;
     }
 
     public void lfbinary(byte[] lfbinary) {
+        valueLeafFlags.set(LeafIdentifier.LFBINARY.getLeafIndex());
         this.lfbinary = lfbinary;
     }
 
     public void lfref1(String lfref1) {
+        valueLeafFlags.set(LeafIdentifier.LFREF1.getLeafIndex());
         this.lfref1 = lfref1;
     }
 
     public void lfref2(byte lfref2) {
+        valueLeafFlags.set(LeafIdentifier.LFREF2.getLeafIndex());
         this.lfref2 = lfref2;
     }
 
     public void lfempty(boolean lfempty) {
+        valueLeafFlags.set(LeafIdentifier.LFEMPTY.getLeafIndex());
         this.lfempty = lfempty;
     }
 
     public void lfunion1(Lfunion1Union lfunion1) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION1.getLeafIndex());
         this.lfunion1 = lfunion1;
     }
 
     public void lfunion2(Lfunion2Union lfunion2) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION2.getLeafIndex());
         this.lfunion2 = lfunion2;
     }
 
     public void lfunion4(Lfunion4Union lfunion4) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION4.getLeafIndex());
         this.lfunion4 = lfunion4;
     }
 
     public void lfunion5(Lfunion5Union lfunion5) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION5.getLeafIndex());
         this.lfunion5 = lfunion5;
     }
 
     public void lfunion8(Lfunion8Union lfunion8) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION5.getLeafIndex());
         this.lfunion8 = lfunion8;
     }
 
     public void lfunion9(Lfunion9Union lfunion9) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION9.getLeafIndex());
         this.lfunion9 = lfunion9;
     }
 
     public void lfunion10(Lfunion10Union lfunion10) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION10.getLeafIndex());
         this.lfunion10 = lfunion10;
     }
 
     public void lfunion11(Lfunion11Union lfunion11) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION11.getLeafIndex());
         this.lfunion11 = lfunion11;
     }
 
     public void lfunion7(Tpdfun3 lfunion7) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION7.getLeafIndex());
         this.lfunion7 = lfunion7;
     }
 
     public void lfunion12(Tpdfun2 lfunion12) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION12.getLeafIndex());
         this.lfunion12 = lfunion12;
     }
 
     public void lfunion13(Tpdfbit lfunion13) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION13.getLeafIndex());
         this.lfunion13 = lfunion13;
     }
 
     public void lfunion14(Lfunion14Union lfunion14) {
+        valueLeafFlags.set(LeafIdentifier.LFUNION14.getLeafIndex());
         this.lfunion14 = lfunion14;
     }
 
     public void identityref1(Iden identityref1) {
+        valueLeafFlags.set(LeafIdentifier.IDENTITYREF1.getLeafIndex());
         this.identityref1 = identityref1;
     }
 
