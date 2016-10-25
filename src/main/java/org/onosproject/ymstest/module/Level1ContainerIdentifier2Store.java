@@ -146,6 +146,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
     }
 
     public void processEdit(ContainerIdentifier2 containerIdentifier2) {
+        ContainerIdentifier2 containerIdentifier = (ContainerIdentifier2)containerIdentifier2;
         if (!(containerIdentifier2 instanceof DefaultContainerIdentifier2)) {
             //Operations are part of the default Node
             throw new RuntimeException("default Node expected");
@@ -158,9 +159,9 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer3Edit(containerIdentifier2, containerNode.yangContainerIdentifier2OpType());
+        processLeafListIdentifer3Edit(containerIdentifier, containerNode.yangContainerIdentifier2OpType());
 
-        processListIdentifer2Edit(containerIdentifier2);
+        processListIdentifer2Edit(containerIdentifier);
 
        /* *//*
          * Process the augmented node contents
@@ -222,7 +223,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
 
             case REPLACE: {
 
-                leafIdentifier3(containerIdentifier2.leafIdentifier3());
+                leafIdentifier3(containerIdentifier.leafIdentifier3());
                 return;
             }
 
@@ -231,7 +232,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
                 return;
             }
             case MERGE: {
-                leafIdentifier3(containerIdentifier2.leafIdentifier3());
+                leafIdentifier3(containerIdentifier.leafIdentifier3());
                 return;
             }
             case NONE:

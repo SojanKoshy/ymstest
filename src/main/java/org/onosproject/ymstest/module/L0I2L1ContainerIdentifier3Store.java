@@ -239,7 +239,7 @@ public class L0I2L1ContainerIdentifier3Store implements ContainerIdentifier3 {
             return;
         }
         for (BigInteger leafListIdentifer4Para : listIdentifier4.leafListIdentifier4()) {
-            BigInteger storedLeafListIdentifier5 = findLeafListIdentifer5(leafListIdentifer4Para);
+            BigInteger storedLeafListIdentifier5 =  findLeafListIdentifer5(leafListIdentifer4Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {

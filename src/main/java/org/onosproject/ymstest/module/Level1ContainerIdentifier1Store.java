@@ -33,14 +33,17 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
     public void containerIdentifier2(ContainerIdentifier2 containerIdentifier2) {
         this.containerIdentifier2 = containerIdentifier2;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     @Override
     public List<ListIdentifier2> listIdentifier2() {
         return listIdentifier2;
@@ -93,12 +96,12 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
     }
 
 
-  /*  @Override
-    public ContainerIdentifier1 processSubtreeFiltering(ContainerIdentifier1 containerIdentifier1,
-                                                        boolean isSelectAllSchemaChild) {
-        return null;
-    }
-*/
+    /*  @Override
+      public ContainerIdentifier1 processSubtreeFiltering(ContainerIdentifier1 containerIdentifier1,
+                                                          boolean isSelectAllSchemaChild) {
+          return null;
+      }
+  */
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
         return (leafIdentifier2 != null);
@@ -111,6 +114,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
 
 
     public void processEdit(ContainerIdentifier1 containerIdentifier1) {
+        ContainerIdentifier1 containerIdentifier = (ContainerIdentifier1) containerIdentifier1;
         if (!(containerIdentifier1 instanceof DefaultContainerIdentifier1)) {
             //Operations are part of the default Node
             throw new RuntimeException("default Node expected");
@@ -123,7 +127,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
         /*
          * Process the leaf list attributes
          */
-        processLeafListIdentifer2Edit(containerIdentifier1, containerNode.yangContainerIdentifier1OpType());
+        processLeafListIdentifer2Edit(containerIdentifier, containerNode.yangContainerIdentifier1OpType());
 
         /*
          * Process the child nodes
@@ -131,7 +135,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
         processContainerIdentifier2Edit(containerIdentifier1,
                 containerNode.yangContainerIdentifier1OpType());
 
-        processListIdentifer2Edit(containerIdentifier1);
+        processListIdentifer2Edit(containerIdentifier);
 
        /* *//*
          * Process the augmented node contents
@@ -192,7 +196,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
             }
 
             case REPLACE: {
-                leafIdentifier2(containerIdentifier1.leafIdentifier2());
+                leafIdentifier2(containerIdentifier.leafIdentifier2());
                 return;
             }
 
@@ -201,7 +205,7 @@ public class Level1ContainerIdentifier1Store implements ContainerIdentifier1 {
                 return;
             }
             case MERGE: {
-                leafIdentifier2(containerIdentifier1.leafIdentifier2());
+                leafIdentifier2(containerIdentifier.leafIdentifier2());
                 return;
             }
             case NONE:

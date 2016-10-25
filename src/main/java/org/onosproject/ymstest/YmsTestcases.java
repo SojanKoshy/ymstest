@@ -6,6 +6,7 @@ import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopologyService;
+import org.onosproject.yang.gen.v1.urn.model.exp1.Exp1Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -38,6 +39,7 @@ import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
 import org.onosproject.ymstest.manager.TopologyManager;
 import org.onosproject.ymstest.module.Agument1Manager;
+import org.onosproject.ymstest.module.Exp1Manager;
 import org.onosproject.ymstest.module.IpTopologyManager;
 import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
@@ -568,6 +570,7 @@ public class YmsTestcases {
         ymsService.registerService(new IpTopologyManager(), IpTopologyService.class, null);
         ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
         ymsService.registerService(new SimpleDataTypesManager(), SimpleDataTypesService.class, null);
+        ymsService.registerService(new Exp1Manager(), Exp1Service.class, null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation

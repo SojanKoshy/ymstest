@@ -144,74 +144,73 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
 
         Level1ContainerIdentifier1Store storedNode = (Level1ContainerIdentifier1Store)containerIdentifier1();
         ContainerIdentifier1 containerIdentifier1 = moduleIdentifier.containerIdentifier1();
-
-        switch (moduleIdentifier.containerIdentifier1().yangContainerIdentifier1OpType()) {
-            case CREATE: {
-                if (storedNode != null) {
-                    throw new RuntimeException(
-                            "Node: is already " +
-                                    "created");
-                }
-                storedNode = new Level1ContainerIdentifier1Store();
-                containerIdentifier1(storedNode);
-                storedNode.processEdit(containerIdentifier1);
-                return;
-
-            }
-            case DELETE: {
-                if (storedNode == null) {
-                    throw new RuntimeException(
-                            "Node: is not in " +
-                                    "store");
-                }
-                storedNode.processEdit(containerIdentifier1);
-                containerIdentifier1(null);
-                return;
-            }
-
-            case REPLACE: {
-                if (storedNode != null) {
-                    storedNode.processEdit(containerIdentifier1);
-
-                }
-                storedNode = new Level1ContainerIdentifier1Store();
-                containerIdentifier1(storedNode);
-                storedNode.processEdit(containerIdentifier1);
-                return;
-            }
-
-            case REMOVE: {
-                if (storedNode == null) {
-                    return;
-                }
-                storedNode.processEdit(containerIdentifier1);
-                containerIdentifier1(storedNode);
-                return;
-            }
-            case MERGE: {
-                if (storedNode == null) {
+            switch (moduleIdentifier.containerIdentifier1().yangContainerIdentifier1OpType()) {
+                case CREATE: {
+                    if (storedNode != null) {
+                        throw new RuntimeException(
+                                "Node: is already " +
+                                        "created");
+                    }
                     storedNode = new Level1ContainerIdentifier1Store();
                     containerIdentifier1(storedNode);
                     storedNode.processEdit(containerIdentifier1);
+                    return;
 
                 }
-                storedNode.processEdit(containerIdentifier1);
-                return;
-            }
-            case NONE: {
-                if (storedNode == null) {
-                    if (containerIdentifier1 != null) {
+                case DELETE: {
+                    if (storedNode == null) {
+                        throw new RuntimeException(
+                                "Node: is not in " +
+                                        "store");
+                    }
+                    storedNode.processEdit(containerIdentifier1);
+                    containerIdentifier1(null);
+                    return;
+                }
+
+                case REPLACE: {
+                    if (storedNode != null) {
+                        storedNode.processEdit(containerIdentifier1);
+
+                    }
+                    storedNode = new Level1ContainerIdentifier1Store();
+                    containerIdentifier1(storedNode);
+                    storedNode.processEdit(containerIdentifier1);
+                    return;
+                }
+
+                case REMOVE: {
+                    if (storedNode == null) {
+                        return;
+                    }
+                    storedNode.processEdit(containerIdentifier1);
+                    containerIdentifier1(storedNode);
+                    return;
+                }
+                case MERGE: {
+                    if (storedNode == null) {
                         storedNode = new Level1ContainerIdentifier1Store();
                         containerIdentifier1(storedNode);
                         storedNode.processEdit(containerIdentifier1);
-                    }
 
+                    }
+                    storedNode.processEdit(containerIdentifier1);
+                    return;
                 }
-                storedNode.processEdit(containerIdentifier1);
-                return;
+                case NONE: {
+                    if (storedNode == null) {
+                        if (containerIdentifier1 != null) {
+                            storedNode = new Level1ContainerIdentifier1Store();
+                            containerIdentifier1(storedNode);
+                            storedNode.processEdit(containerIdentifier1);
+                        }
+
+                    }
+                    storedNode.processEdit(containerIdentifier1);
+                    return;
+                }
+                default:
             }
-            default:
-        }
     }
 
     private void processListIdentifer1Edit(ModuleIdentifier0OpParam moduleIdentifier0OpParam) {
