@@ -1,0 +1,10 @@
+module exp1 {
+ yang-version 1;
+   namespace "urn:model:Exp1";
+   prefix "ex";
+   container sample {
+        leaf node-id {
+             type string;
+        }
+   }
+ }
