@@ -6,7 +6,7 @@ import org.onosproject.yang.gen.v1.urn.model.exp1.exp1.Sample;
 /**
  * Created by root1 on 21/10/16.
  */
-public class Exp1Store extends Container implements Exp1{
+public class Exp1Store  implements Exp1{
 
     private Sample sample;
 
@@ -33,7 +33,7 @@ public class Exp1Store extends Container implements Exp1{
         return sample;
     }
     public void processEdit(Exp1 exp1) throws Exception {
-            sample((Sample)this.processContainer(exp1.sample(), exp1.sample().yangSampleOpType(), new SampleStore()));
+
     }
 
 }

@@ -44,10 +44,7 @@ public class AugmentedTopoTerminationPointStore
             boolean isSelectAllSchemaChild) {
         return null;
     }*/
-@Override
-public boolean isSubTreeFiltered() {
-    return false;
-}
+
     @Override
     public boolean isLeafValueSet(
             LeafIdentifier leaf) {

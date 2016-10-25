@@ -218,91 +218,92 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
             return;
         }
         for (ListIdentifier1 identifier1 : moduleIdentifier0OpParam.listIdentifier1()) {
-            ListIdentifier1 listInStore = findListIdentifer2InStore(identifier1);
+            if (identifier1.isLeafValueSet((ListIdentifier1.LeafIdentifier.LEAFIDENTIFIER2))) {
+                ListIdentifier1 listInStore = findListIdentifer2InStore(identifier1);
 
-            if (listInStore != null && !(listInStore instanceof Level0ListIdentifier1Store)) {
-                //stored node is not correct
-                throw new RuntimeException("store Node expected");
-            }
-            Level0ListIdentifier1Store storedIdentifier2Store = (Level0ListIdentifier1Store) listInStore;
+                if (listInStore != null && !(listInStore instanceof Level0ListIdentifier1Store)) {
+                    //stored node is not correct
+                    throw new RuntimeException("store Node expected");
+                }
+                Level0ListIdentifier1Store storedIdentifier2Store = (Level0ListIdentifier1Store) listInStore;
 
-            if (!(identifier1 instanceof DefaultListIdentifier1)) {
-                //Operations are part of the default Node
-                throw new RuntimeException("default Node expected");
-            }
-            DefaultListIdentifier1 opNode = (DefaultListIdentifier1) identifier1;
-            if (opNode.yangListIdentifier1OpType() == null) {
-                throw new RuntimeException("No operation set for Node");
-            }
-            switch (opNode.yangListIdentifier1OpType()) {
-                case CREATE: {
-                    if (storedIdentifier2Store != null) {
-                        throw new RuntimeException(
-                                "Node: " + identifier1.leafIdentifier2() + " is already " +
-                                        "created");
-                    }
-                    storedIdentifier2Store = new Level0ListIdentifier1Store();
-                    listIdentifier1().add(storedIdentifier2Store);
-                    storedIdentifier2Store.processEdit(identifier1);
-                    continue; //continue to process the next input node
+                if (!(identifier1 instanceof DefaultListIdentifier1)) {
+                    //Operations are part of the default Node
+                    throw new RuntimeException("default Node expected");
                 }
-                case DELETE: {
-                    if (storedIdentifier2Store == null) {
-                        throw new RuntimeException(
-                                "Node: " + identifier1.leafIdentifier2() + " is not in " +
-                                        "store");
-                    }
-                    storedIdentifier2Store.processEdit(identifier1);
-                    listIdentifier1().remove(storedIdentifier2Store);
-                    continue; //continue to process the next input node
+                DefaultListIdentifier1 opNode = (DefaultListIdentifier1) identifier1;
+                if (opNode.yangListIdentifier1OpType() == null) {
+                    throw new RuntimeException("No operation set for Node");
                 }
-
-                case REPLACE: {
-                    if (storedIdentifier2Store != null) {
-                        storedIdentifier2Store.processEdit(identifier1);
-                        continue; //continue to process the next input node
-                    }
-                    storedIdentifier2Store = new Level0ListIdentifier1Store();
-                    listIdentifier1().add(storedIdentifier2Store);
-                    storedIdentifier2Store.processEdit(identifier1);
-                    continue; //continue to process the next input node
-                }
-
-                case REMOVE: {
-                    if (storedIdentifier2Store == null) {
-                        continue; //continue to process the next input node
-                    }
-                    storedIdentifier2Store.processEdit(identifier1);
-                    listIdentifier1().remove(storedIdentifier2Store);
-                    continue; //continue to process the next input node
-                }
-                case MERGE: {
-                    if (storedIdentifier2Store == null) {
+                switch (opNode.yangListIdentifier1OpType()) {
+                    case CREATE: {
+                        if (storedIdentifier2Store != null) {
+                            throw new RuntimeException(
+                                    "Node: " + identifier1.leafIdentifier2() + " is already " +
+                                            "created");
+                        }
                         storedIdentifier2Store = new Level0ListIdentifier1Store();
                         listIdentifier1().add(storedIdentifier2Store);
                         storedIdentifier2Store.processEdit(identifier1);
                         continue; //continue to process the next input node
                     }
-                    storedIdentifier2Store.processEdit(identifier1);
-                    continue; //continue to process the next input node
-                }
-                case NONE: {
-                    if (storedIdentifier2Store == null) {
-                        if (identifier1 != null) {
+                    case DELETE: {
+                        if (storedIdentifier2Store == null) {
+                            throw new RuntimeException(
+                                    "Node: " + identifier1.leafIdentifier2() + " is not in " +
+                                            "store");
+                        }
+                        storedIdentifier2Store.processEdit(identifier1);
+                        listIdentifier1().remove(storedIdentifier2Store);
+                        continue; //continue to process the next input node
+                    }
+
+                    case REPLACE: {
+                        if (storedIdentifier2Store != null) {
+                            storedIdentifier2Store.processEdit(identifier1);
+                            continue; //continue to process the next input node
+                        }
+                        storedIdentifier2Store = new Level0ListIdentifier1Store();
+                        listIdentifier1().add(storedIdentifier2Store);
+                        storedIdentifier2Store.processEdit(identifier1);
+                        continue; //continue to process the next input node
+                    }
+
+                    case REMOVE: {
+                        if (storedIdentifier2Store == null) {
+                            continue; //continue to process the next input node
+                        }
+                        storedIdentifier2Store.processEdit(identifier1);
+                        listIdentifier1().remove(storedIdentifier2Store);
+                        continue; //continue to process the next input node
+                    }
+                    case MERGE: {
+                        if (storedIdentifier2Store == null) {
                             storedIdentifier2Store = new Level0ListIdentifier1Store();
                             listIdentifier1().add(storedIdentifier2Store);
                             storedIdentifier2Store.processEdit(identifier1);
+                            continue; //continue to process the next input node
                         }
+                        storedIdentifier2Store.processEdit(identifier1);
                         continue; //continue to process the next input node
                     }
-                    storedIdentifier2Store.processEdit(identifier1);
-                    continue; //continue to process the next input node
+                    case NONE: {
+                        if (storedIdentifier2Store == null) {
+                            if (identifier1 != null) {
+                                storedIdentifier2Store = new Level0ListIdentifier1Store();
+                                listIdentifier1().add(storedIdentifier2Store);
+                                storedIdentifier2Store.processEdit(identifier1);
+                            }
+                            continue; //continue to process the next input node
+                        }
+                        storedIdentifier2Store.processEdit(identifier1);
+                        continue; //continue to process the next input node
+                    }
+                    default:
                 }
-                default:
             }
         }
     }
-
     private ListIdentifier1 findListIdentifer2InStore(ListIdentifier1 findNode) {
         for (ListIdentifier1 node : listIdentifier1) {
 //            if (node.nodeId() == null) {

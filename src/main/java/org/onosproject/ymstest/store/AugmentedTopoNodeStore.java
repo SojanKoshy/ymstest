@@ -35,10 +35,7 @@ public class AugmentedTopoNodeStore
     public void routerId(String routerId) {
         this.routerId = routerId;
     }
-    @Override
-    public boolean isSubTreeFiltered() {
-        return false;
-    }
+
 /*
 
     @Override

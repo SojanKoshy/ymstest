@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by root1 on 21/10/16.
  */
-public class SampleStore extends Container implements Sample {
+public class SampleStore implements Sample {
 
 
     private String nodeId;

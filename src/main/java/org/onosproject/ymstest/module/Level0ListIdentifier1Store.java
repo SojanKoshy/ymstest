@@ -6,6 +6,7 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.ContainerIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.DefaultListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.ListIdentifier2;
+import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -21,6 +22,8 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
 
     private List<Integer> leafListIdentifier2 = new ArrayList<>();
 
+    protected BitSet valueLeafFlags = new BitSet();
+
     private int leafIdentifier2;
 
     private ContainerIdentifier2 containerIdentifier2;
@@ -30,6 +33,7 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
     public void leafIdentifier2(int leafIdentifier2) {
+        valueLeafFlags.set(LeafIdentifier.LEAFIDENTIFIER2.getLeafIndex());
         this.leafIdentifier2 = leafIdentifier2;
     }
 
@@ -44,14 +48,17 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
     public void leafListIdentifier2(List<Integer> leafListIdentifier2) {
         this.leafListIdentifier2 = leafListIdentifier2;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     /**
      * Returns the attribute leafIdentifier2.
      *

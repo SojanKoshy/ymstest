@@ -16,7 +16,7 @@ public class ModuleIdentifier0Manager extends ListenerRegistry<ModuleIdentifier0
         implements ModuleIdentifier0Service {
 
 
-    private ModuleIdentifier0Store appStore = new ModuleIdentifier0Store();
+    private ModuleIdentifier0Store appStore;
 
     public ModuleIdentifier0Store getAppStore() {
         return appStore;
@@ -29,6 +29,9 @@ public class ModuleIdentifier0Manager extends ListenerRegistry<ModuleIdentifier0
 
     @Override
     public void setModuleIdentifier0(ModuleIdentifier0OpParam moduleIdentifier0) {
+        if (appStore == null) {
+            appStore = new ModuleIdentifier0Store();
+        }
         if (moduleIdentifier0.yangModuleIdentifier0OpType() != ModuleIdentifier0.OnosYangOpType.DELETE) {
             appStore.processEdit(moduleIdentifier0);
         } else {
