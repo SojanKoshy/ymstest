@@ -2466,7 +2466,7 @@ module module-identifier0 {
   list list-identifier1 {
     key leaf-identifier2;
     min-elements 1;
-    max-elements 1;
+    max-elements 10;
     description "list-description-string2";
     reference "list-reference-string2";
     container container-identifier2 {

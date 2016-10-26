@@ -345,6 +345,11 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
             return;
         }
         for (ListIdentifier3 identifier3 : containerIdentifier1.listIdentifier3()) {
+            if (!identifier3.isLeafValueSet((ListIdentifier3.LeafIdentifier.LEAFIDENTIFIER4))
+                    && identifier3.leafIdentifier4() == 0) {
+                listIdentifier3.clear();
+                return;
+            }
             ListIdentifier3 listInStore = findListIdentifer3InStore(identifier3);
 
             if (listInStore != null && !(listInStore instanceof L0Identifier1C2ListIdentifier3Store)) {

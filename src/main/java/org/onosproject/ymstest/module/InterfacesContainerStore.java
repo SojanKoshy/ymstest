@@ -170,6 +170,11 @@ public class InterfacesContainerStore implements Interfaces {
             return;
         }
         for (IfEntry ifEntry : interfaces.ifEntry()) {
+            if (!ifEntry.isLeafValueSet((IfEntry.LeafIdentifier.IFINDEX))
+                    && ifEntry.ifIndex() == 0) {
+                ifEntries.clear();
+                return;
+            }
             IfEntry listInStore = findListIdentifer2InStore(ifEntry);
 
             if (listInStore != null && !(listInStore instanceof Level1ListIdentifier2Store)) {

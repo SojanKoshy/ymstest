@@ -29,14 +29,17 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
     public void leafListIdentifier4(List<Short> leafListIdentifier4) {
         this.leafListIdentifier4 = leafListIdentifier4;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     public void listIdentifier4(List<ListIdentifier4> listIdentifier4) {
         this.listIdentifier4 = listIdentifier4;
     }
@@ -236,6 +239,11 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
             return;
         }
         for (ListIdentifier4 identifier4 : containerIdentifier3.listIdentifier4()) {
+            if (!identifier4.isLeafValueSet((ListIdentifier4.LeafIdentifier.LEAFIDENTIFIER5))
+                    && identifier4.leafIdentifier5() == 0) {
+                listIdentifier4.clear();
+                return;
+            }
             ListIdentifier4 listInStore = findListIdentifer4InStore(identifier4);
 
             if (listInStore != null && !(listInStore instanceof L0Identifier1C2C3ListIdentifier4Store)) {

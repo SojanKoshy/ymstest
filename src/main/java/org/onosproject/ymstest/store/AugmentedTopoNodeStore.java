@@ -1,10 +1,8 @@
 package org.onosproject.ymstest.store;
 
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopology;
-import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
-        .AugmentedTopoNode;
-import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
-        .DefaultAugmentedTopoNode;
+import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node.AugmentedTopoNode;
+import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node.DefaultAugmentedTopoNode;
 
 import java.util.BitSet;
 
@@ -14,14 +12,17 @@ import java.util.BitSet;
 public class AugmentedTopoNodeStore
         implements AugmentedTopoNode, AugmentedOperationProcessor {
     private String routerId;
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     @Override
     public String routerId() {
         return routerId;
@@ -36,15 +37,18 @@ public class AugmentedTopoNodeStore
         this.routerId = routerId;
     }
 
-/*
+    /*
 
-    @Override
-    public AugmentedTopoNode processSubtreeFiltering(
-            AugmentedTopoNode augmentedTopoNode,
-            boolean isSelectAllSchemaChild) {
-        return null;
+        @Override
+        public AugmentedTopoNode processSubtreeFiltering(
+                AugmentedTopoNode augmentedTopoNode,
+                boolean isSelectAllSchemaChild) {
+            return null;
+        }
+    */
+    public boolean isSubTreeFiltered() {
+        return false;
     }
-*/
 
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
@@ -105,12 +109,12 @@ public class AugmentedTopoNodeStore
         switch (augmentedTopoNodePara.yangAugmentedTopoNodeOpType()) {
             case CREATE: {
                 throw new RuntimeException("augmented topo node already " +
-                                                   "present");
+                        "present");
             }
             case DELETE: {
                 if (routerId != augmentedTopoNodePara.routerId()) {
                     throw new RuntimeException("No augmented topo node to " +
-                                                       "delete");
+                            "delete");
                 }
                 output.mapOperate = AugmentEditMapOperate.DELETE_OLD;
                 return output;

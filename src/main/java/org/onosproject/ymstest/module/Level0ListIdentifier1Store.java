@@ -6,7 +6,6 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.ContainerIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.DefaultListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.ListIdentifier2;
-import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatatypes.Cont;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -20,10 +19,8 @@ import java.util.Map;
 public class Level0ListIdentifier1Store implements ListIdentifier1 {
 
 
-    private List<Integer> leafListIdentifier2 = new ArrayList<>();
-
     protected BitSet valueLeafFlags = new BitSet();
-
+    private List<Integer> leafListIdentifier2 = new ArrayList<>();
     private int leafIdentifier2;
 
     private ContainerIdentifier2 containerIdentifier2;
@@ -357,6 +354,11 @@ public class Level0ListIdentifier1Store implements ListIdentifier1 {
             return;
         }
         for (ListIdentifier2 identifier2 : listIdentifier1.listIdentifier2()) {
+            if (!identifier2.isLeafValueSet((ListIdentifier2.LeafIdentifier.LEAFIDENTIFIER3))
+                    && identifier2.leafIdentifier3() == null) {
+                listIdentifier2.clear();
+                return;
+            }
             ListIdentifier2 listInStore = findListIdentifer2InStore(identifier2);
 
             if (listInStore != null && !(listInStore instanceof L0Identifier1ListIdentifier2Store)) {

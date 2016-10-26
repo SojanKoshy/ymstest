@@ -324,6 +324,11 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
             return;
         }
         for (ListIdentifier4 identifier4 : listIdentifier3.listIdentifier4()) {
+            if (!identifier4.isLeafValueSet((ListIdentifier4.LeafIdentifier.LEAFIDENTIFIER5))
+                    && identifier4.leafIdentifier5() == false) {
+                listIdentifier4.clear();
+                return;
+            }
             ListIdentifier4 listInStore = findListIdentifer4InStore(identifier4);
 
             if (listInStore != null && !(listInStore instanceof Level1ListIdentifier3Store)) {
