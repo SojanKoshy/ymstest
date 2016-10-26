@@ -259,6 +259,8 @@ public class UcontainerStore implements Container {
     }
 
     public void processEdit(Container container) {
+        processLeafListU9(container, container.yangContainerOpType());
+        processLeafListU10(container, container.yangContainerOpType());
         switch (container.yangContainerOpType()) {
             case CREATE: {
                 u1(container.u1());
@@ -310,4 +312,172 @@ public class UcontainerStore implements Container {
             }
         }
     }
+
+    private void processLeafListU9(Container container,
+                                   Union.OnosYangOpType
+                                           onosYangNodeOperationType) {
+        if (container.u9() == null
+                || container.u9().isEmpty()) {
+            return;
+        }
+        for (U9Union u9Union : container.u9()) {
+            U9Union storedLeafList = findLeafListU9(u9Union);
+
+            switch (onosYangNodeOperationType) {
+                case CREATE: {
+                    if (storedLeafList != null) {
+                        throw new RuntimeException(
+                                "nodeProp: " + u9Union +
+                                        " is already created");
+                    }
+                    addToLeafList(u9Union);
+                    continue; //continue with next node prop
+                }
+                case DELETE: {
+                    if (storedLeafList == null) {
+                        throw new RuntimeException(
+                                "nodeProp: " + u9Union + " is not in "
+                                        + "store");
+                    }
+                    u9().remove(storedLeafList);
+                    continue; //continue with next node prop
+                }
+
+                case REPLACE: {
+                    if (storedLeafList != null) {
+                        //node prop is already present do nothing
+                        continue; //continue with next node prop
+                    }
+                    u9().add(u9Union);
+                    continue; //continue with next node prop
+                }
+
+                case REMOVE: {
+                    if (storedLeafList == null) {
+                        //node prop is not present do nothing
+                        continue; //continue with next node prop
+                    }
+                    u9().remove(storedLeafList);
+                    continue; //continue with next node prop
+                }
+                case MERGE: {
+                    if (storedLeafList == null) {
+                        u9().add(u9Union);
+                        continue; //continue with next node prop
+                    }
+
+                    //node prop is already present do nothing
+                    continue; //continue with next node prop
+                }
+                case NONE:
+                default: {
+                    //nothing to be done
+                    continue; //continue with next node prop
+                }
+            }
+        }
+
+    }
+
+    private U9Union findLeafListU9(U9Union union1) {
+        if (u9().isEmpty()) {
+            return null;
+        }
+
+        for (U9Union union : u9()) {
+            if (union.equals(union1)) {
+                return union;
+            }
+        }
+        return null;
+    }
+
+    public void addToLeafList(U9Union value) {
+        u9().add(value);
+    }
+
+
+    private void processLeafListU10(Container container,
+                                    Union.OnosYangOpType
+                                            onosYangNodeOperationType) {
+        if (container.u10() == null
+                || container.u10().isEmpty()) {
+            return;
+        }
+        for (U10Union u10Union : container.u10()) {
+            U10Union storedLeafList = findLeafListU10(u10Union);
+
+            switch (onosYangNodeOperationType) {
+                case CREATE: {
+                    if (storedLeafList != null) {
+                        throw new RuntimeException(
+                                "nodeProp: " + u10Union +
+                                        " is already created");
+                    }
+                    addToLeafList(u10Union);
+                    continue; //continue with next node prop
+                }
+                case DELETE: {
+                    if (storedLeafList == null) {
+                        throw new RuntimeException(
+                                "nodeProp: " + u10Union + " is not in "
+                                        + "store");
+                    }
+                    u10().remove(storedLeafList);
+                    continue; //continue with next node prop
+                }
+
+                case REPLACE: {
+                    if (storedLeafList != null) {
+                        //node prop is already present do nothing
+                        continue; //continue with next node prop
+                    }
+                    u10().add(u10Union);
+                    continue; //continue with next node prop
+                }
+
+                case REMOVE: {
+                    if (storedLeafList == null) {
+                        //node prop is not present do nothing
+                        continue; //continue with next node prop
+                    }
+                    u10().remove(storedLeafList);
+                    continue; //continue with next node prop
+                }
+                case MERGE: {
+                    if (storedLeafList == null) {
+                        u10().add(u10Union);
+                        continue; //continue with next node prop
+                    }
+
+                    //node prop is already present do nothing
+                    continue; //continue with next node prop
+                }
+                case NONE:
+                default: {
+                    //nothing to be done
+                    continue; //continue with next node prop
+                }
+            }
+        }
+
+    }
+
+    private U10Union findLeafListU10(U10Union union1) {
+        if (u10().isEmpty()) {
+            return null;
+        }
+
+        for (U10Union union : u10()) {
+            if (union.equals(union1)) {
+                return union;
+            }
+        }
+        return null;
+    }
+
+    public void addToLeafList(U10Union value) {
+        u10().add(value);
+    }
+
 }
