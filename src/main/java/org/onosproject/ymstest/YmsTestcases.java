@@ -5,6 +5,14 @@ import org.apache.commons.codec.binary.Base64;
 import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ListIdentifier1;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.ContainerIdentifier2;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.ListIdentifier2;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.ListIdentifier3;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ContainerIdentifier3;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafListIdentifier3Enum;
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopologyService;
 import org.onosproject.yang.gen.v1.urn.model.exp1.Exp1Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
@@ -69,6 +77,7 @@ import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
@@ -1190,7 +1199,7 @@ public class YmsTestcases {
                 "    \"leaf-identifier1\": \"-120\",\n" +
                 "    \"leaf-list-identifier1\": [\"-120\"],\n" +
                 "    \"list-identifier1\": [{\n" +
-                "            \"leaf-identifier1\": \"-120\",\n" +
+                "            \"leaf-identifier2\": \"56692\",\n" +
                 "            \"container-identifier2\": {\n" +
                 "                \"container-identifier3\": {\n" +
                 "                    \"leaf-identifier4\": \"22369\",\n" +
@@ -1213,8 +1222,7 @@ public class YmsTestcases {
                 "                }]\n" +
                 "\n" +
                 "            },\n" +
-                "            \"leaf-identifier2\": \"56692\",\n" +
-                "            \"leaf-list-identifier2\": [\"56692\"],\n" +
+                "            \"leaf-list-identifier2\": [\"56693\"],\n" +
                 "            \"list-identifier2\": [{\n" +
                 "                \"leaf-identifier3\": \"type-pattern-string5\",\n" +
                 "                \"leaf-list-identifier3\": [\"type-pattern-string5\"],\n" +
@@ -1246,7 +1254,124 @@ public class YmsTestcases {
             e.printStackTrace();
         }
 
+        ContainerIdentifier1 containerIdentifier1 = manager.getAppStore().containerIdentifier1();
+        if (!new String("-999999999999.9999").equals(containerIdentifier1.leafIdentifier2().toString())) {
+            return false;
+        }
+        List<BigDecimal> bigDecimals = containerIdentifier1.leafListIdentifier2();
+        String[] strings = {"-99.99999999999999", "-9.33333", "-999.9999999999999"};
+        List<String> strings1 = Arrays.asList(strings);
+        for (BigDecimal bigDecimal : bigDecimals) {
+            if (!strings1.contains(bigDecimal.toString())) {
+                return false;
+            }
+        }
+        ContainerIdentifier2 containerIdentifier2 = containerIdentifier1.containerIdentifier2();
+        if (new String(containerIdentifier2.leafIdentifier3()).equals("LQ==")) {
+            return false;
+        }
+        List<byte[]> list = containerIdentifier2.leafListIdentifier3();
+        for (byte[] aByte : list) {
+            if (!Base64.encodeBase64String(aByte).equals("LQ==")) {
+                return false;
+            }
+        }
 
+        List<ListIdentifier3> listIdentifier3 = containerIdentifier1.containerIdentifier2().listIdentifier3();
+        for (ListIdentifier3 identifier3 : listIdentifier3) {
+            BitSet bitSet = identifier3.leafIdentifier4();
+            BitSet bitSet2 = new BitSet();
+            bitSet2.set(1);
+            if (!bitSet.equals(bitSet2)) {
+                return false;
+            }
+            List<BitSet> bitSets = identifier3.leafListIdentifier4();
+            for (BitSet bitSet1 : bitSets) {
+                BitSet bitSet3 = new BitSet();
+                bitSet3.set(0);
+                if (!bitSet1.equals(bitSet3)) {
+                    return false;
+                }
+            }
+            List<ListIdentifier4> listIdentifier4s = identifier3.listIdentifier4();
+            for (ListIdentifier4 listIdentifier4 : listIdentifier4s) {
+                if (listIdentifier4.leafIdentifier5()) {
+                    return false;
+                }
+            }
+
+        }
+        String[] strings2 = {"enum1", "enum2", "enum3"};
+        List<String> strings3 = Arrays.asList(strings2);
+        List<ListIdentifier2> list1 = containerIdentifier1.listIdentifier2();
+        for (ListIdentifier2 listIdentifier2 : list1) {
+            if (!strings3.contains(listIdentifier2.leafIdentifier3().toString())) {
+                return false;
+            }
+            List<LeafListIdentifier3Enum> list2 = listIdentifier2.leafListIdentifier3();
+            for (LeafListIdentifier3Enum leafListIdentifier3Enum : list2) {
+                if (!strings3.contains(leafListIdentifier3Enum.toString())) {
+                    return false;
+                }
+            }
+            ContainerIdentifier3 containerIdentifier3;
+            if (listIdentifier2.containerIdentifier3() != null) {
+                containerIdentifier3 = listIdentifier2.containerIdentifier3();
+                List<Boolean> booleans = containerIdentifier3.leafListIdentifier4();
+                List<Boolean> booleans1 = new ArrayList<>();
+                booleans1.add(true);
+                booleans1.add(false);
+                for (Boolean aBoolean : booleans) {
+                    if (!booleans1.contains(aBoolean)) {
+                        return false;
+                    }
+                }
+                if (!booleans1.contains(containerIdentifier3.leafIdentifier4())) {
+                    return false;
+                }
+            }
+        }
+
+        List<ListIdentifier1> listIdentifier1 = manager.getAppStore().listIdentifier1();
+        for (ListIdentifier1 identifier1 : listIdentifier1) {
+            Integer[] integers = {56692, 56693};
+            List<Integer> list2 = Arrays.asList(integers);
+            list2.contains(identifier1.leafIdentifier2());
+            org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.ContainerIdentifier2
+                    identifier2 = identifier1.containerIdentifier2();
+            if (identifier2 != null) {
+                org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.ContainerIdentifier3
+                        identifier3 = identifier2.containerIdentifier3();
+                Short[] shorts = {22369};
+                List<Short> shortList = Arrays.asList(shorts);
+                if (!shortList.contains(identifier3.leafIdentifier4())) {
+                    return false;
+                }
+                List<Short> shortList1 = identifier3.leafListIdentifier4();
+                for (Short aShort : shortList1) {
+                    if (!shortList.contains(aShort)) {
+                        return false;
+                    }
+                }
+                List<org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.
+                        containeridentifier2.containeridentifier3.ListIdentifier4> listIdentifier4 = identifier3.listIdentifier4();
+                for (org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.
+                        containeridentifier2.containeridentifier3.ListIdentifier4 identifier4 : listIdentifier4) {
+                    Integer[] integers1 = {123456789};
+                    List<Integer> list3 = Arrays.asList(integers1);
+                    if (!list3.contains(identifier4.leafIdentifier5())) {
+                        return false;
+                    }
+                    List<Integer> list4 = identifier4.leafListIdentifier5();
+                    for (Integer integer : list4) {
+                        if (!list3.contains(integer)) {
+                            return false;
+                        }
+                    }
+                }
+
+            }
+        }
         // Get YANG codec handler
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
@@ -1305,6 +1430,13 @@ public class YmsTestcases {
 //            result = false;
 //            print("Encoded xml output not matching with expected");
 //        }
+       /* try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<Object> yangModuleDecodedList = yangCodecHandler.decode(xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
+        System.out.println(yangModuleDecodedList);*/
 
         return result;
     }

@@ -15,12 +15,11 @@ public class TopologyStore
         implements Topology {
 
     protected Topology.OnosYangOpType onosYangOpType;
+    private List<Node> nodeStoreList = new ArrayList<>();
 
     public TopologyStore() {
 
     }
-
-    private List<Node> nodeStoreList = new ArrayList<>();
 
     @Override
     public OnosYangOpType yangTopologyOpType() {
@@ -67,6 +66,11 @@ public class TopologyStore
             return;
         }
         for (Node nodePara : topology.node()) {
+            if (!nodePara.isLeafValueSet((Node.LeafIdentifier.NODEID))
+                    && nodePara.nodeId() == null) {
+                nodeStoreList.clear();
+                return;
+            }
             Node nodeInStore = findNodeInStore(nodePara);
 
             if (nodeInStore != null && !(nodeInStore instanceof NodeStore)) {

@@ -21,14 +21,17 @@ public class TerminationPointsStore
 
     private List<TerminationPoint> terminationPoint = new ArrayList<>();
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     @Override
     public short numberOfTp() {
         return numberOfTp;
@@ -61,16 +64,16 @@ public class TerminationPointsStore
 
     @Override
     public Map<Class<?>, Object> yangAugmentedInfoMap() {
-        return null;
+        return yangAugmentedInfoMap;
     }
 
-   /* @Override
-    public TerminationPoints processSubtreeFiltering(
-            TerminationPoints terminationPoints,
-            boolean isSelectAllSchemaChild) {
-        return null;
-    }
-*/
+    /* @Override
+     public TerminationPoints processSubtreeFiltering(
+             TerminationPoints terminationPoints,
+             boolean isSelectAllSchemaChild) {
+         return null;
+     }
+ */
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
         return isNoOfTpSet;
@@ -90,14 +93,14 @@ public class TerminationPointsStore
                 = (DefaultTerminationPoints) terminationPointsPara;
         if (opNode.yangTerminationPointsOpType() == null) {
             throw new RuntimeException("No operation set for termination " +
-                                               "points");
+                    "points");
         }
 
         /*
          * Process the child nodes
          */
         processTerminationPointEdit(terminationPointsPara,
-                                    opNode.yangTerminationPointsOpType());
+                opNode.yangTerminationPointsOpType());
 
         /*
          * TODO: Process the augmented node contents
@@ -180,8 +183,8 @@ public class TerminationPointsStore
                 case CREATE: {
                     if (storedTerminationPoint != null) {
                         throw new RuntimeException("TerminationPointStore" +
-                                                           " is already " +
-                                                           "created");
+                                " is already " +
+                                "created");
                     }
                     storedTerminationPoint = new TerminationPointStore();
                     addToTerminationPoint(storedTerminationPoint);
@@ -191,7 +194,7 @@ public class TerminationPointsStore
                 case DELETE: {
                     if (storedTerminationPoint == null) {
                         throw new RuntimeException("TerminationPointStore" +
-                                                           " is not in store");
+                                " is not in store");
                     }
                     storedTerminationPoint.processEdit(terminationPointPara);
                     terminationPoint().remove(storedTerminationPoint);
