@@ -4,12 +4,15 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 
 import java.util.BitSet;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by sojan on 5/9/16.
  */
 public class NetworkPathStore implements NetworkPath {
+    protected Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
+
     @Override
     public String source() {
         return null;
@@ -32,7 +35,7 @@ public class NetworkPathStore implements NetworkPath {
 
     @Override
     public Map<Class<?>, Object> yangAugmentedInfoMap() {
-        return null;
+        return yangAugmentedInfoMap;
     }
 
     /*@Override

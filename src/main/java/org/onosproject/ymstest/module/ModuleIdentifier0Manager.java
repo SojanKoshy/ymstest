@@ -16,26 +16,31 @@ public class ModuleIdentifier0Manager extends ListenerRegistry<ModuleIdentifier0
         implements ModuleIdentifier0Service {
 
 
+
+
     private ModuleIdentifier0Store appStore;
 
     public ModuleIdentifier0Store getAppStore() {
-        return appStore;
+        return this.appStore;
     }
 
+    public void setAppStore(ModuleIdentifier0Store appStore) {
+        this.appStore = appStore;
+    }
     @Override
     public ModuleIdentifier0 getModuleIdentifier0(ModuleIdentifier0OpParam moduleIdentifier0) {
-        return moduleIdentifier0.processSubtreeFiltering(appStore, false);
+        return moduleIdentifier0.processSubtreeFiltering(this.appStore, false);
     }
 
     @Override
     public void setModuleIdentifier0(ModuleIdentifier0OpParam moduleIdentifier0) {
-        if (appStore == null) {
-            appStore = new ModuleIdentifier0Store();
+        if (this.appStore == null) {
+            this.appStore = new ModuleIdentifier0Store();
         }
         if (moduleIdentifier0.yangModuleIdentifier0OpType() != ModuleIdentifier0.OnosYangOpType.DELETE) {
-            appStore.processEdit(moduleIdentifier0);
+            this.appStore.processEdit(moduleIdentifier0);
         } else {
-            appStore = null;
+            this.appStore = null;
         }
     }
 

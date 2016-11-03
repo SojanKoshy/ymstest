@@ -2,7 +2,6 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
-import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
@@ -13,8 +12,6 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafListIdentifier3Enum;
-import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopologyService;
-import org.onosproject.yang.gen.v1.urn.model.exp1.Exp1Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -37,7 +34,6 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
-import org.onosproject.yang.gen.v1.urn.topo.rev20140101.TopologyService;
 import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
 import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotificationService;
 import org.onosproject.yms.ych.YangCodecHandler;
@@ -45,10 +41,6 @@ import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
-import org.onosproject.ymstest.manager.TopologyManager;
-import org.onosproject.ymstest.module.Agument1Manager;
-import org.onosproject.ymstest.module.Exp1Manager;
-import org.onosproject.ymstest.module.IpTopologyManager;
 import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
 import org.onosproject.ymstest.module.ModuleIdentifier0Store;
@@ -566,7 +558,7 @@ public class YmsTestcases {
      *
      * @return Test result
      */
-    public boolean testNbiRegister() {
+  /*  public boolean testNbiRegister() {
         boolean result = true;
 
         YmsService ymsService = get(YmsService.class);
@@ -581,12 +573,14 @@ public class YmsTestcases {
         ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
         ymsService.registerService(new SimpleDataTypesManager(), SimpleDataTypesService.class, null);
         ymsService.registerService(new Exp1Manager(), Exp1Service.class, null);
+        ymsService.registerService(new NetworkManagerExt(), NetworkService.class, null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation
 
         return result;
     }
+*/
 
     /**
      * Test NBI basic data types.
@@ -639,11 +633,7 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
 
@@ -675,6 +665,7 @@ public class YmsTestcases {
         // Verify xml output
         String xmlPrettyOutput = prettyFormat(xmlOutput);
         print(xmlPrettyOutput);
+        ymsService.unRegisterService(manager, SimpleDataTypesService.class);
         return result;
     }
 
@@ -692,8 +683,8 @@ public class YmsTestcases {
         if (ymsService == null) {
             print("ymsService is Null");
         }
-
-        ymsService.registerService(new NetworkManager(), NetworkService.class, null);
+        NetworkManager manager = new NetworkManager();
+        ymsService.registerService(manager, NetworkService.class, null);
 
         String uri = "http://127.0.0.1:8181/onos/restconf/data/network";
         String body = "{\n" +
@@ -705,13 +696,17 @@ public class YmsTestcases {
                 "    \"server-provided\": \"false\"\n" +
                 "  }]\n" +
                 "}";
-
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String responseBody = post(uri, body);
-        if (!responseBody.equals("")) {
+        if (responseBody != null) {
             result = false;
             print("Response body not matching with expected");
         }
-
+        ymsService.unRegisterService(manager, NetworkService.class);
         return result;
     }
 
@@ -728,6 +723,12 @@ public class YmsTestcases {
         NetworkManager networkManager = new NetworkManager();
 
         ymsService.registerService(networkManager, NetworkService.class, null);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ymsService.unRegisterService(networkManager, NetworkService.class);
         print("Unregistered network service from YMS");
@@ -771,7 +772,7 @@ public class YmsTestcases {
         }
 
         // TODO Need to add validation
-
+        ymsService.unRegisterService(multiNotificationManger, MultiNotificationService.class);
         return result;
     }
 
@@ -822,7 +823,7 @@ public class YmsTestcases {
                 "  \"surname\": \"Bangalore\"\n" +
                 "}";
         try {
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -869,6 +870,7 @@ public class YmsTestcases {
             result = false;
             print("Encoded xml output not matching with expected");
         }
+        ymsService.unRegisterService(managerExt, NetworkService.class);
         return result;
     }
 
@@ -918,6 +920,7 @@ public class YmsTestcases {
         System.out.println(network.name());
         System.out.println(network.surname());
         System.out.println(network.networklist());
+        ymsService.unRegisterService(manager, NetworkService.class);
         return result;
     }
 
@@ -950,11 +953,7 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         Network network = manager.getNetwork((NetworkOpParam)
                 NetworkOpParam.builder().build());
 
@@ -980,16 +979,12 @@ public class YmsTestcases {
         }
         put(uri, body);
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         network = manager.getNetwork((NetworkOpParam)
                 NetworkOpParam.builder().build());
         System.out.println(network.name());
         System.out.println(network.surname());
         System.out.println(network.networklist());
+        ymsService.registerService(manager, NetworkService.class, null);
         return result;
     }
 
@@ -1027,7 +1022,6 @@ public class YmsTestcases {
         ModuleIdentifier0Manager manager = new ModuleIdentifier0Manager();
         ymsService.registerService(manager, ModuleIdentifier0Service.class, null);
         print("Registered network service in YMS");
-
         // TODO Need to add validation
         // Get YANG codec handler*/
         String uri = "http://127.0.0.1:8181/onos/restconf/data/module-identifier0";
@@ -1080,23 +1074,10 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-       /*  ModuleIdentifier0 moduleIdentifier0 = manager.getModuleIdentifier0((ModuleIdentifier0OpParam) ModuleIdentifier0OpParam.builder().build());
-        byte[] x = {1,0,1,1,0};
-        byte[] result1= moduleIdentifier0.containerIdentifier1().containerIdentifier2().leafIdentifier3();
-        int i=0 ;
-       for(Byte byt : result1) {
-                if(!byt.equals(x[i])) {
-                    break;
-           }
-       }
-       if(i != x.length-1){
-            System.out.println("fail");
-       }*/
+        // Build YANG module object
+        List<Object> yangModuleList = new ArrayList<>();
+
+        yangModuleList.add(manager.getAppStore());
         // Get YANG codec handler
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
@@ -1105,24 +1086,15 @@ public class YmsTestcases {
         }
         yangCodecHandler.addDeviceSchema(ModuleIdentifier0.class);
 
-        // Build YANG module object
-        List<Object> yangModuleList = new ArrayList<>();
-//        Networklist networklist = DefaultNetworklist.builder().networkId("1000").serverProvided("1000").build();
-//        List<Networklist> networklists = new ArrayList<Networklist>();
-//        networklists.add(networklist);
-//        NetworkPath networkPath = DefaultNetworkPath.builder().source("10.1.1.1").build();
-//
-//        Object object = NetworkOpParam.builder().name("My network").isHappy(true)
-//                .surname("Surname").networkPath(networkPath).networklist(networklists).build();
-//
-//        yangModuleList.add(object);
-
-        yangModuleList.add(manager.getAppStore());
 
         // Get the XML string and compare
         Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
         tagAttributeLinkedMap.put("type", "subtree");
-
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         // Encode JO to XML
         String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
                 tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
@@ -1249,12 +1221,8 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (!appObjectVerification(manager.getAppStore())) {
+
+        if (!appObjectVerificationForE2EModuleIdentifier0(manager.getAppStore())) {
             return false;
         }
         // Get YANG codec handler
@@ -1269,15 +1237,7 @@ public class YmsTestcases {
 
         // Build YANG module object
         List<Object> yangModuleList = new ArrayList<>();
-//        Networklist networklist = DefaultNetworklist.builder().networkId("1000").serverProvided("1000").build();
-//        List<Networklist> networklists = new ArrayList<Networklist>();
-//        networklists.add(networklist);
-//        NetworkPath networkPath = DefaultNetworkPath.builder().source("10.1.1.1").build();
-//
-//        Object object = NetworkOpParam.builder().name("My network").isHappy(true)
-//                .surname("Surname").networkPath(networkPath).networklist(networklists).build();
-//
-//        yangModuleList.add(object);
+
 
         yangModuleList.add(manager.getAppStore());
 
@@ -1297,24 +1257,7 @@ public class YmsTestcases {
         // Verify xml output
         String xmlPrettyOutput = prettyFormat(xmlOutput);
         print(xmlPrettyOutput);
-//
-//        if (!xmlPrettyOutput.equals("<filter xmlns=\"ydt.filter-type\" type=\"subtree\">\n" +
-//                "  <network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
-//                "    <name>My network</name>\n" +
-//                "    <surname>Surname</surname>\n" +
-//                "    <isHappy>true</isHappy>\n" +
-//                "    <networklist>\n" +
-//                "      <network-id>1000</network-id>\n" +
-//                "      <server-provided>1000</server-provided>\n" +
-//                "    </networklist>\n" +
-//                "    <network-path>\n" +
-//                "      <source>10.1.1.1</source>\n" +
-//                "    </network-path>\n" +
-//                "  </network>\n" +
-//                "</filter>\n")) {
-//            result = false;
-//            print("Encoded xml output not matching with expected");
-//        }
+
        /* try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -1322,11 +1265,11 @@ public class YmsTestcases {
         }
         List<Object> yangModuleDecodedList = yangCodecHandler.decode(xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
         System.out.println(yangModuleDecodedList);*/
-
+        ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
         return result;
     }
 
-    public boolean appObjectVerification(ModuleIdentifier0Store store) {
+    public boolean appObjectVerificationForE2EModuleIdentifier0(ModuleIdentifier0Store store) {
         ContainerIdentifier1 containerIdentifier1 = store.containerIdentifier1();
         if (!new String("-999999999999.9999").equals(containerIdentifier1.leafIdentifier2().toString())) {
             return false;
