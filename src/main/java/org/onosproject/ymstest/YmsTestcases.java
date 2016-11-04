@@ -603,18 +603,8 @@ public class YmsTestcases {
         ymsService.registerService(new NetworkManagerExt(), NetworkService.class, null);
         print("Registered network service in YMS");
 
-        // TODO Need to add validation
-        //Uncomment while running full test cases
-      /*  ymsService.unRegisterService(new TopologyManager(), TopologyService.class);
-        ymsService.unRegisterService(new Agument1Manager(), Augment1Service.class);
-        ymsService.unRegisterService(new IpTopologyManager(), IpTopologyService.class);
-        ymsService.unRegisterService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class);
-        ymsService.unRegisterService(new SimpleDataTypesManager(), SimpleDataTypesService.class);
-        ymsService.unRegisterService(new Exp1Manager(), Exp1Service.class);
-        ymsService.unRegisterService(new NetworkManagerExt(), NetworkService.class);*/
         return result;
     }
-
     /**
      * Test NBI basic data types.
      *
@@ -936,7 +926,7 @@ public class YmsTestcases {
                 "                }]\n" +
                 "}";
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -981,7 +971,7 @@ public class YmsTestcases {
                 "\t\t\t\t\"surname\": \"Bangalore\"\n" +
                 "}";
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -1006,7 +996,7 @@ public class YmsTestcases {
                 "                }]\n" +
                 "}";
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
