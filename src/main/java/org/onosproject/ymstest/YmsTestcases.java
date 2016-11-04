@@ -2,6 +2,7 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
@@ -12,6 +13,8 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafListIdentifier3Enum;
+import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopologyService;
+import org.onosproject.yang.gen.v1.urn.model.exp1.Exp1Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -34,6 +37,7 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
+import org.onosproject.yang.gen.v1.urn.topo.rev20140101.TopologyService;
 import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
 import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotificationService;
 import org.onosproject.yms.ych.YangCodecHandler;
@@ -41,6 +45,10 @@ import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
+import org.onosproject.ymstest.manager.TopologyManager;
+import org.onosproject.ymstest.module.Agument1Manager;
+import org.onosproject.ymstest.module.Exp1Manager;
+import org.onosproject.ymstest.module.IpTopologyManager;
 import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
 import org.onosproject.ymstest.module.ModuleIdentifier0Store;
@@ -417,12 +425,31 @@ public class YmsTestcases {
                 "      <lfuint16Max>65535</lfuint16Max>\n" +
                 "      <lfuint32Max>4294967295</lfuint32Max>\n" +
                 "      <lfuint64Max>18446744073709551615</lfuint64Max>\n" +
-                // "      <lfbinary>[B@792c5006</lfbinary>\n" +
+                "      <lfstr>aaaaa</lfstr>\n" +
+                "      <lfstr1>aaa</lfstr1>\n" +
+                "      <lfbool1>true</lfbool1>\n" +
+                "      <lfdecimal1>-92233720368547758.08</lfdecimal1>\n" +
+                "      <lfdecimal2>92233720368547758.07</lfdecimal2>\n" +
+                "      <lfenum>enum1</lfenum>\n" +
+                "      <lfbits>bit2</lfbits>\n" +
+                "      <lfref1>ref-string</lfref1>\n" +
+                "      <lfref2>3</lfref2>\n" +
+                "      <lfunion1>adarsh</lfunion1>\n" +
+                "      <lfunion2>100000000</lfunion2>\n" +
+                "      <lfunion10>bt1</lfunion10>\n" +
+                "      <lfunion14>one</lfunion14>\n" +
+                "      <cont2>\n" +
+                "        <lfint8Next>1</lfint8Next>\n" +
+                "      </cont2>\n" +
+                "      <list2>\n" +
+                "        <network-id>10.1.1.1</network-id>\n" +
+                "      </list2>\n" +
                 "    </cont>\n" +
                 "  </simple-data-types>\n" +
                 "</filter>\n")) {
             result = false;
             print("Encoded xml output not matching with expected");
+
         }
 
         return result;
@@ -558,7 +585,7 @@ public class YmsTestcases {
      *
      * @return Test result
      */
-  /*  public boolean testNbiRegister() {
+    public boolean testNbiRegister() {
         boolean result = true;
 
         YmsService ymsService = get(YmsService.class);
@@ -577,10 +604,16 @@ public class YmsTestcases {
         print("Registered network service in YMS");
 
         // TODO Need to add validation
-
+        //Uncomment while running full test cases
+      /*  ymsService.unRegisterService(new TopologyManager(), TopologyService.class);
+        ymsService.unRegisterService(new Agument1Manager(), Augment1Service.class);
+        ymsService.unRegisterService(new IpTopologyManager(), IpTopologyService.class);
+        ymsService.unRegisterService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class);
+        ymsService.unRegisterService(new SimpleDataTypesManager(), SimpleDataTypesService.class);
+        ymsService.unRegisterService(new Exp1Manager(), Exp1Service.class);
+        ymsService.unRegisterService(new NetworkManagerExt(), NetworkService.class);*/
         return result;
     }
-*/
 
     /**
      * Test NBI basic data types.
