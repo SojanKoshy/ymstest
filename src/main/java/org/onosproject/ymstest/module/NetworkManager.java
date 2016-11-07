@@ -13,7 +13,13 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 public class NetworkManager
         implements NetworkService {
 
+
+
     NetworkStore appDataStore = new NetworkStore();
+
+    public NetworkStore getAppDataStore() {
+        return appDataStore;
+    }
 
     @Override
     public Network getNetwork(NetworkOpParam network) {

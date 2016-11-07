@@ -2,7 +2,6 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
-import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
@@ -13,8 +12,6 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafListIdentifier3Enum;
-import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopologyService;
-import org.onosproject.yang.gen.v1.urn.model.exp1.Exp1Service;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -37,7 +34,6 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
-import org.onosproject.yang.gen.v1.urn.topo.rev20140101.TopologyService;
 import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
 import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotificationService;
 import org.onosproject.yms.ych.YangCodecHandler;
@@ -45,10 +41,6 @@ import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
-import org.onosproject.ymstest.manager.TopologyManager;
-import org.onosproject.ymstest.module.Agument1Manager;
-import org.onosproject.ymstest.module.Exp1Manager;
-import org.onosproject.ymstest.module.IpTopologyManager;
 import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
 import org.onosproject.ymstest.module.ModuleIdentifier0Store;
@@ -499,8 +491,7 @@ public class YmsTestcases {
 
             if (!(networkOpParam.name().equals("My name") &&
                     networkOpParam.surname().equals("My Surname") &&
-                    !networkOpParam.isHappy() &&
-                    networkOpParam.networklist().size() == 0)) {
+                    !networkOpParam.isHappy())) {
                 result = false;
                 print("Decoded JO output not matching with expected");
             }
@@ -509,83 +500,13 @@ public class YmsTestcases {
         return result;
     }
 
-    /**
-     * Test SBI basic decode invalid flow.
-     *
-     * @return Test result
-     */
-    public boolean testSbiDecodeInvalid() {
-        boolean result = true;
-
-        // Get YMS service
-        YmsService ymsService = get(YmsService.class);
-
-        if (ymsService == null) {
-            print("ymsService is Null");
-        }
-
-        // Get YANG codec handler
-        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
-
-        if (yangCodecHandler == null) {
-            print("yangCodecHandler is Null");
-        }
-
-        // Add device schema in YMS codec
-        yangCodecHandler.addDeviceSchema(Network.class);
-
-        // Decode invalid XML without root node filter to JO
-        String invalidXml = "<network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
-                "    <name>My name</name>\n" +
-                "    <surname>My Surname</surname>\n" +
-                "    <isHappy>false</isHappy>\n" +
-                "</network>\n";
-
-        try {
-            List<Object> yangModuleDecodedList = yangCodecHandler.decode(invalidXml,
-                    YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
-
-            if (yangModuleDecodedList != null) {
-                result = false;
-                print("yangModuleDecodedList is not null");
-            }
-        } catch (NullPointerException e) {
-            // Exception is expected. Nothing to handle.
-        }
-
-        // Decode invalid XML with 2 root nodes to JO
-        String invalidXml2 = "<network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
-                "    <name>My name</name>\n" +
-                "    <surname>My Surname</surname>\n" +
-                "    <isHappy>false</isHappy>\n" +
-                "</network>\n" +
-                "<network xmlns=\"urn:TBD:params:xml:ns:yang:nodes\">\n" +
-                "    <name>My name</name>\n" +
-                "    <surname>My Surname</surname>\n" +
-                "    <isHappy>false</isHappy>\n" +
-                "</network>\n";
-
-        try {
-            List<Object> yangModuleDecodedList2 = yangCodecHandler.decode(invalidXml2,
-                    YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
-
-            if (yangModuleDecodedList2 != null) {
-                result = false;
-                print("yangModuleDecodedList is not null");
-            }
-        } catch (NullPointerException e) {
-            // Exception is expected. Nothing to handle.
-        }
-
-        return result;
-    }
 
     /**
      * Test NBI basic register flow.
      *
      * @return Test result
      */
-    public boolean testNbiRegister() {
+  /*  public boolean testNbiRegister() {
         boolean result = true;
 
         YmsService ymsService = get(YmsService.class);
@@ -604,7 +525,8 @@ public class YmsTestcases {
         print("Registered network service in YMS");
 
         return result;
-    }
+    }*/
+
     /**
      * Test NBI basic data types.
      *
@@ -688,7 +610,7 @@ public class YmsTestcases {
         // Verify xml output
         String xmlPrettyOutput = prettyFormat(xmlOutput);
         print(xmlPrettyOutput);
-        ymsService.unRegisterService(manager, SimpleDataTypesService.class);
+        // ymsService.unRegisterService(manager, SimpleDataTypesService.class);
         return result;
     }
 
@@ -795,7 +717,7 @@ public class YmsTestcases {
         }
 
         // TODO Need to add validation
-        ymsService.unRegisterService(multiNotificationManger, MultiNotificationService.class);
+        //   ymsService.unRegisterService(multiNotificationManger, MultiNotificationService.class);
         return result;
     }
 
@@ -911,8 +833,8 @@ public class YmsTestcases {
             print("ymsService is Null");
             return false;
         }
-        NetworkManager manager = new NetworkManager();
-        ymsService.registerService(manager, NetworkService.class, null);
+        NetworkManager networkManager = new NetworkManager();
+        ymsService.registerService(networkManager, NetworkService.class, null);
         print("YmsService Registered");
         // TODO Need to add validation
         // Get YANG codec handler*/
@@ -931,8 +853,7 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
-        Network network = manager.getNetwork((NetworkOpParam)
-                NetworkOpParam.builder().build());
+        Network network = networkManager.getAppDataStore();
 
         if (!network.name().equals("Huawei")) {
             result = false;
@@ -943,7 +864,7 @@ public class YmsTestcases {
         System.out.println(network.name());
         System.out.println(network.surname());
         System.out.println(network.networklist());
-        ymsService.unRegisterService(manager, NetworkService.class);
+        ymsService.unRegisterService(networkManager, NetworkService.class);
         return result;
     }
 
@@ -1007,7 +928,7 @@ public class YmsTestcases {
         System.out.println(network.name());
         System.out.println(network.surname());
         System.out.println(network.networklist());
-        ymsService.registerService(manager, NetworkService.class, null);
+        ymsService.unRegisterService(manager, NetworkService.class);
         return result;
     }
 
@@ -1285,10 +1206,11 @@ public class YmsTestcases {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         List<Object> yangModuleDecodedList = yangCodecHandler.decode(xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
-        System.out.println(yangModuleDecodedList);*/
-        ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
+        System.out.println(yangModuleDecodedList);
+        appObjectVerificationForE2EModuleIdentifier0((ModuleIdentifier0Store) yangModuleDecodedList.get(0));
+        //   ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
         return result;
     }
 
