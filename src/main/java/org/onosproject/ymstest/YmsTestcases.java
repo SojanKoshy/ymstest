@@ -36,6 +36,7 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
 import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
 import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotificationService;
+import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.multinotification.MultiNotificationEventSubject;
 import org.onosproject.yms.ych.YangCodecHandler;
 import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
@@ -716,6 +717,11 @@ public class YmsTestcases {
             e.printStackTrace();
         }
 
+        MultiNotificationEventSubject subject = multiNotificationManger.getSubject();
+        if (subject.linkDown() == null && subject.linkUp() == null) {
+            return false;
+        }
+        System.out.println(subject.linkDown().router().name());
         // TODO Need to add validation
         //   ymsService.unRegisterService(multiNotificationManger, MultiNotificationService.class);
         return result;

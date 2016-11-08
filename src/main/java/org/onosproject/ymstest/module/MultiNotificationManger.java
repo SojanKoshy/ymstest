@@ -15,6 +15,15 @@ import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.cont
  */
 public class MultiNotificationManger extends ListenerRegistry<MultiNotificationEvent, MultiNotificationEventListener>
         implements MultiNotificationService {
+    private MultiNotificationEventSubject subject;
+
+    public MultiNotificationEventSubject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(MultiNotificationEventSubject subject) {
+        this.subject = subject;
+    }
 
     @Override
     public MultiNotification getMultiNotification(MultiNotificationOpParam multiNotification) {
@@ -28,7 +37,7 @@ public class MultiNotificationManger extends ListenerRegistry<MultiNotificationE
     }
 
     public void sendNotification() {
-        MultiNotificationEventSubject subject = new MultiNotificationEventSubject();
+        this.setSubject(new MultiNotificationEventSubject());
         LinkDown linkDown = new DefaultLinkDown.LinkDownBuilder().build();
         subject.linkDown(linkDown);
 
