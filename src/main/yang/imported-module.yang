@@ -1,0 +1,17 @@
+module imported-module {
+    namespace "imported:module";
+    prefix imp;
+
+    typedef derived-int-type {
+        type int8;
+        default 10;
+    }
+
+    typedef derived-union-int-default {
+        type union {
+            type derived-int-type;
+            type string;
+        }
+    }
+
+}

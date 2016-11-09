@@ -8,7 +8,7 @@ import org.onosproject.yang.gen.v1.http.rob.sh.yang.test.union.rev20140101.Union
  * Created by root1 on 25/10/16.
  */
 public class UnionManager implements UnionService {
-    private UnionStore appStore = new UnionStore();
+    private UnionStore appStore;
 
     public Union getAppStore() {
         return appStore;
@@ -22,6 +22,9 @@ public class UnionManager implements UnionService {
     @Override
     public void setUnion(UnionOpParam unionOpParam) {
         try {
+            if (appStore == null) {
+                appStore = new UnionStore();
+            }
             if (unionOpParam.yangUnionOpType() != Union.OnosYangOpType.DELETE) {
                 appStore.processEdit(unionOpParam);
             } else {

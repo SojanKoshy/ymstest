@@ -12,6 +12,7 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleident
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ContainerIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafListIdentifier3Enum;
+import org.onosproject.yang.gen.v1.root.module.RootModuleService;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypes;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesOpParam;
 import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.SimpleDataTypesService;
@@ -49,6 +50,7 @@ import org.onosproject.ymstest.module.MultiNotificationListener;
 import org.onosproject.ymstest.module.MultiNotificationManger;
 import org.onosproject.ymstest.module.NetworkManager;
 import org.onosproject.ymstest.module.NetworkManagerExt;
+import org.onosproject.ymstest.module.RootModuleManager;
 import org.onosproject.ymstest.module.SimpleDataTypesManager;
 import org.onosproject.ymstest.module.SimpleRpcManager;
 
@@ -718,11 +720,9 @@ public class YmsTestcases {
         }
 
         MultiNotificationEventSubject subject = multiNotificationManger.getSubject();
-        if (subject.linkDown() == null && subject.linkUp() == null) {
+        if (subject==null) {
             return false;
         }
-        System.out.println(subject.linkDown().router().name());
-        // TODO Need to add validation
         //   ymsService.unRegisterService(multiNotificationManger, MultiNotificationService.class);
         return result;
     }
@@ -956,6 +956,77 @@ public class YmsTestcases {
         print("Registered network service in YMS");
 
         // TODO Need to add validation
+
+        return result;
+    }
+
+    /**
+     * Test NBI basic register flow.
+     *
+     * @return Test result
+     */
+    public boolean testRootModuleE2E() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        RootModuleManager manager = new RootModuleManager();
+        ymsService.registerService(manager, RootModuleService.class, null);
+        print("Registered network service in YMS");
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/root-module";
+        String body = "{\n" +
+                "\t\"container\": {\n" +
+                "\t\t\"u2\":\"xyz\",\n" +
+                "\t\t\"u3\":\"123\",\n" +
+                "\t\t\"u4\":\"abc\",\n" +
+                "\t\t\"u1\":\"123\",\n" +
+                "\t\t\"u6\":\"1\",\n" +
+                "\t\t\"u7\":\"mno\"\n" +
+                "\t}\n" +
+                "}";
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        post(uri, body);
+
+        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
+
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
+
+        // Add device schema in YMS codec
+        yangCodecHandler.addDeviceSchema(NetworkService.class);
+
+        // Build YANG module object
+        List<Object> yangModuleList = new ArrayList<>();
+
+        yangModuleList.add(manager.getAppStore());
+
+        // Get the XML string and compare
+        Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
+        tagAttributeLinkedMap.put("type", "subtree");
+
+        // Encode JO to XML
+        String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
+                YmsOperationType.RPC_REQUEST);
+
+        if (xmlOutput == null) {
+            print("xmlOutput is Null");
+        }
+
+        System.out.println(xmlOutput);
+        // Verify xml output
+        String xmlPrettyOutput = prettyFormat(xmlOutput);
+        print(xmlPrettyOutput);
 
         return result;
     }

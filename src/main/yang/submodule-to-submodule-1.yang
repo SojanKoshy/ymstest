@@ -1,0 +1,23 @@
+submodule submodule-to-submodule-1 {
+
+    belongs-to root-module {
+        prefix root;
+    }
+include submodule-2;
+    typedef union-a {
+        type union {
+            type int8;
+            type string {
+                pattern "h.*";
+            }
+        }
+    }
+
+typedef derived-union-default {
+        type union {
+            type derived-string-type;
+            type int8;
+        }
+    }
+
+}

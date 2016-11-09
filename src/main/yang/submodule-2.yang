@@ -1,0 +1,13 @@
+submodule submodule-2 {
+
+    belongs-to root-module {
+        prefix root;
+    }
+
+
+
+    typedef derived-string-type {
+        type string;
+        default "hello";
+    }
+}
