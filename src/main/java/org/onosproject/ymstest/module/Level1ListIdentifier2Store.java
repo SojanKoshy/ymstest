@@ -4,10 +4,10 @@ import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdent
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.DefaultListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.ListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ContainerIdentifier3;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.DefaultListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafIdentifier3Enum;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.LeafListIdentifier3Enum;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.ListIdentifier3;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.listidentifier2.DefaultListIdentifier3;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -35,14 +35,17 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
     public void containerIdentifier3(ContainerIdentifier3 containerIdentifier3) {
         this.containerIdentifier3 = containerIdentifier3;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     public void leafIdentifier3(LeafIdentifier3Enum leafIdentifier3) {
         this.leafIdentifier3 = leafIdentifier3;
     }
@@ -130,6 +133,7 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
         return null;
     }
 */
+
     /**
      * Checks if the leaf value is set.
      *

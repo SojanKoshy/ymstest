@@ -20,14 +20,17 @@ public class NodeStore
     private List<String> nodeProp = new ArrayList<>();
     private TerminationPoints terminationPoints;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     @Override
     public String nodeId() {
         return nodeId;
@@ -111,7 +114,7 @@ public class NodeStore
          * Process the child nodes
          */
         processTerminationPointsEdit(nodePara,
-                                     opNode.yangNodeOpType());
+                opNode.yangNodeOpType());
 
         /*
          * Process the augmented node contents
@@ -299,8 +302,8 @@ public class NodeStore
             case CREATE: {
                 if (storedTerminationPoints != null) {
                     throw new RuntimeException("TerminationPointsStore" +
-                                                       " is already " +
-                                                       "created");
+                            " is already " +
+                            "created");
                 }
                 storedTerminationPoints = new TerminationPointsStore();
                 terminationPoints(storedTerminationPoints);
@@ -310,7 +313,7 @@ public class NodeStore
             case DELETE: {
                 if (storedTerminationPoints == null) {
                     throw new RuntimeException("TerminationPointsStore" +
-                                                       " is not in store");
+                            " is not in store");
                 }
                 storedTerminationPoints.processEdit(terminationPointsPara);
                 terminationPoints(null);

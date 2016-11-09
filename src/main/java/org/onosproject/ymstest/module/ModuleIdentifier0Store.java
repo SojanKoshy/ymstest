@@ -98,7 +98,8 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
         processListIdentifer1Edit(moduleIdentifier0OpParam);
         processLeafListIdentifer2Edit(moduleIdentifier0OpParam, moduleIdentifier0OpParam.yangModuleIdentifier0OpType());
 
-        System.out.println("yangModuleIdentifier0OpType" + moduleIdentifier0OpParam.yangModuleIdentifier0OpType().toString());
+        System.out.println("yangModuleIdentifier0OpType" +
+                moduleIdentifier0OpParam.yangModuleIdentifier0OpType().toString());
         switch (moduleIdentifier0OpParam.yangModuleIdentifier0OpType()) {
 
             case CREATE: {
@@ -218,7 +219,8 @@ public class ModuleIdentifier0Store implements ModuleIdentifier0 {
     }
 
     private void processListIdentifer1Edit(ModuleIdentifier0OpParam moduleIdentifier0OpParam) {
-        if (moduleIdentifier0OpParam.listIdentifier1() == null || moduleIdentifier0OpParam.listIdentifier1().isEmpty()) {
+        if (moduleIdentifier0OpParam.listIdentifier1() == null ||
+                moduleIdentifier0OpParam.listIdentifier1().isEmpty()) {
             return;
         }
 

@@ -31,14 +31,17 @@ public class L0Identifier1ListIdentifier2Store implements ListIdentifier2 {
     public void containerIdentifier3(ContainerIdentifier3 containerIdentifier3) {
         this.containerIdentifier3 = containerIdentifier3;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     /**
      * Returns the attribute leafIdentifier3.
      *

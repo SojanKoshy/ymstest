@@ -38,12 +38,14 @@ public class Level2ContainerIdentifier3Store implements ContainerIdentifier3 {
     public void listIdentifier4(List<ListIdentifier4> listIdentifier4) {
         this.listIdentifier4 = listIdentifier4;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
 

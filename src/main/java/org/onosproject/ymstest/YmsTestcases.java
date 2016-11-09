@@ -720,7 +720,7 @@ public class YmsTestcases {
         }
 
         MultiNotificationEventSubject subject = multiNotificationManger.getSubject();
-        if (subject==null) {
+        if (subject == null) {
             return false;
         }
         //   ymsService.unRegisterService(multiNotificationManger, MultiNotificationService.class);
@@ -1164,7 +1164,9 @@ public class YmsTestcases {
                 "\n" +
                 "        },\n" +
                 "        \"leaf-identifier2\": \"-9.999999999999999e11\",\n" +
-                "        \"leaf-list-identifier2\": [\"-9.999999999999999e1\", \"-9.33333\", \"-9.999999999999999e2\"],\n" +
+                "        \"leaf-list-identifier2\": [\"-9.999999999999999e1\", \"-9.33333\", " +
+                "\"-9.999999999999999e2\"]," +
+                "\n" +
                 "        \"list-identifier2\": [{\n" +
                 "            \"leaf-identifier3\": \"enum1\",\n" +
                 "            \"leaf-list-identifier3\": [\"enum1\"],\n" +
@@ -1173,7 +1175,8 @@ public class YmsTestcases {
                 "                \"leaf-list-identifier4\": [\"\"],\n" +
                 "                \"list-identifier4\": [{\n" +
                 "                    \"leaf-identifier5\": \"type-pattern-string7\",\n" +
-                "                    \"leaf-list-identifier5\": [\"type-pattern-string7\", \"type-pattern-string7\", \"type-pattern-string7\"]\n" +
+                "                    \"leaf-list-identifier5\": [\"type-pattern-string7\", \"type-pattern-string7\", " +
+                "\"type-pattern-string7\"]\n" +
                 "                }]\n" +
                 "            }\n" +
                 "        }, {\n" +
@@ -1284,7 +1287,8 @@ public class YmsTestcases {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-        List<Object> yangModuleDecodedList = yangCodecHandler.decode(xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
+        List<Object> yangModuleDecodedList =
+                yangCodecHandler.decode(xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
         System.out.println(yangModuleDecodedList);
         appObjectVerificationForE2EModuleIdentifier0((ModuleIdentifier0Store) yangModuleDecodedList.get(0));
         //   ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
@@ -1375,10 +1379,12 @@ public class YmsTestcases {
             Integer[] integers = {56692, 56693};
             List<Integer> list2 = Arrays.asList(integers);
             list2.contains(identifier1.leafIdentifier2());
-            org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.ContainerIdentifier2
+            org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.
+                    listidentifier1.ContainerIdentifier2
                     identifier2 = identifier1.containerIdentifier2();
             if (identifier2 != null) {
-                org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.containeridentifier2.ContainerIdentifier3
+                org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.
+                        listidentifier1.containeridentifier2.ContainerIdentifier3
                         identifier3 = identifier2.containerIdentifier3();
                 Short[] shorts = {22369};
                 List<Short> shortList = Arrays.asList(shorts);
@@ -1392,7 +1398,8 @@ public class YmsTestcases {
                     }
                 }
                 List<org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.
-                        containeridentifier2.containeridentifier3.ListIdentifier4> listIdentifier4 = identifier3.listIdentifier4();
+                        containeridentifier2.containeridentifier3.ListIdentifier4> listIdentifier4 =
+                        identifier3.listIdentifier4();
                 for (org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.
                         containeridentifier2.containeridentifier3.ListIdentifier4 identifier4 : listIdentifier4) {
                     Integer[] integers1 = {123456789};

@@ -23,14 +23,17 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
     public void leafListIdentifier5(List<Long> leafListIdentifier5) {
         this.leafListIdentifier5 = leafListIdentifier5;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     public void leafIdentifier5(long leafIdentifier5) {
         this.leafIdentifier5 = leafIdentifier5;
     }
@@ -102,7 +105,7 @@ public class L0I2L2ContainerIdentifier4Store implements ContainerIdentifier4 {
      */
     @Override
     public boolean isLeafValueSet(LeafIdentifier leaf) {
-            if (new Long(leafIdentifier5) != null) {
+        if (new Long(leafIdentifier5) != null) {
             return true;
         }
         return false;

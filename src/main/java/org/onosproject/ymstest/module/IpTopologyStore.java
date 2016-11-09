@@ -14,7 +14,7 @@ public class IpTopologyStore implements IpTopology {
      * @return yangIpTopologyOpType value of yangIpTopologyOpType
      */
     @Override
-    public OnosYangOpType yangIpTopologyOpType(){
+    public OnosYangOpType yangIpTopologyOpType() {
         return null;
     }
 

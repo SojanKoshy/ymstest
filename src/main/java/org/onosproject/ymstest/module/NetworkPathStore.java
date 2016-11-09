@@ -52,12 +52,14 @@ public class NetworkPathStore implements NetworkPath {
     public boolean isSelectLeaf(LeafIdentifier leaf) {
         return false;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
 }

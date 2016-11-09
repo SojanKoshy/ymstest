@@ -33,12 +33,14 @@ public class Level1ListIdentifier4Store implements ListIdentifier4 {
     public void addToLeafListIdentifer5(Boolean value) {
         leafListIdentifier5().add(value);
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
 

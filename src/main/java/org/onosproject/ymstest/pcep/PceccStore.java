@@ -2,7 +2,6 @@ package org.onosproject.ymstest.pcep;
 
 
 import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.pcecc.rev20161005.Pcecc;
-import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.pcecc.rev20161005.pcecc.DefaultPceccPkt;
 import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.pcecc.rev20161005.pcecc.IpAddress;
 import org.onosproject.yang.gen.v1.urn.ns.yang.pcep.pcecc.rev20161005.pcecc.PceccPkt;
 

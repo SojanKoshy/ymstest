@@ -30,13 +30,15 @@ public class Level2ContainerIdentifier4Store implements ContainerIdentifier4 {
     }
 
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     /**
      * Returns the attribute leafIdentifier5.
      *

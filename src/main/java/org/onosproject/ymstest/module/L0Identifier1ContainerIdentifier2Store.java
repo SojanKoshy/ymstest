@@ -32,14 +32,17 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
     public void leafListIdentifier3(List<Long> leafListIdentifier3) {
         this.leafListIdentifier3 = leafListIdentifier3;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     public void containerIdentifier3(ContainerIdentifier3 containerIdentifier3) {
         this.containerIdentifier3 = containerIdentifier3;
     }
@@ -356,7 +359,8 @@ public class L0Identifier1ContainerIdentifier2Store implements ContainerIdentifi
                 //stored node is not correct
                 throw new RuntimeException("store Node expected");
             }
-            L0Identifier1C2ListIdentifier3Store storedIdentifier3Store = (L0Identifier1C2ListIdentifier3Store) listInStore;
+            L0Identifier1C2ListIdentifier3Store storedIdentifier3Store =
+                    (L0Identifier1C2ListIdentifier3Store) listInStore;
 
             if (!(identifier3 instanceof DefaultListIdentifier3)) {
                 //Operations are part of the default Node

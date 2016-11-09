@@ -20,6 +20,7 @@ public class IfEntryListStore implements IfEntry {
     private int ifMtu;
     private long ifIndex;
     private String ifDescr;
+
     public void ifType(int ifInt) {
         this.ifType = ifInt;
     }
@@ -41,7 +42,7 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return ifIndex value of ifIndex
      */
-    public long ifIndex(){
+    public long ifIndex() {
         return ifIndex;
     }
 
@@ -50,8 +51,8 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return ifDescr value of ifDescr
      */
-   public String ifDescr(){
-        return  ifDescr;
+    public String ifDescr() {
+        return ifDescr;
     }
 
     /**
@@ -59,7 +60,7 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return ifType value of ifType
      */
-    public int ifType(){
+    public int ifType() {
         return ifType;
     }
 
@@ -68,7 +69,7 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return ifMtu value of ifMtu
      */
-    public int ifMtu(){
+    public int ifMtu() {
         return ifMtu;
     }
 
@@ -77,7 +78,7 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return valueLeafFlags value of valueLeafFlags
      */
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
 
@@ -86,7 +87,7 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return yangIfEntryOpType value of yangIfEntryOpType
      */
-    public Augment1.OnosYangOpType yangIfEntryOpType(){
+    public Augment1.OnosYangOpType yangIfEntryOpType() {
         return onosYangOpType;
     }
 
@@ -95,7 +96,7 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return selectLeafFlags value of selectLeafFlags
      */
-   public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
 
@@ -104,30 +105,32 @@ public class IfEntryListStore implements IfEntry {
      *
      * @return yangAugmentedInfoMap value of yangAugmentedInfoMap
      */
-    public Map<Class<?>, Object> yangAugmentedInfoMap(){
+    public Map<Class<?>, Object> yangAugmentedInfoMap() {
         return yangAugmentedInfoMap;
     }
 
     public void addYangAugmentedInfo(Object value, Class classObject) {
         yangAugmentedInfoMap.put(classObject, value);
     }
+
     /**
      * Returns the attribute yangAugmentedInfo.
      *
      * @param classObject value of yangAugmentedInfo
      * @return yangAugmentedInfo
      */
-    public Object yangAugmentedInfo(Class classObject){
+    public Object yangAugmentedInfo(Class classObject) {
         return yangAugmentedInfoMap.get(classObject);
     }
+
     /**
      * Checks if the passed IfEntry maps the content match query condition.
      *
-     * @param ifEntry ifEntry being passed to check for content match
+     * @param ifEntry                ifEntry being passed to check for content match
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
      */
-    public IfEntry processSubtreeFiltering(IfEntry ifEntry, boolean isSelectAllSchemaChild){
+    public IfEntry processSubtreeFiltering(IfEntry ifEntry, boolean isSelectAllSchemaChild) {
         return null;
     }
 
@@ -137,7 +140,7 @@ public class IfEntryListStore implements IfEntry {
      * @param leaf leaf whose value status needs to checked
      * @return result of leaf value set in object
      */
-    public boolean isLeafValueSet(LeafIdentifier leaf){
+    public boolean isLeafValueSet(LeafIdentifier leaf) {
         return (ifDescr != null);
     }
 
@@ -147,7 +150,7 @@ public class IfEntryListStore implements IfEntry {
      * @param leaf if leaf needs to be selected
      * @return result of leaf value set in object
      */
-   public boolean isSelectLeaf(LeafIdentifier leaf){
+    public boolean isSelectLeaf(LeafIdentifier leaf) {
         return false;
     }
 
@@ -162,7 +165,7 @@ public class IfEntryListStore implements IfEntry {
         }
 
 
-         // Process the augmented node contents
+        // Process the augmented node contents
 
         for (Map.Entry<Class<?>, Object> entry1
                 : ifEntry.yangAugmentedInfoMap().entrySet()) {

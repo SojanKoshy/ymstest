@@ -250,7 +250,8 @@ public class L0Identifier1C2ContainerIdentifier3Store implements ContainerIdenti
                 //stored node is not correct
                 throw new RuntimeException("store Node expected");
             }
-            L0Identifier1C2C3ListIdentifier4Store storedIdentifier4Store = (L0Identifier1C2C3ListIdentifier4Store) listInStore;
+            L0Identifier1C2C3ListIdentifier4Store storedIdentifier4Store =
+                    (L0Identifier1C2C3ListIdentifier4Store) listInStore;
 
             if (!(identifier4 instanceof DefaultListIdentifier4)) {
                 //Operations are part of the default Node

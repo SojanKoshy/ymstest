@@ -16,7 +16,8 @@ public abstract class List {
         this.listStore = containerStore;
     }
 
-    public Object processList(Object listObject, Exp1.OnosYangOpType listOpType, Object listStoreTypeObject) throws Exception {
+    public Object processList(Object listObject, Exp1.OnosYangOpType listOpType,
+                              Object listStoreTypeObject) throws Exception {
         return null;
     }
 }

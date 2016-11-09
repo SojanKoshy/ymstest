@@ -28,14 +28,17 @@ public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
     public void leafListIdentifier4(List<Short> leafListIdentifier4) {
         this.leafListIdentifier4 = leafListIdentifier4;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     public void containerIdentifier4(ContainerIdentifier4 containerIdentifier4) {
         this.containerIdentifier4 = containerIdentifier4;
     }
@@ -319,7 +322,7 @@ public class L0Identifier1C2ListIdentifier3Store implements ListIdentifier3 {
 
 
     private void processLeafListIdentifer2Edit(ListIdentifier3 listIdentifier3,
-                                              ModuleIdentifier0.OnosYangOpType
+                                               ModuleIdentifier0.OnosYangOpType
                                                        onosYangNodeOperationType) {
         if (listIdentifier3.leafListIdentifier4() == null
                 || listIdentifier3.leafListIdentifier4().isEmpty()) {

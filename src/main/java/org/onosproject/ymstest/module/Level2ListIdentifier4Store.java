@@ -90,13 +90,15 @@ public class Level2ListIdentifier4Store implements ListIdentifier4 {
         return null;
     }*/
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     /**
      * Checks if the leaf value is set.
      *

@@ -6,7 +6,7 @@ import org.onosproject.yang.gen.v1.urn.model.exp1.exp1.Sample;
 /**
  * Created by root1 on 21/10/16.
  */
-public class Exp1Store  implements Exp1{
+public class Exp1Store implements Exp1 {
 
     private Sample sample;
 
@@ -20,7 +20,7 @@ public class Exp1Store  implements Exp1{
      * @return yangExp1OpType value of yangExp1OpType
      */
     @Override
-    public OnosYangOpType yangExp1OpType(){
+    public OnosYangOpType yangExp1OpType() {
         return null;
     }
 
@@ -29,9 +29,10 @@ public class Exp1Store  implements Exp1{
      *
      * @return sample value of sample
      */
-    public Sample sample(){
+    public Sample sample() {
         return sample;
     }
+
     public void processEdit(Exp1 exp1) throws Exception {
 
     }

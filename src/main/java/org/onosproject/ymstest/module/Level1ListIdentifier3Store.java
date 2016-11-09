@@ -3,8 +3,8 @@ package org.onosproject.ymstest.module;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.DefaultListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.ListIdentifier3;
-import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.DefaultListIdentifier4;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.listidentifier3.ListIdentifier4;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -35,14 +35,17 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
     public void leafListIdentifier4(List<BitSet> leafListIdentifier4) {
         this.leafListIdentifier4 = leafListIdentifier4;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     public void listIdentifier4(List<ListIdentifier4> listIdentifier4) {
         this.listIdentifier4 = listIdentifier4;
     }
@@ -324,8 +327,8 @@ public class Level1ListIdentifier3Store implements ListIdentifier3 {
             return;
         }
         for (ListIdentifier4 identifier4 : listIdentifier3.listIdentifier4()) {
-            if (!identifier4.isLeafValueSet((ListIdentifier4.LeafIdentifier.LEAFIDENTIFIER5))
-                    && identifier4.leafIdentifier5() == false) {
+            if (!identifier4.isLeafValueSet(ListIdentifier4.LeafIdentifier.LEAFIDENTIFIER5)
+                    && !identifier4.leafIdentifier5()) {
                 listIdentifier4.clear();
                 return;
             }

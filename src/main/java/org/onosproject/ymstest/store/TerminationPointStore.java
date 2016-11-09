@@ -13,17 +13,20 @@ import java.util.Map;
  */
 public class TerminationPointStore
         implements TerminationPoint {
+    protected Topology.OnosYangOpType yangTerminationPointOpType;
     private String tpId;
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
-    protected Topology.OnosYangOpType yangTerminationPointOpType;
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     @Override
     public String tpId() {
         return tpId;
@@ -77,7 +80,7 @@ public class TerminationPointStore
                 = (DefaultTerminationPoint) terminationPointPara;
         if (opNode.yangTerminationPointOpType() == null) {
             throw new RuntimeException("No operation set for termination " +
-                                               "point");
+                    "point");
         }
 
         /*

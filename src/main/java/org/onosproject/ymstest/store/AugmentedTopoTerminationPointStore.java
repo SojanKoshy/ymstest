@@ -1,11 +1,8 @@
 package org.onosproject.ymstest.store;
 
 import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.IpTopology;
-import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
-        .terminationpoints.terminationpoint.AugmentedTopoTerminationPoint;
-import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node
-        .terminationpoints.terminationpoint
-        .DefaultAugmentedTopoTerminationPoint;
+import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node.terminationpoints.terminationpoint.AugmentedTopoTerminationPoint;
+import org.onosproject.yang.gen.v1.urn.ip.topo.rev20140101.iptopology.node.terminationpoints.terminationpoint.DefaultAugmentedTopoTerminationPoint;
 
 import java.util.BitSet;
 
@@ -16,14 +13,17 @@ public class AugmentedTopoTerminationPointStore
         implements
         AugmentedTopoTerminationPoint, AugmentedOperationProcessor {
     protected String ipAddress;
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     @Override
     public String ipAddress() {
         return ipAddress;
@@ -37,16 +37,18 @@ public class AugmentedTopoTerminationPointStore
     public void ipAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
-/*
-    @Override
-    public AugmentedTopoTerminationPoint processSubtreeFiltering(
-            AugmentedTopoTerminationPoint augmentedTopoTerminationPoint,
-            boolean isSelectAllSchemaChild) {
-        return null;
-    }*/
-    public boolean isSubTreeFiltered(){
+
+    /*
+        @Override
+        public AugmentedTopoTerminationPoint processSubtreeFiltering(
+                AugmentedTopoTerminationPoint augmentedTopoTerminationPoint,
+                boolean isSelectAllSchemaChild) {
+            return null;
+        }*/
+    public boolean isSubTreeFiltered() {
         return false;
     }
+
     @Override
     public boolean isLeafValueSet(
             LeafIdentifier leaf) {
@@ -112,13 +114,13 @@ public class AugmentedTopoTerminationPointStore
                 .yangAugmentedTopoTerminationPointOpType()) {
             case CREATE: {
                 throw new RuntimeException("augmented topo link already " +
-                                                   "present");
+                        "present");
             }
             case DELETE: {
                 if (ipAddress
                         != defaultAugmentedTopoTerminationPoint.ipAddress()) {
                     throw new RuntimeException("No augmented topo link to " +
-                                                       "delete");
+                            "delete");
                 }
                 output.mapOperate = AugmentEditMapOperate.DELETE_OLD;
                 return output;

@@ -24,19 +24,20 @@ public class InterfacesContainerStore implements Interfaces {
      *
      * @return yangInterfacesOpType value of yangInterfacesOpType
      */
-    public Augment1.OnosYangOpType yangInterfacesOpType(){
+    public Augment1.OnosYangOpType yangInterfacesOpType() {
         return onosYangOpType;
     }
 
     public void ifEntries(List<IfEntry> ifEntries) {
         this.ifEntries = ifEntries;
     }
+
     /**
      * Returns the attribute yangAugmentedInfoMap.
      *
      * @return yangAugmentedInfoMap value of yangAugmentedInfoMap
      */
-    public Map<Class<?>, Object> yangAugmentedInfoMap(){
+    public Map<Class<?>, Object> yangAugmentedInfoMap() {
         return yangAugmentedInfoMap;
     }
 
@@ -45,7 +46,7 @@ public class InterfacesContainerStore implements Interfaces {
      *
      * @return ifEntry list of ifEntry
      */
-    public List<IfEntry> ifEntry(){
+    public List<IfEntry> ifEntry() {
         return ifEntries;
     }
 
@@ -56,17 +57,18 @@ public class InterfacesContainerStore implements Interfaces {
      * @param classObject value of yangAugmentedInfo
      * @return yangAugmentedInfo
      */
-    public Object yangAugmentedInfo(Class classObject){
+    public Object yangAugmentedInfo(Class classObject) {
         return yangAugmentedInfoMap.get(classObject);
     }
+
     /**
      * Checks if the passed Interfaces maps the content match query condition.
      *
-     * @param interfaces interfaces being passed to check for content match
+     * @param interfaces             interfaces being passed to check for content match
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
      */
-    public Interfaces processSubtreeFiltering(Interfaces interfaces, boolean isSelectAllSchemaChild){
+    public Interfaces processSubtreeFiltering(Interfaces interfaces, boolean isSelectAllSchemaChild) {
         return null;
     }
 
@@ -165,6 +167,7 @@ public class InterfacesContainerStore implements Interfaces {
         }*/
 
     }
+
     private void processListIdentifer2Edit(Interfaces interfaces) {
         if (interfaces.ifEntry() == null || interfaces.ifEntry().isEmpty()) {
             return;
@@ -195,7 +198,7 @@ public class InterfacesContainerStore implements Interfaces {
                 case CREATE: {
                     if (ifEntryListStore != null) {
                         throw new RuntimeException(
-                                "Node: "  + " is already " +
+                                "Node: " + " is already " +
                                         "created");
                     }
                     ifEntryListStore = new IfEntryListStore();
@@ -265,7 +268,7 @@ public class InterfacesContainerStore implements Interfaces {
 //            if (node.nodeId() == null) {
 //                continue;
 //            }
-            if (node.ifIndex() ==(findNode.ifIndex())) {
+            if (node.ifIndex() == (findNode.ifIndex())) {
                 return node;
             }
         }

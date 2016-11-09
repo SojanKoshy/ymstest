@@ -46,14 +46,17 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
     public MyIdentity leafIdentifier4() {
         return leafIdentifier4;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     /**
      * Returns the attribute leafListIdentifier4.
      *
@@ -112,6 +115,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
         return null;
     }
 */
+
     /**
      * Checks if the leaf value is set.
      *

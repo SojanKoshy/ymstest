@@ -34,14 +34,17 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
     public void leafListIdentifier3(List<byte[]> leafListIdentifier3) {
         this.leafListIdentifier3 = leafListIdentifier3;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     public void listIdentifier3(List<ListIdentifier3> listIdentifier3) {
         this.listIdentifier3 = listIdentifier3;
     }
@@ -146,7 +149,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
     }
 
     public void processEdit(ContainerIdentifier2 containerIdentifier2) {
-        ContainerIdentifier2 containerIdentifier = (ContainerIdentifier2)containerIdentifier2;
+        ContainerIdentifier2 containerIdentifier = (ContainerIdentifier2) containerIdentifier2;
         if (!(containerIdentifier2 instanceof DefaultContainerIdentifier2)) {
             //Operations are part of the default Node
             throw new RuntimeException("default Node expected");

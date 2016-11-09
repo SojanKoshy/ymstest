@@ -37,14 +37,17 @@ public class L0Identifier1C2C3ListIdentifier4Store implements ListIdentifier4 {
     public int leafIdentifier5() {
         return leafIdentifier5;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     /**
      * Returns the attribute leafListIdentifier5.
      *

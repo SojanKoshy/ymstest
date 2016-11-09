@@ -26,14 +26,17 @@ public class L0Identifier1C2L3ContainerIdentifier4Store implements ContainerIden
     public void leafListIdentifier5(List<String> leafListIdentifier5) {
         this.leafListIdentifier5 = leafListIdentifier5;
     }
+
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     /**
      * Returns the attribute leafIdentifier5.
      *
@@ -86,7 +89,7 @@ public class L0Identifier1C2L3ContainerIdentifier4Store implements ContainerIden
      * @param containerIdentifier4   containerIdentifier4 being passed to check for content match
      * @param isSelectAllSchemaChild is select all schema child
      * @return match result
-  /*   *//*
+    /*   *//*
     @Override
     public ContainerIdentifier4 processSubtreeFiltering(ContainerIdentifier4 containerIdentifier4, boolean
             isSelectAllSchemaChild) {

@@ -8,7 +8,8 @@ import org.onosproject.yang.gen.v1.urn.simple.data.types.rev20131112.simpledatat
  * Created by sojan on 4/9/16.
  */
 public class SimpleDataTypesStore implements SimpleDataTypes {
-    private Cont cont ;
+    private Cont cont;
+
     @Override
     public OnosYangOpType yangSimpleDataTypesOpType() {
         return null;
@@ -19,13 +20,14 @@ public class SimpleDataTypesStore implements SimpleDataTypes {
         return cont;
     }
 
-    public void cont(Cont cont){
+    public void cont(Cont cont) {
         this.cont = cont;
     }
 
     public void processEdit(SimpleDataTypesOpParam simpleDataTypesOpParam) {
         processContainer(simpleDataTypesOpParam, simpleDataTypesOpParam.yangSimpleDataTypesOpType());
     }
+
     private void processContainer(SimpleDataTypesOpParam dataTypesOpParam, OnosYangOpType onosYangOpType) {
 
 
@@ -39,7 +41,7 @@ public class SimpleDataTypesStore implements SimpleDataTypes {
             throw new RuntimeException("store termination points expected");
         }
 
-        ContainerStore storedNode = (ContainerStore)cont();
+        ContainerStore storedNode = (ContainerStore) cont();
         Cont container = dataTypesOpParam.cont();
 
         switch (dataTypesOpParam.cont().yangContOpType()) {

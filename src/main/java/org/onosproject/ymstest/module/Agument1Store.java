@@ -17,7 +17,7 @@ public class Agument1Store implements Augment1 {
      * @return yangAugment1OpType value of yangAugment1OpType
      */
     @Override
-    public  OnosYangOpType yangAugment1OpType(){
+    public OnosYangOpType yangAugment1OpType() {
         return onosYangOpType;
     }
 
@@ -27,18 +27,16 @@ public class Agument1Store implements Augment1 {
      * @return interfaces value of interfaces
      */
     @Override
-    public Interfaces interfaces(){
-            return interfaces;
+    public Interfaces interfaces() {
+        return interfaces;
     }
+
     public void interfaces(Interfaces interfaces) {
         this.interfaces = interfaces;
     }
+
     /**
      * Checks if the passed Augment1 maps the content match query condition.
-     *
-     * @param augment1 augment1 being passed to check for content match
-     * @param isSelectAllSchemaChild is select all schema child
-     * @return match result
      */
    /* @Override
     public Augment1 processSubtreeFiltering(Augment1 augment1, boolean isSelectAllSchemaChild){
@@ -46,7 +44,7 @@ public class Agument1Store implements Augment1 {
     }*/
     public void processEdit(
             Augment1 nodePara) {
-        if (nodePara.interfaces()== null) {
+        if (nodePara.interfaces() == null) {
             return;
         }
 

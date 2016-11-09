@@ -15,22 +15,22 @@ import java.util.List;
 public class NetworkStore
         implements Network {
 
-    private BitSet valueLeafFlags = new BitSet();
-
-
     protected String name;
     protected String surname;
     protected List<Networklist> networklist = new ArrayList<>();
     protected NetworkPathStore networkPathStore = new NetworkPathStore();
+    private BitSet valueLeafFlags = new BitSet();
 
     @Override
-    public BitSet valueLeafFlags(){
+    public BitSet valueLeafFlags() {
         return null;
     }
+
     @Override
-    public BitSet selectLeafFlags(){
+    public BitSet selectLeafFlags() {
         return null;
     }
+
     @Override
     public String name() {
         return name;
