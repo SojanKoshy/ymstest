@@ -74,7 +74,7 @@ public class ContainerStore implements Cont {
     private Tpdfun2 lfunion12;
     private Tpdfbit lfunion13;
     private Lfunion14Union lfunion14;
-    private Iden identityref1;
+    private Class<? extends Iden> identityref1;
     private Cont2 cont2;
     private List<List2> list2 = new ArrayList<>();
 
@@ -278,7 +278,7 @@ public class ContainerStore implements Cont {
         this.lfunion14 = lfunion14;
     }
 
-    public void identityref1(Iden identityref1) {
+    public void identityref1(Class<? extends Iden> identityref1) {
         valueLeafFlags.set(LeafIdentifier.IDENTITYREF1.getLeafIndex());
         this.identityref1 = identityref1;
     }
@@ -657,7 +657,7 @@ public class ContainerStore implements Cont {
      *
      * @return identityref1 value of identityref1
      */
-    public Iden identityref1() {
+    public Class<? extends Iden> identityref1() {
         return identityref1;
     }
 
