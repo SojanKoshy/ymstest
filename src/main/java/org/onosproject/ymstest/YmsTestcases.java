@@ -2,6 +2,7 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.onosproject.yang.gen.v1.http.example.com.ns.idref.yangautoprefix1.yangautoprefix0.IdentityRefService;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
@@ -43,6 +44,7 @@ import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
+import org.onosproject.ymstest.module.IdentityRefManager;
 import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
 import org.onosproject.ymstest.module.ModuleIdentifier0Store;
@@ -1031,6 +1033,68 @@ public class YmsTestcases {
         return result;
     }
 
+
+    /**
+     * Test NBI basic register flow.
+     *
+     * @return Test result
+     */
+    public boolean testIdentityRefeE2E() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        IdentityRefManager manager = new IdentityRefManager();
+        ymsService.registerService(manager, IdentityRefService.class, null);
+        print("Registered network service in YMS");
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/identity-ref";
+        String body = "";
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+       /* post(uri, body);
+
+        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
+
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
+
+        // Add device schema in YMS codec
+        yangCodecHandler.addDeviceSchema(NetworkService.class);
+
+        // Build YANG module object
+        List<Object> yangModuleList = new ArrayList<>();
+
+        yangModuleList.add(manager.getAppStore());
+
+        // Get the XML string and compare
+        Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
+        tagAttributeLinkedMap.put("type", "subtree");
+
+        // Encode JO to XML
+        String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
+                YmsOperationType.RPC_REQUEST);
+
+        if (xmlOutput == null) {
+            print("xmlOutput is Null");
+        }
+
+        System.out.println(xmlOutput);
+        // Verify xml output
+        String xmlPrettyOutput = prettyFormat(xmlOutput);
+        print(xmlPrettyOutput);*/
+
+        return result;
+    }
     public boolean testNbiModuleIdentifier0() {
         boolean result = true;
 
