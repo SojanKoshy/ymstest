@@ -19,9 +19,9 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
 
     private ContainerIdentifier4 containerIdentifier4;
 
-    private List<MyIdentity> leafListIdentifier4 = new ArrayList<>();
+    private List<Class<? extends MyIdentity>> leafListIdentifier4 = new ArrayList<>();
 
-    private MyIdentity leafIdentifier4;
+    private Class<? extends MyIdentity> leafIdentifier4;
 
     private Map<Class<?>, Object> yangAugmentedInfoMap = new HashMap<>();
 
@@ -29,11 +29,11 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
         this.containerIdentifier4 = containerIdentifier4;
     }
 
-    public void leafListIdentifier4(List<MyIdentity> leafListIdentifier) {
+    public void leafListIdentifier4(List<Class<? extends MyIdentity>> leafListIdentifier) {
         this.leafListIdentifier4 = leafListIdentifier;
     }
 
-    public void leafIdentifier4(MyIdentity myIdentity) {
+    public void leafIdentifier4(Class<? extends MyIdentity> myIdentity) {
         this.leafIdentifier4 = myIdentity;
     }
 
@@ -43,7 +43,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
      * @return value of leafIdentifier4
      */
     @Override
-    public MyIdentity leafIdentifier4() {
+    public Class<? extends MyIdentity> leafIdentifier4() {
         return leafIdentifier4;
     }
 
@@ -63,7 +63,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
      * @return list of leafListIdentifier4
      */
     @Override
-    public List<MyIdentity> leafListIdentifier4() {
+    public List<Class<? extends MyIdentity>> leafListIdentifier4() {
         return leafListIdentifier4;
     }
 
@@ -243,8 +243,8 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
                 || listIdentifier3.leafListIdentifier4().isEmpty()) {
             return;
         }
-        for (MyIdentity leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
-            MyIdentity storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
+        for (Class<? extends MyIdentity> leafListIdentifer4Para : listIdentifier3.leafListIdentifier4()) {
+            Class<? extends MyIdentity> storedLeafListIdentifier4 = findLeafListIdentifer4(leafListIdentifer4Para);
 
             switch (onosYangNodeOperationType) {
                 case CREATE: {
@@ -302,16 +302,16 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
 
     }
 
-    public void addToLeafListIdentifer4(MyIdentity value) {
+    public void addToLeafListIdentifer4(Class<? extends MyIdentity> value) {
         leafListIdentifier4().add(value);
     }
 
-    private MyIdentity findLeafListIdentifer4(MyIdentity leafListIdentifer) {
+    private Class<? extends MyIdentity> findLeafListIdentifer4(Class<? extends MyIdentity> leafListIdentifer) {
         if (leafListIdentifier4().isEmpty()) {
             return null;
         }
 
-        for (MyIdentity leaflistIdentifer4 : leafListIdentifier4()) {
+        for (Class<? extends MyIdentity> leaflistIdentifer4 : leafListIdentifier4()) {
             if (leaflistIdentifer4.equals(leafListIdentifer)) {
                 return leaflistIdentifer4;
             }
