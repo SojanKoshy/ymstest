@@ -206,7 +206,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
 
         switch (listIdentifier.yangListIdentifier3OpType()) {
             case CREATE: {
-                leafIdentifier4(listIdentifier.leafIdentifier4());
+                leafIdentifier4(listIdentifier3.leafIdentifier4());
                 return;
             }
             case DELETE: {

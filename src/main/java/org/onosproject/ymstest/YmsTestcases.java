@@ -1039,7 +1039,7 @@ public class YmsTestcases {
      *
      * @return Test result
      */
-    public boolean testIdentityRefeE2E() {
+    public boolean testE2EIdentityRef() {
         boolean result = true;
 
         YmsService ymsService = get(YmsService.class);
@@ -1058,7 +1058,7 @@ public class YmsTestcases {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-       /* post(uri, body);
+        post(uri, body);
 
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
@@ -1068,7 +1068,7 @@ public class YmsTestcases {
         }
 
         // Add device schema in YMS codec
-        yangCodecHandler.addDeviceSchema(NetworkService.class);
+        yangCodecHandler.addDeviceSchema(IdentityRefService.class);
 
         // Build YANG module object
         List<Object> yangModuleList = new ArrayList<>();
@@ -1091,10 +1091,11 @@ public class YmsTestcases {
         System.out.println(xmlOutput);
         // Verify xml output
         String xmlPrettyOutput = prettyFormat(xmlOutput);
-        print(xmlPrettyOutput);*/
+        print(xmlPrettyOutput);
 
         return result;
     }
+
     public boolean testNbiModuleIdentifier0() {
         boolean result = true;
 
@@ -1142,12 +1143,12 @@ public class YmsTestcases {
                 "\t\t}, {\t\n" +
                 "\t\t\t\"leaf-identifier3\": \"enum2\",\n" +
                 "\t\t\t\"list-identifier3\": [{\n" +
-                "\t\t\t\t\"leaf-identifier4\": \"myidentity\",\n" +
+                "\t\t\t\t\"leaf-identifier4\": \"my-identity\",\n" +
                 "\t\t\t\t\"container-identifier4\": {\t\n" +
                 "\t\t\t\t\t\"leaf-identifier5\": \"type-pattern-string7\",\n" +
                 "\t\t\t\t\t\"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
                 "\t\t\t\t},\n" +
-                "\t\t\t\t\"leaf-list-identifier4\": [\"myidentity\"]\n" +
+                "\t\t\t\t\"leaf-list-identifier4\": [\"my-identity\"]\n" +
                 "\t\t\t}]\n" +
                 "\n" +
                 "\t\t}]\n" +
@@ -1246,12 +1247,12 @@ public class YmsTestcases {
                 "        }, {\n" +
                 "            \"leaf-identifier3\": \"enum2\",\n" +
                 "            \"list-identifier3\": [{\n" +
-                "                \"leaf-identifier4\": \"myidentity\",\n" +
+                "                \"leaf-identifier4\": \"my-identity\",\n" +
                 "                \"container-identifier4\": {\n" +
                 "                    \"leaf-identifier5\": \"type-pattern-string7\",\n" +
                 "                    \"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
                 "                },\n" +
-                "                \"leaf-list-identifier4\": [\"myidentity\"]\n" +
+                "                \"leaf-list-identifier4\": [\"my-identity\"]\n" +
                 "            }]\n" +
                 "\n" +
                 "        }]\n" +
@@ -1304,7 +1305,7 @@ public class YmsTestcases {
                 "\n" +
                 "}";
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
