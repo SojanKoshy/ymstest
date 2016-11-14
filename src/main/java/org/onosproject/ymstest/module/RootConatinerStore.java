@@ -270,7 +270,6 @@ public class RootConatinerStore implements Container {
                 u7(container.u7());
                 u8(container.u8());
 
-
                 u11(container.u11());
                 u12(container.u12());
 
@@ -290,7 +289,6 @@ public class RootConatinerStore implements Container {
                 u6(container.u6());
                 u7(container.u7());
                 u8(container.u8());
-
 
                 u11(container.u11());
                 u12(container.u12());
