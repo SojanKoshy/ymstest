@@ -1052,7 +1052,12 @@ public class YmsTestcases {
         ymsService.registerService(manager, IdentityRefService.class, null);
         print("Registered network service in YMS");
         String uri = "http://127.0.0.1:8181/onos/restconf/data/identity-ref";
-        String body = "";
+        String body = "{\n" +
+                "\t\"c\": {\n" +
+                "\t\t\"ref-leaf\":\"baseid\",\n" +
+                "\t\t\"llist\":[\"-9.999999999999999e11\"]\n" +
+                "\t}\n" +
+                "}";
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
