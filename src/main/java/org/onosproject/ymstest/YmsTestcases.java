@@ -4,6 +4,7 @@ package org.onosproject.ymstest;
 import org.apache.commons.codec.binary.Base64;
 import org.onosproject.yang.gen.v1.http.example.com.ns.idref.yangautoprefix1.yangautoprefix0.IdentityRefService;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0OpParam;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0Service;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ContainerIdentifier1;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.ListIdentifier1;
@@ -36,7 +37,7 @@ import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.DefaultNetworklist;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.NetworkPath;
 import org.onosproject.yang.gen.v1.urn.tbd.params.xml.ns.yang.nodes.rev20140309.network.Networklist;
-import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpc;
+import org.onosproject.yang.gen.v1.urn.yms.test.rpc.simple.rev20160826.SimpleRpcService;
 import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.MultiNotificationService;
 import org.onosproject.yang.gen.v1.urn.yms.test.ytb.multi.notification.with.container.rev20160826.multinotification.MultiNotificationEventSubject;
 import org.onosproject.yms.ych.YangCodecHandler;
@@ -772,7 +773,7 @@ public class YmsTestcases {
         }
 
         SimpleRpcManager simpleRpcManager = new SimpleRpcManager();
-        ymsService.registerService(simpleRpcManager, SimpleRpc.class, null);
+        ymsService.registerService(simpleRpcManager, SimpleRpcService.class, null);
         print("Registered Service");
 
         // TODO Need to add validation
@@ -982,11 +983,12 @@ public class YmsTestcases {
             print("ymsService is Null");
         }
 
-        ymsService.registerService(new ModuleIdentifier0Manager(), ModuleIdentifier0Service.class, null);
+        ModuleIdentifier0Manager manager = new ModuleIdentifier0Manager();
+        ymsService.registerService(manager, ModuleIdentifier0Service.class, null);
         print("Registered network service in YMS");
 
         // TODO Need to add validation
-
+        ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
         return result;
     }
 
@@ -1033,7 +1035,7 @@ public class YmsTestcases {
         }
 
         // Add device schema in YMS codec
-        yangCodecHandler.addDeviceSchema(NetworkService.class);
+        yangCodecHandler.addDeviceSchema(RootModuleService.class);
 
         // Build YANG module object
         List<Object> yangModuleList = new ArrayList<>();
@@ -1261,7 +1263,7 @@ public class YmsTestcases {
                 "            }]\n" +
                 "\n" +
                 "        },\n" +
-                "        \"leaf-identifier2\": \"-9.999999999999999e11\",\n" +
+                "        \"leaf-identifier2\": \"-9.1999999999e17\",\n" +
                 "        \"leaf-list-identifier2\": [\"-9.999999999999999e1\", \"-9.33333\", " +
                 "\"-9.999999999999999e2\"]," +
                 "\n" +
@@ -1385,17 +1387,20 @@ public class YmsTestcases {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-        List<Object> yangModuleDecodedList =
-                yangCodecHandler.decode(xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
+        List yangModuleDecodedList = yangCodecHandler.decode(
+                xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
         System.out.println(yangModuleDecodedList);
-        appObjectVerificationForE2EModuleIdentifier0((ModuleIdentifier0Store) yangModuleDecodedList.get(0));
-        //   ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
+        ModuleIdentifier0OpParam moduleIdentifier0OpParam = (ModuleIdentifier0OpParam) yangModuleDecodedList.get(0);
+        if (!xmlToObjectVerification(moduleIdentifier0OpParam)) {
+            return false;
+        }
+        ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
         return result;
     }
 
     public boolean appObjectVerificationForE2EModuleIdentifier0(ModuleIdentifier0Store store) {
         ContainerIdentifier1 containerIdentifier1 = store.containerIdentifier1();
-        if (!new String("-999999999999.9999").equals(containerIdentifier1.leafIdentifier2().toString())) {
+        if (!new String("-9.1999999999E+17").equals(containerIdentifier1.leafIdentifier2().toString())) {
             return false;
         }
         List<BigDecimal> bigDecimals = containerIdentifier1.leafListIdentifier2();
@@ -1452,6 +1457,133 @@ public class YmsTestcases {
             for (LeafListIdentifier3Enum leafListIdentifier3Enum : list2) {
                 if (!strings3.contains(leafListIdentifier3Enum.toString())) {
                     return false;
+                }
+            }
+            ContainerIdentifier3 containerIdentifier3;
+            if (listIdentifier2.containerIdentifier3() != null) {
+                containerIdentifier3 = listIdentifier2.containerIdentifier3();
+                List<Boolean> booleans = containerIdentifier3.leafListIdentifier4();
+                List<Boolean> booleans1 = new ArrayList<>();
+                booleans1.add(true);
+                booleans1.add(false);
+                for (Boolean aBoolean : booleans) {
+                    if (!booleans1.contains(aBoolean)) {
+                        return false;
+                    }
+                }
+                if (!booleans1.contains(containerIdentifier3.leafIdentifier4())) {
+                    return false;
+                }
+            }
+        }
+
+        List<ListIdentifier1> listIdentifier1 = store.listIdentifier1();
+        for (ListIdentifier1 identifier1 : listIdentifier1) {
+            Integer[] integers = {56692, 56693};
+            List<Integer> list2 = Arrays.asList(integers);
+            list2.contains(identifier1.leafIdentifier2());
+            org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.
+                    listidentifier1.ContainerIdentifier2
+                    identifier2 = identifier1.containerIdentifier2();
+            if (identifier2 != null) {
+                org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.
+                        listidentifier1.containeridentifier2.ContainerIdentifier3
+                        identifier3 = identifier2.containerIdentifier3();
+                Short[] shorts = {22369};
+                List<Short> shortList = Arrays.asList(shorts);
+                if (!shortList.contains(identifier3.leafIdentifier4())) {
+                    return false;
+                }
+                List<Short> shortList1 = identifier3.leafListIdentifier4();
+                for (Short aShort : shortList1) {
+                    if (!shortList.contains(aShort)) {
+                        return false;
+                    }
+                }
+                List<org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.
+                        containeridentifier2.containeridentifier3.ListIdentifier4> listIdentifier4 =
+                        identifier3.listIdentifier4();
+                for (org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.listidentifier1.
+                        containeridentifier2.containeridentifier3.ListIdentifier4 identifier4 : listIdentifier4) {
+                    Integer[] integers1 = {123456789};
+                    List<Integer> list3 = Arrays.asList(integers1);
+                    if (!list3.contains(identifier4.leafIdentifier5())) {
+                        return false;
+                    }
+                    List<Integer> list4 = identifier4.leafListIdentifier5();
+                    for (Integer integer : list4) {
+                        if (!list3.contains(integer)) {
+                            return false;
+                        }
+                    }
+                }
+
+            }
+        }
+        return true;
+    }
+
+    public boolean xmlToObjectVerification(ModuleIdentifier0OpParam store) {
+        ContainerIdentifier1 containerIdentifier1 = store.containerIdentifier1();
+        if (!new String("-9.1999999999E+17").equals(containerIdentifier1.leafIdentifier2().toString())) {
+            return false;
+        }
+        List<BigDecimal> bigDecimals = containerIdentifier1.leafListIdentifier2();
+        String[] strings = {"-99.99999999999999", "-9.33333", "-999.9999999999999"};
+        List<String> strings1 = Arrays.asList(strings);
+        for (BigDecimal bigDecimal : bigDecimals) {
+            if (!strings1.contains(bigDecimal.toString())) {
+                return false;
+            }
+        }
+        ContainerIdentifier2 containerIdentifier2 = containerIdentifier1.containerIdentifier2();
+        if (new String(containerIdentifier2.leafIdentifier3()).equals("LQ==")) {
+            return false;
+        }
+        List<byte[]> list = containerIdentifier2.leafListIdentifier3();
+        for (byte[] aByte : list) {
+            if (!Base64.encodeBase64String(aByte).equals("LQ==")) {
+                return false;
+            }
+        }
+
+        List<ListIdentifier3> listIdentifier3 = containerIdentifier1.containerIdentifier2().listIdentifier3();
+        for (ListIdentifier3 identifier3 : listIdentifier3) {
+            BitSet bitSet = identifier3.leafIdentifier4();
+            BitSet bitSet2 = new BitSet();
+            bitSet2.set(1);
+            if (!bitSet.equals(bitSet2)) {
+                return false;
+            }
+            List<BitSet> bitSets = identifier3.leafListIdentifier4();
+            for (BitSet bitSet1 : bitSets) {
+                BitSet bitSet3 = new BitSet();
+                bitSet3.set(0);
+                if (!bitSet1.equals(bitSet3)) {
+                    return false;
+                }
+            }
+            List<ListIdentifier4> listIdentifier4s = identifier3.listIdentifier4();
+            for (ListIdentifier4 listIdentifier4 : listIdentifier4s) {
+                if (listIdentifier4.leafIdentifier5()) {
+                    return false;
+                }
+            }
+
+        }
+        String[] strings2 = {"enum1", "enum2", "enum3"};
+        List<String> strings3 = Arrays.asList(strings2);
+        List<ListIdentifier2> list1 = containerIdentifier1.listIdentifier2();
+        for (ListIdentifier2 listIdentifier2 : list1) {
+            if (!strings3.contains(listIdentifier2.leafIdentifier3().toString())) {
+                return false;
+            }
+            List<LeafListIdentifier3Enum> list2 = listIdentifier2.leafListIdentifier3();
+            if (list2 != null) {
+                for (LeafListIdentifier3Enum leafListIdentifier3Enum : list2) {
+                    if (!strings3.contains(leafListIdentifier3Enum.toString())) {
+                        return false;
+                    }
                 }
             }
             ContainerIdentifier3 containerIdentifier3;
