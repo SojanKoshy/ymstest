@@ -205,28 +205,34 @@ public class YmsTestcases {
 
 
     private String getRequest(String uri) {
-        String output = null;
+        StringBuffer response = new StringBuffer();
 
         try {
+            URL obj = new URL(uri);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-            StringBuilder result = new StringBuilder();
-            URL url = new URL(uri);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
-            while ((line = rd.readLine()) != null) {
-                result.append(line);
+            // optional default is GET
+            con.setRequestMethod("GET");
+
+            //add request header
+
+            int responseCode = con.getResponseCode();
+            System.out.println("\nSending 'GET' request to URL : " + uri);
+            System.out.println("Response Code : " + responseCode);
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
             }
-            rd.close();
-            conn.disconnect();
-            return result.toString();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            in.close();
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
         }
-        return output;
+        return response.toString();
     }
 
     /**
@@ -613,7 +619,7 @@ public class YmsTestcases {
 
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
 
         if (yangCodecHandler == null) {
             print("yangCodecHandler is Null");
@@ -684,7 +690,7 @@ public class YmsTestcases {
             result = false;
             print("Response body not matching with expected");
         }
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
         ymsService.unRegisterService(manager, NetworkService.class);
         return result;
     }
@@ -813,7 +819,7 @@ public class YmsTestcases {
 
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
         if (yangCodecHandler == null) {
             print("yangCodecHandler is Null");
         }
@@ -891,7 +897,7 @@ public class YmsTestcases {
         }
         post(uri, body);
         Network network = networkManager.getAppDataStore();
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
         if (!network.name().equals("Huawei")) {
             result = false;
         }
@@ -937,7 +943,7 @@ public class YmsTestcases {
 
         Network network = manager.getNetwork((NetworkOpParam)
                 NetworkOpParam.builder().build());
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
         if (!network.name().equals("Huawei")) {
             result = false;
         }
@@ -1028,7 +1034,7 @@ public class YmsTestcases {
         post(uri, body);
 
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
 
         if (yangCodecHandler == null) {
             print("yangCodecHandler is Null");
@@ -1097,7 +1103,7 @@ public class YmsTestcases {
 
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
 
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
         if (yangCodecHandler == null) {
             print("yangCodecHandler is Null");
         }
@@ -1197,7 +1203,7 @@ public class YmsTestcases {
         post(uri, body);
         // Build YANG module object
         List<Object> yangModuleList = new ArrayList<>();
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
         yangModuleList.add(manager.getAppStore());
         // Get YANG codec handler
         YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
@@ -1345,7 +1351,7 @@ public class YmsTestcases {
             e.printStackTrace();
         }
         post(uri, body);
-        print(getRequest(uri));
+        System.out.println(getRequest(uri));
         if (!appObjectVerificationForE2EModuleIdentifier0(manager.getAppStore())) {
             return false;
         }
