@@ -585,29 +585,28 @@ public class YmsTestcases {
 
         // TODO Need to add validation
         String uri = "http://127.0.0.1:8181/onos/restconf/data/simple-data-types";
-        String body = "{\n" +
+        String body = "{ \n" +
                 "\"cont\": {\n" +
-                " \"lfint8Min\": \"0\",\n" +
-                "      \"lfint8Max\": \"1\",\n" +
-                "      \"lfint16Min\": \"0\",\n" +
-                "      \"lfint16Max\": \"0\",\n" +
-                "      \"lfint32Min\": \"0\",\n" +
-                "      \"lfint32Max\": \"0\",\n" +
-                "      \"lfint64Min\": \"0\",\n" +
-                "      \"lfint64Max\": \"0\",\n" +
-                "      \"lfuint8Max\": \"0\",\n" +
-                "      \"lfuint16Max\": \"0\",\n" +
-                "      \"lfuint32Max\": \"0\",\n" +
-                "      \"lfuint64Max\": \"1\",\n" +
-                "      \"lfbool1\": \"false\",\n" +
-                "      \"lfbool2\": \"false\",\n" +
-                "      \"lfbool3\": \"false\",\n" +
-                "      \"lfdecimal1\": \"1\",\n" +
-                "      \"lfdecimal2\": \"1\",\n" +
-                "      \"lfdecimal3\": \"1\",\n" +
-                "      \"lfdecimal4\": \"1\",\n" +
-                "      \"lfdecimal6\": \"1\",\n" +
-                "      \"lfref2\": \"0\"\n" +
+                "     \"lfint8Min\": \"-128\",\n" +
+                "     \"lfint8Max\": \"127\",\n" +
+                "     \"lfint16Min\": \"-32768\",\n" +
+                "     \"lfint16Max\": \"32767\",\n" +
+                "     \"lfint32Min\": \"-2147483648\",\n" +
+                "     \"lfint32Max\": \"2147483647\",\n" +
+                "     \"lfint64Min\": \"-9223372036854775808\",\n" +
+                "     \"lfint64Max\": \"0\",\n" +
+                "     \"lfuint8Max\": \"255\",\n" +
+                "     \"lfuint16Max\": \"65535\",\n" +
+                "     \"lfuint32Max\": \"4294967295\",\n" +
+                "     \"lfuint64Max\": \"18446744073709551615\",\n" +
+                "     \"lfstr\": \"Testing\",\n" +
+                "     \"lfstr1\": \"H\",\n" +
+                "     \"lfbool1\": \"false\",\n" +
+                "     \"lfbool2\": \"false\",\n" +
+                "     \"lfbool3\": \"false\",\n" +
+                "     \"lfdecimal1\": \"-92233.08720368547\",\n" +
+                "     \"lfref2\": \"0\",\n" +
+                "     \"lfempty\": \"\"\n" +
                 "}\n" +
                 "}";
         try {
@@ -690,7 +689,7 @@ public class YmsTestcases {
             result = false;
             print("Response body not matching with expected");
         }
-        System.out.println(getRequest(uri));
+        print(getRequest(uri));
         ymsService.unRegisterService(manager, NetworkService.class);
         return result;
     }
