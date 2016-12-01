@@ -13,9 +13,15 @@ COMPILE_DEPS = [
   '//lib:osgi-core',
   '//apps/yms/api:onos-apps-yms-api',
   '//apps/yms/app:onos-apps-yms-app',
-  "//lib:commons-codec"
+  "//lib:commons-codec",
+  '//lib:guava',
 ]
 
+yang_library(
+  deps = COMPILE_DEPS,
+  name = 'onos-app-test-ymstest',
+  srcs = glob(['src/main/**/*.yang']),
+)
 osgi_jar(
   deps = COMPILE_DEPS,
   srcs = glob(['target/generated-sources/**', 'src/main/**']),
