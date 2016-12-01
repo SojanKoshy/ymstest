@@ -94,7 +94,7 @@
             <plugin>
                 <groupId>org.onosproject</groupId>
                 <artifactId>onos-yang-maven-plugin</artifactId>
-                <version>1.10-SNAPSHOT</version>
+                <version>1.10</version>
                 <executions>
                     <execution>
                         <goals>
@@ -103,6 +103,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
