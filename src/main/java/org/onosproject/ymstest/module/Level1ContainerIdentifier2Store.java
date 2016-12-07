@@ -3,6 +3,7 @@ package org.onosproject.ymstest.module;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.ContainerIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.DefaultContainerIdentifier2;
+import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.DefaultListIdentifier2;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.DefaultListIdentifier3;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.moduleidentifier0.containeridentifier1.containeridentifier2.ListIdentifier3;
 
@@ -326,7 +327,7 @@ public class Level1ContainerIdentifier2Store implements ContainerIdentifier2 {
             }
             ListIdentifier3 listInStore = findListIdentifer3InStore(identifier3);
 
-            if (listInStore != null && !(listInStore instanceof Level1ListIdentifier2Store)) {
+            if (listInStore != null && !(listInStore instanceof Level1ListIdentifier3Store)) {
                 //stored node is not correct
                 throw new RuntimeException("store Node expected");
             }

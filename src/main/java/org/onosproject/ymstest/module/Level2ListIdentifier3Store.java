@@ -327,7 +327,7 @@ public class Level2ListIdentifier3Store implements ListIdentifier3 {
         }
 
         if (containerIdentifier4() != null && !(containerIdentifier4() instanceof
-                Level1ContainerIdentifier2Store)) {
+                Level2ContainerIdentifier4Store)) {
             //stored node is not correct
             throw new RuntimeException("store termination points expected");
         }

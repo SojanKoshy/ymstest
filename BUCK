@@ -19,13 +19,13 @@ COMPILE_DEPS = [
 
 yang_library(
   deps = COMPILE_DEPS,
-  name = 'onos-app-test-ymstest',
+  name = 'onos-apps-test-ymstest',
   srcs = glob(['src/main/**/*.yang']),
 )
-osgi_jar(
-  deps = COMPILE_DEPS,
-  srcs = glob(['target/generated-sources/**', 'src/main/**']),
-)
+# osgi_jar(
+#   deps = COMPILE_DEPS,
+#   srcs = glob(['target/generated-sources/**', 'src/main/**']),
+# )
 
 onos_app(
   title = 'YMS Test App',

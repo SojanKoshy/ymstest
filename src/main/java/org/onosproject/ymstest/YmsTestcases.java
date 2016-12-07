@@ -2,6 +2,8 @@ package org.onosproject.ymstest;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1;
+import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
 import org.onosproject.yang.gen.v1.http.example.com.ns.idref.yangautoprefix1.yangautoprefix0.IdentityRefService;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0;
 import org.onosproject.yang.gen.v1.module.namespace.uri1.rev20160919.ModuleIdentifier0OpParam;
@@ -45,6 +47,7 @@ import org.onosproject.yms.ych.YangProtocolEncodingFormat;
 import org.onosproject.yms.ydt.YmsOperationType;
 import org.onosproject.yms.ymsm.YmsService;
 import org.onosproject.yms.ynh.YangNotificationService;
+import org.onosproject.ymstest.module.Agument1Manager;
 import org.onosproject.ymstest.module.IdentityRefManager;
 import org.onosproject.ymstest.module.LinkListener;
 import org.onosproject.ymstest.module.ModuleIdentifier0Manager;
@@ -203,6 +206,48 @@ public class YmsTestcases {
         return output;
     }
 
+    private String deleteRequest(String uri) {
+        String output = null;
+
+//        try {
+//
+//            URL url = new URL(uri);
+//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setDoOutput(true);
+//            String userPassword = "karaf:karaf";
+//            String encoding = new String(new Base64().encode(userPassword.getBytes()));
+//            conn.setRequestProperty("Authorization", "Basic " + encoding);
+//
+//            conn.setRequestMethod("DELETE");
+//            conn.setRequestProperty("Content-Type", "application/json");
+//
+//            OutputStream os = conn.getOutputStream();
+//            os.flush();
+//
+//
+//
+//            conn.disconnect();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        try {
+            URL obj = new URL(uri);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+            // optional default is GET
+            con.setRequestMethod("DELETE");
+
+            //add request header
+
+            int responseCode = con.getResponseCode();
+            System.out.println("\nSending 'GET' request to URL : " + uri);
+            System.out.println("Response Code : " + responseCode);
+
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+        }
+        return output;
+    }
 
     private String getRequest(String uri) {
         StringBuffer response = new StringBuffer();
@@ -418,7 +463,7 @@ public class YmsTestcases {
                 .lfunion2(new Lfunion2Union(new BigDecimal("100000000")))
                 .lfunion10(new Lfunion10Union(BitSet.valueOf(new byte[]{0x11}))) // TODO why false is printing
                 .lfunion14(new Lfunion14Union(Lfunion14UnionEnum1.ONE))
-                        //.lfbinary(new byte[] {0x00, 0x01}) TODO Uncomment this after binary is supported
+                //.lfbinary(new byte[] {0x00, 0x01}) TODO Uncomment this after binary is supported
                 .cont2(cont2)
                 .list2(lists)
                 .build();
@@ -544,7 +589,7 @@ public class YmsTestcases {
      *
      * @return Test result
      */
-  /*  public boolean testNbiRegister() {
+ /*   public boolean testNbiRegister() {
         boolean result = true;
 
         YmsService ymsService = get(YmsService.class);
@@ -564,6 +609,84 @@ public class YmsTestcases {
 
         return result;
     }*/
+    public boolean testAgument1() {
+        boolean result = true;
+
+        YmsService ymsService = get(YmsService.class);
+
+        if (ymsService == null) {
+            print("ymsService is Null");
+        }
+
+        Agument1Manager manager = new Agument1Manager();
+        ymsService.registerService(manager, Augment1Service.class, null);
+        print("Registered network service in YMS");
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String uri = "http://127.0.0.1:8181/onos/restconf/data/augment1";
+        String body = "{\n" +
+                "\"interfaces\": {\n" +
+                "\"ifEntry\": [\n" +
+                "{ \"ifIndex\": \"2\" , \"ifType1\": \"1\"}\n" +
+                "]\n" +
+                "}}";
+
+        post(uri, body);
+        System.out.println(getRequest(uri));
+
+        System.out.println("PUT Request");
+        body = "{\n" +
+                "\"interfaces\": {\n" +
+                "\"ifEntry\": [\n" +
+                "{ \"ifIndex\": \"3\" , \"ifType1\": \"2\"}\n" +
+                "]\n" +
+                "}}";
+
+        put(uri, body);
+        System.out.println(getRequest(uri));
+        List<Object> yangModuleList = new ArrayList<>();
+        yangModuleList.add(manager.getAppStore());
+        // Get YANG codec handler
+        YangCodecHandler yangCodecHandler = ymsService.getYangCodecHandler();
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
+        yangCodecHandler.addDeviceSchema(Augment1.class);
+
+
+        // Get the XML string and compare
+        Map<String, String> tagAttributeLinkedMap = new HashMap<String, String>();
+        tagAttributeLinkedMap.put("type", "subtree");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // Encode JO to XML
+        String xmlOutput = yangCodecHandler.encodeOperation("filter", "ydt.filter-type",
+                tagAttributeLinkedMap, yangModuleList, YangProtocolEncodingFormat.XML,
+                YmsOperationType.RPC_REQUEST);
+
+        if (xmlOutput == null) {
+            print("xmlOutput is Null");
+        }
+
+        // Verify xml output
+        String xmlPrettyOutput = prettyFormat(xmlOutput);
+        print(xmlPrettyOutput);
+
+        List yangModuleDecodedList = yangCodecHandler.decode(
+                xmlPrettyOutput, YangProtocolEncodingFormat.XML, YmsOperationType.RPC_REQUEST);
+
+        // TODO Need to add validation
+        ymsService.unRegisterService(manager, Augment1Service.class);
+        return result;
+    }
 
     /**
      * Test NBI basic data types.
@@ -620,9 +743,6 @@ public class YmsTestcases {
 
         System.out.println(getRequest(uri));
 
-        if (yangCodecHandler == null) {
-            print("yangCodecHandler is Null");
-        }
 
         // Add device schema in YMS codec
         yangCodecHandler.addDeviceSchema(SimpleDataTypesService.class);
@@ -649,6 +769,40 @@ public class YmsTestcases {
         String xmlPrettyOutput = prettyFormat(xmlOutput);
         print(xmlPrettyOutput);
         // ymsService.unRegisterService(manager, SimpleDataTypesService.class);
+
+        System.out.println("PUT Request");
+        body = "{ \n" +
+                "\"cont\": {\n" +
+                "     \"lfint8Min\": \"-126\",\n" +
+                "     \"lfint8Max\": \"127\",\n" +
+                "     \"lfint16Min\": \"-32768\",\n" +
+                "     \"lfint16Max\": \"32767\",\n" +
+                "     \"lfint32Min\": \"-2147483648\",\n" +
+                "     \"lfint32Max\": \"2147483647\",\n" +
+                "     \"lfint64Min\": \"-9223372036854775808\",\n" +
+                "     \"lfint64Max\": \"0\",\n" +
+                "     \"lfuint8Max\": \"255\",\n" +
+                "     \"lfuint16Max\": \"65535\",\n" +
+                "     \"lfuint32Max\": \"4294967295\",\n" +
+                "     \"lfuint64Max\": \"18446744073709551615\",\n" +
+                "     \"lfstr\": \"Testing\",\n" +
+                "     \"lfstr1\": \"H\",\n" +
+                "     \"lfbool1\": \"true\",\n" +
+                "     \"lfbool2\": \"true\",\n" +
+                "     \"lfbool3\": \"true\",\n" +
+                "     \"lfdecimal1\": \"-92233.08720368547\",\n" +
+                "     \"lfref2\": \"0\",\n" +
+                "     \"lfempty\": \"\"\n" +
+                "}\n" +
+                "}";
+
+        put(uri, body);
+
+        System.out.println(getRequest(uri));
+
+        if (yangCodecHandler == null) {
+            print("yangCodecHandler is Null");
+        }
         return result;
     }
 
@@ -906,6 +1060,7 @@ public class YmsTestcases {
         System.out.println(network.name());
         System.out.println(network.surname());
         System.out.println(network.networklist());
+
         ymsService.unRegisterService(networkManager, NetworkService.class);
         return result;
     }
@@ -1065,6 +1220,21 @@ public class YmsTestcases {
         String xmlPrettyOutput = prettyFormat(xmlOutput);
         print(xmlPrettyOutput);
 
+
+        System.out.println("PUT Request");
+        body = "{\n" +
+                "\t\"container\": {\n" +
+                "\t\t\"u2\":\"xyz\",\n" +
+                "\t\t\"u3\":\"100\",\n" +
+                "\t\t\"u4\":\"lmn\",\n" +
+                "\t\t\"u1\":\"100\",\n" +
+                "\t\t\"u6\":\"1\",\n" +
+                "\t\t\"u7\":\"mno\"\n" +
+                "\t}\n" +
+                "}";
+        put(uri, body);
+
+        System.out.println(getRequest(uri));
         return result;
     }
 
@@ -1230,9 +1400,69 @@ public class YmsTestcases {
             print("xmlOutput is Null");
         }
 
+
         // Verify xml output
         String xmlPrettyOutput = prettyFormat(xmlOutput);
         print(xmlPrettyOutput);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("PUT Request");
+
+
+        body = "{\n" +
+                "\t\"container-identifier1\": {\n" +
+                "\t\t\"container-identifier2\": {\n" +
+                "\t\t\t\"leaf-identifier3\": \"xg==\",\n" +
+                "\t\t\t\"leaf-list-identifier3\": [\"xg==\"],\n" +
+                "\t\t\t\"list-identifier3\": [{\n" +
+                "\t\t\t\t\"leaf-identifier4\": \"bit1\",\n" +
+                "\t\t\t\t\"leaf-list-identifier4\": [\"bit2\"],\n" +
+                "\n" +
+                "\t\t\t\t\"list-identifier4\": [{\n" +
+                "\t\t\t\t\t\"leaf-identifier5\": \"true\",\n" +
+                "\t\t\t\t\t\"leaf-list-identifier5\": [\"false\"]\n" +
+                "\t\t\t\t}]\n" +
+                "\t\t\t}]\n" +
+                "\n" +
+                "\t\t},\n" +
+                "\t\t\"leaf-identifier2\": \"-9.999999999999999e15\",\n" +
+                "\t\t\"leaf-list-identifier2\": [\"-9.9999999999999e1\"],\n" +
+                "\t\t\"list-identifier2\": [{\n" +
+                "\t\t\t\"leaf-identifier3\": \"enum2\",\n" +
+                "\t\t\t\"leaf-list-identifier3\": [\"enum2\"],\n" +
+                "\t\t\t\"container-identifier3\": {\n" +
+                "\t\t\t\t\"leaf-identifier4\": \"\",\n" +
+                "\t\t\t\t\"leaf-list-identifier4\": [\"\"],\n" +
+                "\t\t\t\t\"list-identifier4\": [{\n" +
+                "\t\t\t\t\t\"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "\t\t\t\t\t\"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "\t\t\t\t}]\n" +
+                "\t\t\t}\n" +
+                "\t\t}, {\t\n" +
+                "\t\t\t\"leaf-identifier3\": \"enum1\",\n" +
+                "\t\t\t\"list-identifier3\": [{\n" +
+                "\t\t\t\t\"leaf-identifier4\": \"my-identity\",\n" +
+                "\t\t\t\t\"container-identifier4\": {\t\n" +
+                "\t\t\t\t\t\"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "\t\t\t\t\t\"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "\t\t\t\t},\n" +
+                "\t\t\t\t\"leaf-list-identifier4\": [\"my-identity\"]\n" +
+                "\t\t\t}]\n" +
+                "\n" +
+                "\t\t}]\n" +
+                "\t}\n" +
+                "\t}";
+        put(uri, body);
+        System.out.println(getRequest(uri));
+
+
+        System.out.println("DELETE Request");
+        deleteRequest(uri);
+        System.out.println(getRequest(uri));
         return result;
     }
 
@@ -1399,6 +1629,114 @@ public class YmsTestcases {
         if (!xmlToObjectVerification(moduleIdentifier0OpParam)) {
             return false;
         }
+
+
+        System.out.println("PUT Request");
+        body = "{\n" +
+                "    \"container-identifier1\": {\n" +
+                "        \"container-identifier2\": {\n" +
+                "            \"leaf-identifier3\": \"xg==\",\n" +
+                "            \"leaf-list-identifier3\": [\"xg==\", \"xg==\", \"xg==\"],\n" +
+                "            \"list-identifier3\": [{\n" +
+                "                \"leaf-identifier4\": \"bit3\",\n" +
+                "                \"leaf-list-identifier4\": [\"bit4\"],\n" +
+                "\n" +
+                "                \"list-identifier4\": [{\n" +
+                "                    \"leaf-identifier5\": \"true\",\n" +
+                "                    \"leaf-list-identifier5\": [\"false\"]\n" +
+                "                }]\n" +
+                "            }]\n" +
+                "\n" +
+                "        },\n" +
+                "        \"leaf-identifier2\": \"-9.1999999999e16\",\n" +
+                "        \"leaf-list-identifier2\": [\"-9.99999999999999e1\", \"-9.444\", " +
+                "\"-9.99999999999999e2\"]," +
+                "\n" +
+                "        \"list-identifier2\": [{\n" +
+                "            \"leaf-identifier3\": \"enum1\",\n" +
+                "            \"leaf-list-identifier3\": [\"enum2\"],\n" +
+                "            \"container-identifier3\": {\n" +
+                "                \"leaf-identifier4\": \"\",\n" +
+                "                \"leaf-list-identifier4\": [\"\"],\n" +
+                "                \"list-identifier4\": [{\n" +
+                "                    \"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "                    \"leaf-list-identifier5\": [\"type-pattern-string7\", \"type-pattern-string7\", " +
+                "\"type-pattern-string7\"]\n" +
+                "                }]\n" +
+                "            }\n" +
+                "        }, {\n" +
+                "            \"leaf-identifier3\": \"enum3\",\n" +
+                "            \"list-identifier3\": [{\n" +
+                "                \"leaf-identifier4\": \"my-identity\",\n" +
+                "                \"container-identifier4\": {\n" +
+                "                    \"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "                    \"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "                },\n" +
+                "                \"leaf-list-identifier4\": [\"my-identity\"]\n" +
+                "            }]\n" +
+                "\n" +
+                "        }]\n" +
+                "    },\n" +
+                "\n" +
+                "    \"leaf-identifier1\": \"120\",\n" +
+                "    \"leaf-list-identifier1\": [\"120\"],\n" +
+                "    \"list-identifier1\": [{\n" +
+                "            \"leaf-identifier2\": \"65535\",\n" +
+                "            \"container-identifier2\": {\n" +
+                "                \"container-identifier3\": {\n" +
+                "                    \"leaf-identifier4\": \"-22369\",\n" +
+                "                    \"leaf-list-identifier4\": [\"-22369\"],\n" +
+                "                    \"list-identifier4\": [{\n" +
+                "                        \"leaf-identifier5\": \"-123456789\",\n" +
+                "                        \"leaf-list-identifier5\": [\"-123456789\"]\n" +
+                "                    }]\n" +
+                "                },\n" +
+                "                \"leaf-identifier3\": \"-8123456789569005\",\n" +
+                "                \"leaf-list-identifier3\": [\"-8123456789569005\"],\n" +
+                "                \"list-identifier3\": [{\n" +
+                "                    \"leaf-identifier4\": \"255\",\n" +
+                "                    \"leaf-list-identifier4\": [\"255\"],\n" +
+                "                    \"container-identifier4\": {\n" +
+                "                        \"leaf-identifier5\": \"type-pattern-string7\",\n" +
+                "                        \"leaf-list-identifier5\": [\"type-pattern-string7\"]\n" +
+                "                    }\n" +
+                "\n" +
+                "                }]\n" +
+                "\n" +
+                "            },\n" +
+                "            \"leaf-list-identifier2\": [\"65535\"],\n" +
+                "            \"list-identifier2\": [{\n" +
+                "                \"leaf-identifier3\": \"type-pattern-string5\",\n" +
+                "                \"leaf-list-identifier3\": [\"type-pattern-string5\"],\n" +
+                "                \"container-identifier3\": {\n" +
+                "                    \"container-identifier4\": {\n" +
+                "                        \"leaf-identifier5\": \"4294967295\",\n" +
+                "                        \"leaf-list-identifier5\": [\"4294967295\"]\n" +
+                "                    },\n" +
+                "                    \"leaf-identifier4\": \"18446744073709551615\",\n" +
+                "                    \"leaf-list-identifier4\": [\"18446744073709551615\"]\n" +
+                "                }\n" +
+                "\n" +
+                "            }]\n" +
+                "        }\n" +
+                "\n" +
+                "    ]\n" +
+                "\n" +
+                "\n" +
+                "}";
+
+        System.out.println(getRequest(uri));
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("DELETE Request");
+        uri = "http://127.0.0.1:8181/onos/restconf/data/module-identifier0/container-identifier1/container-identifier2/list-identifier3";
+        deleteRequest(uri);
+        System.out.println(getRequest(uri).toString());
+
         ymsService.unRegisterService(manager, ModuleIdentifier0Service.class);
         return result;
     }

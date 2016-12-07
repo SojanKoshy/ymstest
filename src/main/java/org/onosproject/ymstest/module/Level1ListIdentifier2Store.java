@@ -350,7 +350,7 @@ public class Level1ListIdentifier2Store implements ListIdentifier2 {
             }
             ListIdentifier3 listInStore = findListIdentifer3InStore(identifier3);
 
-            if (listInStore != null && !(listInStore instanceof Level1ListIdentifier2Store)) {
+            if (listInStore != null && !(listInStore instanceof Level2ListIdentifier3Store)) {
                 //stored node is not correct
                 throw new RuntimeException("store Node expected");
             }

@@ -8,7 +8,7 @@ import org.onosproject.yang.gen.v1.http.example.com.augment1.Augment1Service;
  * Created by root1 on 13/10/16.
  */
 public class Agument1Manager implements Augment1Service {
-    private Agument1Store appStore = new Agument1Store();
+    private Agument1Store appStore;
 
     /**
      * Returns the attribute augment1.
@@ -26,7 +26,14 @@ public class Agument1Manager implements Augment1Service {
      * @param augment1 value of augment1
      */
     public void setAugment1(Augment1OpParam augment1) {
-        appStore.processEdit(augment1);
+        if (this.appStore == null) {
+            this.appStore = new Agument1Store();
+        }
+        if (augment1.yangAugment1OpType() != Augment1.OnosYangOpType.DELETE) {
+            this.appStore.processEdit(augment1);
+        } else {
+            this.appStore = null;
+        }
     }
 
     /**
@@ -37,6 +44,10 @@ public class Agument1Manager implements Augment1Service {
      */
     public Augment1 getAugmentedAugment1Interfaces(Augment1OpParam augment1) {
         return augment1.processSubtreeFiltering(appStore, false);
+    }
+
+    public Agument1Store getAppStore() {
+        return appStore;
     }
 
     /**
